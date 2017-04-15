@@ -1,0 +1,41 @@
+.calendar {
+  width: 210px;
+  .head {
+    position: relative;
+    a {
+      cursor: pointer;
+      &:first-of-type {
+        color: yellow;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      &:last-of-type {
+        color: green;
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+    }
+    span {
+      width: 100%;
+      text-align: center;
+      display: inline-block;
+    }
+  }
+  .week, .day {
+    span {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      text-align: center;
+      line-height: 30px;
+    }
+  }
+
+  .day {
+    .not_this_month {
+      color: #ccc;
+    }
+  }
+}

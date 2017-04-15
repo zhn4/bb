@@ -1,0 +1,168 @@
+.passbook .load-history {
+  position: relative;
+  padding: 46px 20px 36px 20px; }
+
+.passbook .load-history a {
+  float: right;
+  text-decoration: none;
+  border: 1px solid #ff3f3f;
+  border-radius: 26px;
+  background-color: #ff3f3f;
+  color: #fff;
+  font-size: 13px;
+  padding: 5px 10px;
+  letter-spacing: 3px; }
+
+.passbook .load-history a svg {
+  margin-right: 4px;
+  padding-bottom: 2px; }
+
+.passbook .load-history:after {
+  content: '';
+  clear: both;
+  display: block; }
+
+.passbook .calendar {
+  margin: 0 auto;
+  border: 1px solid #ffcd46;
+  font-size: 13px;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 238px; }
+
+.passbook .calendar .head {
+  display: none; }
+
+.passbook .calendar .week span, .passbook .calendar .day span {
+  width: 34px; }
+
+.passbook .calendar .week {
+  background-color: #ff2828;
+  color: #fff; }
+
+.passbook .calendar .day {
+  font-size: 14px; }
+
+.passbook .calendar .day span {
+  border-bottom: 1px solid #dadada;
+  border-right: 1px solid #dadada;
+  box-sizing: border-box; }
+
+.passbook .calendar .day span:nth-child(7n + 7) {
+  border-right: none; }
+
+.passbook .calendar .day span:nth-last-child(7) {
+  border-bottom: none; }
+
+.passbook .calendar .day span:nth-last-child(6) {
+  border-bottom: none; }
+
+.passbook .calendar .day span:nth-last-child(5) {
+  border-bottom: none; }
+
+.passbook .calendar .day span:nth-last-child(4) {
+  border-bottom: none; }
+
+.passbook .calendar .day span:nth-last-child(3) {
+  border-bottom: none; }
+
+.passbook .calendar .day span:nth-last-child(2) {
+  border-bottom: none; }
+
+.passbook .calendar .day span:nth-last-child(1) {
+  border-bottom: none; }
+
+.passbook .record {
+  border: 1px solid red;
+  width: 90%;
+  margin: 0 auto;
+  background-color: #fff; }
+
+.passbook .record .award, .passbook .record .tips {
+  background-color: #ff604b;
+  margin: 0 auto;
+  width: 88%;
+  height: 46px;
+  border-radius: 25px;
+  text-align: center;
+  line-height: 46px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  position: relative;
+  margin-left: 16px;
+  margin-bottom: 22px; }
+
+.passbook .record .award:before, .passbook .record .tips:before {
+  content: "";
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  position: absolute;
+  top: -2px;
+  left: 0;
+  background-image: url("./gift.png");
+  background-size: cover; }
+
+.passbook .record .tips {
+  background-color: #fff5e6;
+  color: #ffa634;
+  line-height: normal;
+  padding-left: 16px;
+  box-sizing: border-box; }
+
+.passbook .record .tips:before {
+  display: none; }
+
+.passbook .record .tips div:first-of-type {
+  padding-top: 3px; }
+
+.passbook .record .tips div:nth-of-type(2) {
+  color: #000;
+  font-size: 11px;
+  font-weight: normal; }
+
+.passbook .record .tips div:last-of-type {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  position: absolute;
+  top: -2px;
+  left: 0;
+  background-color: #ffc000;
+  color: #fff;
+  font-size: 26px; }
+
+.passbook .record .tips div:last-of-type:after {
+  content: "BOOKS";
+  font-size: 10px;
+  display: block;
+  position: absolute;
+  width: 100%;
+  bottom: 8px; }
+
+.passbook .reading-books {
+  width: 70%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px; }
+
+.passbook .reading-books div div:first-of-type {
+  border: 1px solid red;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 4px; }
+
+.passbook .reading-books div div:last-of-type {
+  font-size: 14px;
+  width: 100%;
+  text-align: center; }
+
+.passbook .lead-btn a {
+  line-height: 40px;
+  text-decoration: none;
+  margin-bottom: 20px; }

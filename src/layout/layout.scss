@@ -1,0 +1,24 @@
+ul, ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.btn {
+  display: block;
+  width: 60%;
+  margin: 0 auto;
+  height: 40px;
+  background-color: #fe454f;
+  outline: none;
+  border: none;
+  border-radius: 25px;
+  color: #fff;
+  font-size: 16px;
+  // letter-spacing: 10px;
+  text-align: center;
+}

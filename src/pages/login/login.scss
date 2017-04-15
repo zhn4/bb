@@ -1,0 +1,92 @@
+.login {
+  // text-align: center;
+  .before {
+    div {
+      &:nth-child(2) {
+        // background-color: red;
+        width: 65%;
+        margin: 0 auto;
+        position: relative;
+      }
+      &:nth-child(3) {
+        // background-color: yellow;
+        width: 65%;
+        margin: 0 auto;
+      }
+    }
+    input[type="text"], input[type="password"] {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 0 12px;
+      height: 40px;
+      outline: none;
+      border: 1px solid #919191;
+      border-radius: 8px;
+    }
+    input[type="text"] {
+      margin-bottom: 17.5px;
+    }
+    input[type="password"] {
+      margin-bottom: 55px;
+    }
+    input[type="button"] {
+      box-sizing: border-box;
+      width: 35%;
+      padding: 0 12px;
+      height: 40px;
+      outline: none;
+      border-top: 1px solid #fe454f;
+      border-right: 1px solid #fe454f;
+      border-bottom: 1px solid #fe454f;
+      border-left: 1px solid #fe454f;
+      // border-radius: 9px;
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+      background-color: #fe454f;
+      color: #fff;
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: 11px;
+    }
+    // button {
+    //   display: block;
+    //   width: 60%;
+    //   margin: 0 auto;
+    //   height: 40px;
+    //   background-color: #fe454f;
+    //   outline: none;
+    //   border: none;
+    //   border-radius: 25px;
+    //   color: #fff;
+    //   font-size: 16px;
+    //   // letter-spacing: 10px;
+    //   text-align: center;
+    // }
+  }
+  .after {
+    padding: 0 30px;
+    div {
+      border-bottom: 1px solid #e7e7e7;
+      color: #b4b4b4;
+      padding: 12px 0;
+      &:last-of-type {
+        margin-bottom: 55px;
+      }
+    }
+    button {
+      display: block;
+      width: 60%;
+      margin: 0 auto;
+      height: 40px;
+      background-color: #fe454f;
+      outline: none;
+      border: none;
+      border-radius: 25px;
+      color: #fff;
+      font-size: 16px;
+      // letter-spacing: 10px;
+      text-align: center;
+    }
+  }
+}
