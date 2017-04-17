@@ -7,7 +7,7 @@ import GoHistory from 'react-icons/lib/go/history'
 
 import './passbook.css'
 
-let data = localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : []// 新建数组读取localStorage是否存在用户数据
+// let data = localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : []// 新建数组读取localStorage是否存在用户数据
 
 class Passbook extends Component {
   constructor(props) {
@@ -16,12 +16,16 @@ class Passbook extends Component {
       isLogin: false
     }
   }
-  componentWillMount() {
-    if(data[0]) {
+  componentWillReceiveProps() {
+    let data = localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : []
+    if(data.length > 0) {
       this.setState({
         isLogin: true
       })
     }
+  }
+  handleAward() {
+    console.log('领取礼物，发ajax')
   }
   render() {
     return (
@@ -33,7 +37,7 @@ class Passbook extends Component {
         <Calendar/>
 
         <div className="record">
-          <Award/>
+          <Award handleAward={this.handleAward.bind(this)}/>
           <Tips/>
           <Readingbooks/>
           <LeadBtn isLogin={this.state.isLogin}/>
@@ -51,7 +55,7 @@ class Award extends Component {
   render() {
     return (
       <div className="award">
-        <div>领取阅读奖励</div>
+        <div onClick={this.props.handleAward}>领取阅读奖励</div>
       </div>
     )
   }

@@ -6,6 +6,14 @@ import './App.css';
 import './layout/layout.css';
 import {Link} from 'react-router-dom'
 
+// let judge_url = ''
+// if(process.env.NODE_ENV === 'development') {
+//   console.log('开发环境，使用开发api')
+//   judge_url = '//192.168.1.84:8000'
+// }else {
+//   console.log('生产环境，使用线上api')
+//   judge_url = '//bbm.com/api'
+// }
 
 class App extends Component {
   render() {

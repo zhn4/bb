@@ -14,6 +14,17 @@ import Calendar from './pages/calendar/Calendar'
 
 import Index from './index/Index'
 
+// let judge_url = ''
+
+// console.log(process.env.NODE_ENV)// 查看当前环境
+// if(process.env.NODE_ENV === 'development') {
+//   console.log('开发环境，使用开发api')
+//   judge_url = '//192.168.1.84:8000'
+// }else {
+//   console.log('生产环境，使用线上api')
+//   judge_url = '//bbm.com/api'
+// }
+
 // import Passbook from './pages/passbook/Passbook'
 // import Login from './pages/login/Login'
 // import Library from './pages/library/Library'

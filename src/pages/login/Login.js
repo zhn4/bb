@@ -4,6 +4,8 @@ import './login.css'
 
 let data = localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : []// 新建数组读取localStorage是否存在用户数据
 
+let  apiSwitch = require('../../apiSwitch')
+
 class Login extends Component {
   constructor(props) {
     super(props)
@@ -29,7 +31,8 @@ class Login extends Component {
     }
   }
   login() {
-    fetch('//192.168.1.84:8000/auth/login/', {
+    // fetch('//192.168.1.84:8000/auth/login/', {
+    fetch(apiSwitch() + '/auth/login/', {
       mode: 'cors',
       method: 'post',
       headers: {
