@@ -1,0 +1,25 @@
+.search {
+  // background-color: red;
+  width: 100%;
+  div {
+    width: 60%;
+    position: relative;
+    margin: 0 auto;
+  }
+  input[type="text"] {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    width: 100%;
+    // padding: 8px;
+    height: 32px;
+    padding: 0 12px;
+    box-sizing: border-box;
+  }
+  span {
+    position: absolute;
+    top: 2px;
+    right: 8px;
+    color: #ff7849;
+  }
+}

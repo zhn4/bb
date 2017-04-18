@@ -1,0 +1,30 @@
+.results {
+  // background-color: red;
+  width: 310px;
+  margin: 0 auto;
+  div {
+    // background-color: green;
+    display: inline-block;
+    vertical-align: top;
+    width: 70px;
+    // height: 80px;
+    margin-right: 10px;
+    margin-bottom: 14px;
+    &:nth-child(4n + 4) {
+      // background-color: yellow;
+      margin-right: 0;
+    }
+    img {
+      width: 100%;
+      display: block;
+    }
+    p {
+      font-size: 12px;
+      font-weight: bold;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
