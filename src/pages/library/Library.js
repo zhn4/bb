@@ -2,48 +2,85 @@ import React, { Component } from 'react';
 
 import { Link } from 'react-router-dom'
 
+import Search from '../components/Search'
+import Results from '../components/Results'
+
 import './library.css'
 
-import FaSearch from 'react-icons/lib/fa/search'
+let historyData = []// 测试数据
+for(let i = 0; i < 50; i++) {
+  historyData.push({
+    icon: 'https://img3.doubanio.com/lpic/s2449523.jpg',
+    title: '倚天屠龙记'
+  })
+}
+
+let  apiSwitch = require('../../apiSwitch')
 
 class Library extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      results: false,
+      searchResults: historyData
+    }
+  }
   getInputValue(value) {
-    // if(e.key && e.key === 'Enter' && e.target.value !== '') {
-    //   // this.props.getInputValue(e.target.value)
-    //   console.log('搜索功能，发送ajax')
-    //   console.log(e.target.value)
-    // }
     console.log('搜索功能，发送ajax')
     console.log(value)
+    fetch(apiSwitch() + '/api/tsgbooks/books/?search=' + value, {
+      mode: 'cors',
+      method: 'get',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+    })
+    .then(res => {
+      console.log(res)
+      if(res.ok) {
+        res.json()
+        .then(json => {
+          console.log(json)
+          this.setState({
+            results: true,
+            searchResults: json
+          })
+        })
+      }else {
+        res.json()
+        .then(json => {
+          console.log("gg")
+        })
+      }
+    })
+    .catch(function(error) {
+      console.log('error', error)
+    })
   }
   render() {
     return (
       <div className="library">
-        <p>童书馆</p>
         <Search getInputValue={this.getInputValue.bind(this)}/>
-        <Link to="/library/1">2-3</Link>
-        <Link to="/library/2">3-4</Link>
-        <Link to="/library/3">4-5</Link>
+        {
+          this.state.results
+          ?
+          <Results data={this.state.searchResults}/>
+          :
+          <Classification/>
+        }
       </div>
     );
   }
 }
 
-class Search extends Component {
-  sendInputValue(e) {
-    if(e.key && e.key === 'Enter' && e.target.value !== '') {
-      // this.props.getInputValue(e.target.value)
-      // console.log(e.target.value)
-      this.props.getInputValue(e.target.value)
-    }
-  }
+class Classification extends Component {
   render() {
     return (
-      <div className="search">
-        <div>
-          <input type="text" placeholder="搜索绘本" onKeyPress={this.sendInputValue.bind(this)} />
-          <span><FaSearch size={18}/></span>
-        </div>
+      <div className="classification">
+        <Link to="/libraryclass/1"></Link>
+        <Link to="/libraryclass/2"></Link>
+        <Link to="/libraryclass/3"></Link>
       </div>
     )
   }

@@ -17,6 +17,7 @@ class Login extends Component {
   componentWillMount() {
     // TODO 需要加入fetch请求判断token是否失效
     // console.log(data)
+    let data = localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : []// 新建数组读取localStorage是否存在用户数据
     if(data[0]) {
       this.setState({// 存在localStorage数据就读取
         isLogin: true,

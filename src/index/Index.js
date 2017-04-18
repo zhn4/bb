@@ -8,6 +8,7 @@ import Login from '../pages/login/Login'
 import Library from '../pages/library/Library'
 import History from '../pages/history/History'
 import Reading from '../pages/reading/Reading'
+import LibraryClassification from '../pages/library/LibraryClassification'
 
 // import GoBook from 'react-icons/lib/go/book'
 import FaUser from 'react-icons/lib/fa/user'
@@ -61,10 +62,10 @@ class Index extends Component {
           <Menu menu={this.state.judge}/>
 
           <Route path="/library" component={Library}/>
+          <Route path="/libraryclass/:id" component={LibraryClassification}/>
           <Route exact path="/passbook" component={Passbook}/>
           <Route path="/login" component={Login}/>
           <Route path="/history" component={History}/>
-          <Route path="/history/:id" component={History}/>
           <Route path="/reading" component={Reading}/>
         </div>
       </Router>

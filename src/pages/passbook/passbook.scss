@@ -1,21 +1,26 @@
 .passbook {
   .load-history {
     position: relative;
-    padding: 46px 20px 36px 20px;
+    // padding: 46px 20px 36px 20px;
+    background-image: url('./head-banner.png');
+    background-size: cover;
+    padding-top: 49%;
+    // padding-top: 188px;
     a {
-      float: right;
       text-decoration: none;
-      border: 1px solid #ff3f3f;
       border-radius: 26px;
-      background-color: #ff3f3f;
-      color: #fff;
-      font-size: 13px;
-      padding: 5px 10px;
+      position: absolute;
+      right: 30px;
+      top: 40px;
+      width: 128px;
+      height: 46px;
       letter-spacing: 3px;
-      svg {
-        margin-right: 4px;
-        padding-bottom: 2px;
-      }
+      background-image: url('./btn-bg.png');
+      background-size: cover;
+      // svg {
+      //   margin-right: 4px;
+      //   padding-bottom: 2px;
+      // }
     }
     &:after {
       content: '';
@@ -30,6 +35,9 @@
     border-radius: 10px;
     overflow: hidden;
     width: 238px;
+    margin-top: -60px;
+    position: relative;
+    background-color: #fff;
     .head {
       display: none;
     }

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import Calendar from '../calendar/Calendar'
 
-import GoHistory from 'react-icons/lib/go/history'
+// import GoHistory from 'react-icons/lib/go/history'
 
 import './passbook.css'
 
@@ -31,7 +31,7 @@ class Passbook extends Component {
     return (
       <div className="passbook">
         <div className="load-history">
-          <Link to="/history"><GoHistory size={14}/>历史借书</Link>
+          <Link to="/history"></Link>
         </div>
 
         <Calendar/>

@@ -3,14 +3,16 @@ import React, { Component } from 'react';
 
 import './history.css'
 
+import Results from '../components/Results'
+
 let historyData = []// 测试数据
 for(let i = 0; i < 50; i++) {
   historyData.push({
-    cover: 'http://blog.roodo.com/book100/3aecf7cc.jpg',
-    name: '倚天屠龙记'
+    icon: 'https://img3.doubanio.com/lpic/s2449523.jpg',
+    title: '倚天屠龙记'
   })
 }
-console.log(historyData)
+// console.log(historyData)
 
 class History extends Component {
   constructor(props) {
@@ -25,14 +27,7 @@ class History extends Component {
   render() {
     return (
       <div className="history">
-        <div >
-          {this.state.historyData.map((data, i) => (
-            <div key={i}>
-              <img src={data.cover} alt="cover" />
-              <p>{data.name}</p>
-            </div>
-          ))}
-        </div>
+        <Results data={this.state.historyData}/>
       </div>
     );
   }
