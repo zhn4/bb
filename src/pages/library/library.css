@@ -8,26 +8,22 @@
 
 .library .classification {
   width: 100%; }
-
-.library .classification a {
-  width: 88%;
-  display: block;
-  border: 1px solid #b4d2c9;
-  margin: 0 auto;
-  margin-bottom: 12px;
-  border-radius: 12px;
-  padding-top: 23.8%;
-  overflow: hidden;
-  background-size: cover; }
-
-.library .classification a:nth-of-type(1) {
-  background-image: url("./2-3.png"); }
-
-.library .classification a:nth-of-type(2) {
-  background-image: url("./3-4.png"); }
-
-.library .classification a:nth-of-type(3) {
-  background-image: url("./4-5.png"); }
+  .library .classification a {
+    width: 88%;
+    display: block;
+    border: 1px solid #b4d2c9;
+    margin: 0 auto;
+    margin-bottom: 12px;
+    border-radius: 12px;
+    padding-top: 23.8%;
+    overflow: hidden;
+    background-size: cover; }
+    .library .classification a:nth-of-type(1) {
+      background-image: url("./2-3.png"); }
+    .library .classification a:nth-of-type(2) {
+      background-image: url("./3-4.png"); }
+    .library .classification a:nth-of-type(3) {
+      background-image: url("./4-5.png"); }
 
 .library .results {
   margin-top: 14px; }

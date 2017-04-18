@@ -1,0 +1,16 @@
+.back {
+  height: 34px;
+  border-bottom: 1px solid #ccc;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  width: 100%; }
+
+.back div {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  border-right: 1px solid #ccc; }
