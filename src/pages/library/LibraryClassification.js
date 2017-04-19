@@ -42,7 +42,46 @@ class LibraryClassification extends Component {
         .then(json => {
           console.log(json)
           this.setState({
-            resultData: json
+            resultData: json.results
+          })
+        })
+      }else {
+        res.json()
+        .then(json => {
+          console.log("gg")
+        })
+      }
+    })
+    .catch(function(error) {
+      console.log('error', error)
+    })
+  }
+  loadMoreData(value) {
+    console.log('加载更多')
+    fetch(apiSwitch() + '/api/tsgbooks/books/?sort=' + this.props.match.params.id + '&page_size=' + 2, {
+      mode: 'cors',
+      method: 'get',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+    })
+    .then(res => {
+      console.log(res)
+      if(res.ok) {
+        res.json()
+        .then(json => {
+          console.log(this.state.resultData)
+          console.log(json)
+          let newResultData = this.state.resultData
+          json.results.map( (index)=> (
+            // console.log(index)
+            newResultData.push(index)
+          ))
+          // this.state.resultData.push(json.results)
+          console.log(this.state.resultData)
+          this.setState({
+            resultData: newResultData
           })
         })
       }else {
@@ -61,7 +100,7 @@ class LibraryClassification extends Component {
     return (
       <div className="library">
         <Back/>
-        <Results data={this.state.resultData}/>
+        <Results data={this.state.resultData} loadMoreData={this.loadMoreData.bind(this)}/>
       </div>
     );
   }

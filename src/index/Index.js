@@ -7,8 +7,11 @@ import Passbook from '../pages/passbook/Passbook'
 import Login from '../pages/login/Login'
 import Library from '../pages/library/Library'
 import History from '../pages/history/History'
-import Reading from '../pages/reading/Reading'
+// import Reading from '../pages/reading/Reading'
+import ReadingSingle from '../pages/reading/ReadingSingle'
 import LibraryClassification from '../pages/library/LibraryClassification'
+import LibrarySearchResults from '../pages/library/LibrarySearchResults'
+import Classification from '../pages/library/Classification'
 
 // import GoBook from 'react-icons/lib/go/book'
 import FaUser from 'react-icons/lib/fa/user'
@@ -58,15 +61,18 @@ class Index extends Component {
   render() {
     return (
       <Router basename="/index">
-        <div className="index-content" ref="indexContent" style={{'height': this.state.height + 'px'}}>
+        <div className="index-content" ref="indexContent"
+          style={{'height': this.state.height + 'px'}}>
           <Menu menu={this.state.judge}/>
 
           <Route path="/library" component={Library}/>
+          <Route path="/classification" component={Classification}/>
           <Route path="/libraryclass/:id" component={LibraryClassification}/>
+          <Route path="/librarysearchresults/:key" component={LibrarySearchResults}/>
           <Route exact path="/passbook" component={Passbook}/>
           <Route path="/login" component={Login}/>
           <Route path="/history" component={History}/>
-          <Route path="/reading" component={Reading}/>
+          <Route path="/readingsingle" component={ReadingSingle}/>
         </div>
       </Router>
     )

@@ -61,6 +61,7 @@ class Login extends Component {
             isLogin: true,
             userData: json.user
           })
+          // this.props.history.push('/passbook');
         })
       }else {
         res.json()

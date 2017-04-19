@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import './history.css'
 
 import Results from '../components/Results'
+import Back from '../components/Back'
 
 let historyData = []// 测试数据
 for(let i = 0; i < 50; i++) {
@@ -27,6 +28,7 @@ class History extends Component {
   render() {
     return (
       <div className="history">
+        <Back/>
         <Results data={this.state.historyData}/>
       </div>
     );

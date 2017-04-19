@@ -16,13 +16,19 @@ class Passbook extends Component {
       isLogin: false
     }
   }
-  componentWillReceiveProps() {
+  judgeLogin() {
     let data = localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : []
     if(data.length > 0) {
       this.setState({
         isLogin: true
       })
     }
+  }
+  componentDidMount() {
+    this.judgeLogin()
+  }
+  componentWillReceiveProps() {
+    this.judgeLogin()
   }
   handleAward() {
     console.log('领取礼物，发ajax')
@@ -101,7 +107,7 @@ class LeadBtn extends Component {
         {
           this.props.isLogin
           ?
-          <Link className="btn" to="/reading">绘本阅读</Link>
+          <Link className="btn" to="/readingsingle">绘本阅读</Link>
           :
           <Link className="btn" to="/login">登陆</Link>
         }

@@ -15,7 +15,7 @@ for(let i = 0; i < 50; i++) {
   })
 }
 
-let  apiSwitch = require('../../apiSwitch')
+// let  apiSwitch = require('../../apiSwitch')
 
 class Library extends Component {
   constructor(props) {
@@ -26,37 +26,8 @@ class Library extends Component {
     }
   }
   getInputValue(value) {
-    console.log('搜索功能，发送ajax')
-    console.log(value)
-    fetch(apiSwitch() + '/api/tsgbooks/books/?search=' + value, {
-      mode: 'cors',
-      method: 'get',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-    })
-    .then(res => {
-      console.log(res)
-      if(res.ok) {
-        res.json()
-        .then(json => {
-          console.log(json)
-          this.setState({
-            results: true,
-            searchResults: json
-          })
-        })
-      }else {
-        res.json()
-        .then(json => {
-          console.log("gg")
-        })
-      }
-    })
-    .catch(function(error) {
-      console.log('error', error)
-    })
+    console.log('搜索功能，进入结果页面')
+    this.props.history.push('/librarysearchresults/' + value);
   }
   render() {
     return (
@@ -67,23 +38,25 @@ class Library extends Component {
           ?
           <Results data={this.state.searchResults}/>
           :
-          <Classification/>
+          <div className="library-details">
+            <Link to="/classification"></Link>
+          </div>
         }
       </div>
     );
   }
 }
 
-class Classification extends Component {
-  render() {
-    return (
-      <div className="classification">
-        <Link to="/libraryclass/1"></Link>
-        <Link to="/libraryclass/2"></Link>
-        <Link to="/libraryclass/3"></Link>
-      </div>
-    )
-  }
-}
+// class Classification extends Component {
+//   render() {
+//     return (
+//       <div className="classification">
+//         <Link to="/libraryclass/1"></Link>
+//         <Link to="/libraryclass/2"></Link>
+//         <Link to="/libraryclass/3"></Link>
+//       </div>
+//     )
+//   }
+// }
 
 export default Library;

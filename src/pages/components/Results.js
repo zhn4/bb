@@ -12,9 +12,33 @@ import React, { Component } from 'react';
 import './results.css'
 
 class Results extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      height: 0
+    }
+  }
+  componentDidMount() {
+    this.setState({
+      height: window.innerHeight - 55 -58
+    })
+  }
+  handleScroll(e) {
+    let clientHeight = this.refs.scrollview.clientHeight
+    let scrollTop = this.refs.scrollview.scrollTop
+    let scrollHeight = this.refs.scrollview.scrollHeight
+    if(scrollHeight === (clientHeight + scrollTop)) {
+      console.log('回调父组件加载请求')
+      this.props.loadMoreData(e.target.value)
+    }
+  }
   render() {
     return (
-      <div className="results">
+      <div className="results"
+        style={{'height': this.state.height + 'px'}}
+        onScroll={this.handleScroll.bind(this)}
+        ref="scrollview"
+      >
         {this.props.data.map((data, i) => (
           <div key={i}>
             <img src={data.icon} alt="cover" />
