@@ -2,7 +2,7 @@
   .load-history {
     position: relative;
     // padding: 46px 20px 36px 20px;
-    background-image: url('./img/head-banner.png');
+    background-image: url('../img/head-banner.png');
     background-size: cover;
     padding-top: 49%;
     // padding-top: 188px;
@@ -15,7 +15,7 @@
       width: 128px;
       height: 46px;
       letter-spacing: 3px;
-      background-image: url('./img/btn-bg.png');
+      background-image: url('../img/btn-bg.png');
       background-size: cover;
       // svg {
       //   margin-right: 4px;
@@ -112,7 +112,7 @@
         top: -2px;
         left: 0;
         // background-color: green;
-        background-image: url('./img/gift.png');
+        background-image: url('../img/gift.png');
         background-size: cover;
       }
     }

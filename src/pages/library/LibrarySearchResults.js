@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import Results from '../components/Results'
 import Back from '../components/Back'
 
-import './library.css'
+import './style/library.css'
 
 let  apiSwitch = require('../../apiSwitch')
 

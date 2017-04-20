@@ -8,21 +8,17 @@
   justify-content: space-between;
   align-items: center;
   height: 55px;
-  // border-top: 1px solid #ccc;
   background-color: #ffcd46;
   box-sizing: border-box;
-  padding: 0 24px;
-  // z-index: 10;
-  div {
+  padding: 0 24px; }
+  .menu div {
     display: inline-block;
     width: 68px;
-    text-align: center;
-  }
-  a {
+    text-align: center; }
+  .menu a {
     text-decoration: none;
-    color: #fff;
-  }
-  .active {
+    color: #fff; }
+  .menu .active {
     background-color: #ff3f3f;
     position: relative;
     height: 70px;
@@ -31,23 +27,17 @@
     padding-right: 6px;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
-    box-sizing: border-box;
-    &::after {
+    box-sizing: border-box; }
+    .menu .active::after {
       content: attr(data-value);
       font-size: 13px;
       font-weight: bold;
       white-space: nowrap;
       text-align: center;
       display: block;
-      color: #fff;
-    }
-  }
-}
+      color: #fff; }
 
 .index-content {
-  // background-color: red;
-  // margin-bottom: 55px;
   overflow: scroll;
-  background-image: url('./img/bg.jpg');
-  background-size: cover;
-}
+  background-image: url("../img/bg.jpg");
+  background-size: cover; }

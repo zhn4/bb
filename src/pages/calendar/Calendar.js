@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 // import './calendar.scss'
-import './calendar.css'
+import './style/calendar.css'
 
 // let today = new Date()
 // let month = today.getMonth()

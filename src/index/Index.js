@@ -19,7 +19,7 @@ import FaBook from 'react-icons/lib/fa/book'
 import FaList from 'react-icons/lib/fa/list-alt'
 
 // import './index.scss'
-import './index.css'
+import './style/index.css'
 
 class Index extends Component {
   constructor(props) {

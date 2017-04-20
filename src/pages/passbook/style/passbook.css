@@ -1,6 +1,6 @@
 .passbook .load-history {
   position: relative;
-  background-image: url("./head-banner.png");
+  background-image: url("../img/head-banner.png");
   background-size: cover;
   padding-top: 49%; }
 
@@ -13,7 +13,7 @@
   width: 128px;
   height: 46px;
   letter-spacing: 3px;
-  background-image: url("./btn-bg.png");
+  background-image: url("../img/btn-bg.png");
   background-size: cover; }
 
 .passbook .load-history:after {
@@ -104,7 +104,7 @@
   position: absolute;
   top: -2px;
   left: 0;
-  background-image: url("./gift.png");
+  background-image: url("../img/gift.png");
   background-size: cover; }
 
 .passbook .record .tips {

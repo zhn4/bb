@@ -5,7 +5,7 @@ import Calendar from '../calendar/Calendar'
 
 // import GoHistory from 'react-icons/lib/go/history'
 
-import './passbook.css'
+import './style/passbook.css'
 
 // let data = localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : []// 新建数组读取localStorage是否存在用户数据
 

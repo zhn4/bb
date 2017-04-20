@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import Search from '../components/Search'
 import Results from '../components/Results'
 
-import './library.css'
+import './style/library.css'
 
 let historyData = []// 测试数据
 for(let i = 0; i < 50; i++) {

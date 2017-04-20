@@ -1,19 +1,19 @@
 .login {
   // text-align: center;
   .before {
-    div {
-      &:nth-child(2) {
-        // background-color: red;
-        width: 65%;
-        margin: 0 auto;
-        position: relative;
-      }
-      &:nth-child(3) {
-        // background-color: yellow;
-        width: 65%;
-        margin: 0 auto;
-      }
-    }
+    // div {
+    //   &:nth-child(2) {
+    //     // background-color: red;
+    //     width: 65%;
+    //     margin: 0 auto;
+    //     position: relative;
+    //   }
+    //   &:nth-child(3) {
+    //     // background-color: yellow;
+    //     width: 65%;
+    //     margin: 0 auto;
+    //   }
+    // }
     input[type="text"], input[type="password"] {
       box-sizing: border-box;
       width: 100%;
@@ -88,5 +88,21 @@
       // letter-spacing: 10px;
       text-align: center;
     }
+  }
+}
+
+
+
+.login-part {
+  &:nth-child(2) {
+    // background-color: red;
+    width: 65%;
+    margin: 0 auto;
+    position: relative;
+  }
+  &:nth-child(3) {
+    // background-color: yellow;
+    width: 65%;
+    margin: 0 auto;
   }
 }

@@ -9,7 +9,7 @@ import React, { Component } from 'react';
 //   })
 // }
 // console.log(historyData)
-import './results.css'
+import './style/results.css'
 
 class Results extends Component {
   constructor(props) {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import LeftArrow from 'react-icons/lib/fa/chevron-left'
 
-import './back.css'
+import './style/back.css'
 
 class Library extends Component {
   back() {

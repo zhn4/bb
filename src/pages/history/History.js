@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import { HashRouter as Router, Route,  Link } from 'react-router-dom'
 
-import './history.css'
+import './style/history.css'
 
 import Results from '../components/Results'
 import Back from '../components/Back'

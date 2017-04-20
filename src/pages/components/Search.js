@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import FaSearch from 'react-icons/lib/fa/search'
 
-import './search.css'
+import './style/search.css'
 
 class Search extends Component {
   sendInputValue(e) {

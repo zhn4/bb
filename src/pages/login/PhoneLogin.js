@@ -1,0 +1,135 @@
+import React, { Component } from 'react';
+
+import './style/login.css'
+
+let data = localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : []// 新建数组读取localStorage是否存在用户数据
+
+let  apiSwitch = require('../../apiSwitch')
+
+class PhoneLogin extends Component {
+  // constructor() {
+  //
+  // }
+  phoneLogin() {
+    // fetch('//192.168.1.84:8000/auth/login/', {
+    if(this.refs.inputPhone.value !== '' && this.refs.verificationCode.value !== '') {
+      console.log('非空，可发送请求')
+      fetch(apiSwitch() + '/auth/login/', {
+        mode: 'cors',
+        method: 'post',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          phone: this.refs.inputPhone.value,
+          verification_code: this.refs.verificationCode.value
+        })
+      })
+      .then(res => {
+        console.log(res)
+        if(res.ok) {
+          res.json()
+          .then(json => {
+            console.log(json)
+            console.log(json.token)
+            data.push({
+              token: json.token,// token，登陆状态
+              user: json.user// user用户数据
+            })
+            localStorage.setItem('userData', JSON.stringify(data))// localStorage保存token标识登陆状态
+            this.setState({
+              isLogin: true,
+              userData: json.user
+            })
+            // this.props.history.push('/passbook');
+          })
+        }else {
+          res.json()
+          .then(json => {
+            console.log(json.non_field_errors[0])
+          })
+        }
+      })
+      .catch(function(error) {
+        console.log('error', error)
+      })
+    }else {
+      console.log('空，弹窗提示')
+    }
+  }
+  getCode() {
+    console.log('这里应该发送一个ajax请求')
+    if(this.refs.inputPhone.value !== '') {
+      console.log('获取验证码')
+      fetch(apiSwitch() + '/auth/login/', {
+        mode: 'cors',
+        method: 'post',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          phone_number: this.refs.inputPhone.value,
+          // password: this.refs.inputPwd.value
+        })
+      })
+      .then(res => {
+        console.log(res)
+        if(res.ok) {
+          res.json()
+          .then(json => {
+            console.log(json)
+            console.log(json.token)
+            data.push({
+              token: json.token,// token，登陆状态
+              user: json.user// user用户数据
+            })
+            localStorage.setItem('userData', JSON.stringify(data))// localStorage保存token标识登陆状态
+            this.setState({
+              isLogin: true,
+              userData: json.user
+            })
+            // this.props.history.push('/passbook');
+          })
+        }else {
+          res.json()
+          .then(json => {
+            console.log(json.non_field_errors[0])
+          })
+        }
+      })
+      .catch(function(error) {
+        console.log('error', error)
+      })
+    }else {
+      console.log('空，弹窗提示')
+    }
+  }
+  render() {
+    return (
+      <div className="phone-login login-part">
+        <div>
+          <input
+            type="text"
+            placeholder="请输入手机号"
+            ref='inputPhone'
+            className="username"
+          />
+          <input type="button" value="获取验证码"
+            onClick={this.getCode.bind(this)}/>
+        </div>
+        <div>
+          <input
+            type="text"
+            placeholder="请输入验证码"
+            ref='verificationCode'
+          />
+        </div>
+        <button className="btn" onClick={this.phoneLogin.bind(this)}>登陆</button>
+      </div>
+    )
+  }
+}
+
+export default PhoneLogin;
