@@ -3,29 +3,24 @@
   margin: 0 auto;
   margin-top: 58px;
   overflow: scroll; }
-
-.results div {
-  display: inline-block;
-  vertical-align: top;
-  width: 70px;
-  margin-right: 10px;
-  margin-bottom: 14px; }
-
-.results div a {
-  text-decoration: none;
-  color: #000; }
-
-.results div:nth-child(4n + 4) {
-  margin-right: 0; }
-
-.results div img {
-  width: 100%;
-  display: block; }
-
-.results div p {
-  font-size: 12px;
-  font-weight: bold;
-  text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis; }
+  .results div {
+    display: inline-block;
+    vertical-align: top;
+    width: 70px;
+    margin-right: 10px;
+    margin-bottom: 14px; }
+    .results div a {
+      text-decoration: none;
+      color: #000; }
+    .results div:nth-child(4n + 4) {
+      margin-right: 0; }
+    .results div img {
+      width: 100%;
+      display: block; }
+    .results div p {
+      font-size: 12px;
+      font-weight: bold;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis; }

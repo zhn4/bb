@@ -11,6 +11,80 @@ let apiSwitch = require('../../apiSwitch')
 
 
 // let  apiSwitch = require('../../apiSwitch')
+let testData = [
+  {
+    "id": 3,
+    "title": "我永远爱你",
+    "cover": "http://bbmonkey-test.oss-cn-shenzhen.aliyuncs.com/temp/books/cover_02.png",
+    "content": '我永远爱你测试数据',
+    "audio": null,
+    "sort": {
+      "id": 1,
+      "name": "2-3岁"
+    },
+    "tag": [
+      {
+        "id": 1,
+        "name": "妈妈",
+        "citations": 1
+      },
+      {
+        "id": 3,
+        "name": "家庭",
+        "citations": 2
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "我妈妈",
+    "cover": "http://bbmonkey-test.oss-cn-shenzhen.aliyuncs.com/temp/books/cover_03.png",
+    "content": '我妈妈测试数据',
+    "audio": null,
+    "sort": {
+      "id": 1,
+      "name": "2-3岁"
+    },
+    "tag": [
+      {
+        "id": 3,
+        "name": "家庭",
+        "citations": 2
+      },
+      {
+        "id": 2,
+        "name": "爸爸",
+        "citations": 1
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "我妈sdf妈",
+    "cover": "http://bbmonkey-test.oss-cn-shenzhen.aliyuncs.com/temp/books/cover_03.png",
+    "content": '我妈妈fffff测试数据',
+    "audio": null,
+    "sort": {
+      "id": 1,
+      "name": "2-3岁"
+    },
+    "tag": [
+      {
+        "id": 3,
+        "name": "家庭",
+        "citations": 2
+      },
+      {
+        "id": 2,
+        "name": "爸爸",
+        "citations": 1
+      }
+    ]
+  }
+
+]
+
+console.log(testData)
 
 import './style/reading.css'
 
@@ -27,37 +101,40 @@ class ReadingGroup extends Component {
     }
   }
   componentWillMount() {
-    console.log(this.props.match.params.service_consume_id)
-    fetch(apiSwitch() + '/api/tsgbooks/books_by_service_consume/'+ this.props.match.params.service_consume_id, {
-      mode: 'cors',
-      method: 'get',
-      headers: {
-        'Accept': 'application/json',
-        // 'Content-Type': 'application/json'
-      },
+    this.setState({
+      bookInfo: testData
     })
-    .then(res => {
-      console.log(res)
-      if(res.ok) {
-        res.json()
-        .then(json => {
-          console.log(json)
-          this.setState({
-            bookInfo: json,
-            tags: json.tag
-          })
-          this.refs.videoPlayer.load()
-        })
-      }else {
-        res.json()
-        .then(json => {
-          console.log("gg")
-        })
-      }
-    })
-    .catch(function(error) {
-      console.log('error', error)
-    })
+    // console.log(this.props.match.params.service_consume_id)
+    // fetch(apiSwitch() + '/api/tsgbooks/books_by_service_consume/'+ this.props.match.params.service_consume_id, {
+    //   mode: 'cors',
+    //   method: 'get',
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     // 'Content-Type': 'application/json'
+    //   },
+    // })
+    // .then(res => {
+    //   console.log(res)
+    //   if(res.ok) {
+    //     res.json()
+    //     .then(json => {
+    //       console.log(json)
+    //       this.setState({
+    //         bookInfo: json,
+    //         tags: json.tag
+    //       })
+    //       this.refs.videoPlayer.load()
+    //     })
+    //   }else {
+    //     res.json()
+    //     .then(json => {
+    //       console.log("gg")
+    //     })
+    //   }
+    // })
+    // .catch(function(error) {
+    //   console.log('error', error)
+    // })
   }
   changeTime(times) {
     // let time = parseInt(this.refs.videoPlayer.duration, 10)
@@ -116,17 +193,23 @@ class ReadingGroup extends Component {
   }
   render() {
     return (
-      <div className="reading">
+      <div className="reading reading-group">
         <Back/>
-        <div className="cover">
-          <img src={this.state.bookInfo.cover} alt="cover"/>
-          <p>{this.state.bookInfo.title}</p>
+        <div className="switch">
+          {this.state.bookInfo.map((book, i) => (
+            <div className="cover">
+              <img src={book.cover} alt="cover"/>
+              <p>{book.title}</p>
+            </div>
+          ))}
         </div>
+
+
         <div className="tags">
           <ul>
-          {this.state.tags.map((data, i) => (
-            <li key={i}>{data.name}</li>
-          ))}
+            {this.state.tags.map((data, i) => (
+              <li key={i}>{data.name}</li>
+            ))}
           </ul>
         </div>
         <p className="desc">{this.state.bookInfo.content}</p>
@@ -144,7 +227,7 @@ class ReadingGroup extends Component {
               {
                 this.state.audioStatus
                 ?
-                <FaPause size={28}/>
+                  <FaPause size={28}/>
                 :
                 <FaPlay size={28}/>
               }
