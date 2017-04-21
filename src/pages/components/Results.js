@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+
+import { Link } from 'react-router-dom'
+
 // import { HashRouter as Router, Route,  Link } from 'react-router-dom'
 
 // let historyData = []// 测试数据
@@ -41,8 +44,10 @@ class Results extends Component {
       >
         {this.props.data.map((data, i) => (
           <div key={i}>
-            <img src={data.icon} alt="cover" />
-            <p>{data.title}</p>
+            <Link to={"/readingsingle/" + data.book_id}>
+              <img src={data.icon} alt="cover" />
+              <p>{data.title}</p>
+            </Link>
           </div>
         ))}
       </div>

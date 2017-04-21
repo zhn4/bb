@@ -1,28 +1,35 @@
 .calendar {
   width: 210px; }
-  .calendar .head {
-    position: relative; }
-    .calendar .head a {
-      cursor: pointer; }
-      .calendar .head a:first-of-type {
-        color: yellow;
-        position: absolute;
-        top: 0;
-        left: 0; }
-      .calendar .head a:last-of-type {
-        color: green;
-        position: absolute;
-        top: 0;
-        right: 0; }
-    .calendar .head span {
-      width: 100%;
-      text-align: center;
-      display: inline-block; }
-  .calendar .week span, .calendar .day span {
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    text-align: center;
-    line-height: 30px; }
-  .calendar .day .not_this_month {
-    color: #ccc; }
+
+.calendar .head {
+  position: relative; }
+
+.calendar .head a {
+  cursor: pointer; }
+
+.calendar .head a:first-of-type {
+  color: yellow;
+  position: absolute;
+  top: 0;
+  left: 0; }
+
+.calendar .head a:last-of-type {
+  color: green;
+  position: absolute;
+  top: 0;
+  right: 0; }
+
+.calendar .head span {
+  width: 100%;
+  text-align: center;
+  display: inline-block; }
+
+.calendar .week span, .calendar .day span {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px; }
+
+.calendar .day .not_this_month {
+  color: #ccc; }

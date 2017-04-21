@@ -1,19 +1,22 @@
 .search {
   width: 100%; }
-  .search div {
-    width: 60%;
-    position: relative;
-    margin: 0 auto; }
-  .search input[type="text"] {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    outline: none;
-    width: 100%;
-    height: 32px;
-    padding: 0 12px;
-    box-sizing: border-box; }
-  .search span {
-    position: absolute;
-    top: 2px;
-    right: 8px;
-    color: #ff7849; }
+
+.search div {
+  width: 60%;
+  position: relative;
+  margin: 0 auto; }
+
+.search input[type="text"] {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  width: 100%;
+  height: 32px;
+  padding: 0 12px;
+  box-sizing: border-box; }
+
+.search span {
+  position: absolute;
+  top: 2px;
+  right: 8px;
+  color: #ff7849; }

@@ -22,7 +22,7 @@ class PhoneLogin extends Component {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          phone: this.refs.inputPhone.value,
+          phone_number: this.refs.inputPhone.value,
           verification_code: this.refs.verificationCode.value
         })
       })
@@ -33,16 +33,16 @@ class PhoneLogin extends Component {
           .then(json => {
             console.log(json)
             console.log(json.token)
-            data.push({
-              token: json.token,// token，登陆状态
-              user: json.user// user用户数据
-            })
-            localStorage.setItem('userData', JSON.stringify(data))// localStorage保存token标识登陆状态
-            this.setState({
-              isLogin: true,
-              userData: json.user
-            })
-            // this.props.history.push('/passbook');
+            // data.push({
+            //   token: json.token,// token，登陆状态
+            //   user: json.user// user用户数据
+            // })
+            // localStorage.setItem('userData', JSON.stringify(data))// localStorage保存token标识登陆状态
+            // this.setState({
+            //   isLogin: true,
+            //   userData: json.user
+            // })
+            this.props.handleLoginStatus(json.token, json.user)
           })
         }else {
           res.json()

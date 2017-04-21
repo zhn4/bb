@@ -14,7 +14,9 @@ class Login extends Component {
     super(props)
     this.state = {
       isLogin: false,// 默认非登陆状态
-      userData: []// 用户数据
+      userData: [],// 用户数据
+      phoneLogin: false,
+      usernameLogin: true
     }
   }
   componentWillMount() {
@@ -27,7 +29,6 @@ class Login extends Component {
         userData: data[0].user
       })
     }
-
   }
   componentDidMount() {
     // if(!this.state.isLogin) {// 判断登陆状态focus登陆框
@@ -41,6 +42,33 @@ class Login extends Component {
       isLogin: false,
       userData: []
     })
+  }
+  handleLoginStatus(token, userInfo) {
+    console.log('chang isLogin')
+    let data = []
+    data.push({
+      token: token,// token，登陆状态
+      user: userInfo// user用户数据
+    })
+    localStorage.setItem('userData', JSON.stringify(data))// localStorage保存token标识登陆状态
+    this.setState({
+      isLogin: true,
+      userData: userInfo
+    })
+  }
+  loginMethods(e) {
+    console.log(e.target.className)
+    if(e.target.className === 'phone') {
+      this.setState({
+        phoneLogin: true,
+        usernameLogin: false
+      })
+    }else if(e.target.className === 'username'){
+      this.setState({
+        phoneLogin: false,
+        usernameLogin: true
+      })
+    }
   }
   render() {
     return (
@@ -63,10 +91,25 @@ class Login extends Component {
               留一个banner
             </div>
 
-            <PhoneLogin/>
+            {
+              this.state.phoneLogin
+              ?
+              <PhoneLogin/>
+              :
+              ''
+            }
 
-            <UsernameLogin/>
-
+            {
+              this.state.usernameLogin
+              ?
+              <UsernameLogin handleLoginStatus={this.handleLoginStatus.bind(this)}/>
+              :
+              ''
+            }
+            <ul className="loginBtn" onClick={this.loginMethods.bind(this)}>
+              <li><div className="phone">手机登录</div></li>
+              <li><div className="username">账号登录</div></li>
+            </ul>
           </div>
         }
       </div>

@@ -11,7 +11,8 @@ class Classification extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      height: ''
+      height: '',
+      title: '藏书'
     }
   }
   componentDidMount() {
@@ -28,7 +29,7 @@ class Classification extends Component {
       <div className="classification"
         style={{'height': this.state.height + 'px'}}
       >
-        <Back/>
+        <Back title={this.state.title}/>
         <Search getInputValue={this.getInputValue.bind(this)}/>
         <Link to="/libraryclass/1"></Link>
         <Link to="/libraryclass/2"></Link>

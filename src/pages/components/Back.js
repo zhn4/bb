@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import LeftArrow from 'react-icons/lib/fa/chevron-left'
+import LeftArrow from 'react-icons/lib/fa/angle-left'
 
 import './style/back.css'
 
@@ -14,7 +14,10 @@ class Library extends Component {
   render() {
     return (
       <div className="back">
-        <div onClick={this.back.bind(this)}><LeftArrow/></div>
+        <div onClick={this.back.bind(this)}>
+          <LeftArrow size={24}/>
+        </div>
+        <div className="title">{this.props.title}</div>
       </div>
     );
   }

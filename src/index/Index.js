@@ -72,7 +72,7 @@ class Index extends Component {
           <Route exact path="/passbook" component={Passbook}/>
           <Route path="/login" component={Login}/>
           <Route path="/history" component={History}/>
-          <Route path="/readingsingle" component={ReadingSingle}/>
+          <Route path="/readingsingle/:book_id" component={ReadingSingle}/>
         </div>
       </Router>
     )

@@ -1,17 +1,31 @@
 .back {
   height: 34px;
-  border-bottom: 1px solid #ccc;
+  // border-bottom: 1px solid #ccc;
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #fff;
+  background-color: #ffcd46;
   width: 100%;
   div {
+    &:first-of-type {
+      display: inline-block;
+      width: 36px;
+      height: 26px;
+      line-height: 24px;
+      text-align: center;
+      margin: 4px;
+      color: #fff;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+  .title {
     display: inline-block;
-    width: 36px;
-    height: 36px;
-    line-height: 36px;
+    width: 100%;
     text-align: center;
-    border-right: 1px solid #ccc;
+    line-height: 36px;
+    color: #fff;
+    font-size: 20px;
   }
 }

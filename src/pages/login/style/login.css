@@ -7,12 +7,6 @@
   border: 1px solid #919191;
   border-radius: 8px; }
 
-.login .before input[type="text"] {
-  margin-bottom: 17.5px; }
-
-.login .before input[type="password"] {
-  margin-bottom: 55px; }
-
 .login .before input[type="button"] {
   box-sizing: border-box;
   width: 35%;
@@ -34,24 +28,33 @@
 
 .login .after {
   padding: 0 30px; }
-  .login .after div {
-    border-bottom: 1px solid #e7e7e7;
-    color: #b4b4b4;
-    padding: 12px 0; }
-    .login .after div:last-of-type {
-      margin-bottom: 55px; }
-  .login .after button {
-    display: block;
-    width: 60%;
-    margin: 0 auto;
-    height: 40px;
-    background-color: #fe454f;
-    outline: none;
-    border: none;
-    border-radius: 25px;
-    color: #fff;
-    font-size: 16px;
-    text-align: center; }
+
+.login .after div {
+  border-bottom: 1px solid #e7e7e7;
+  color: #b4b4b4;
+  padding: 12px 0; }
+
+.login .after div:last-of-type {
+  margin-bottom: 55px; }
+
+.login .after button {
+  display: block;
+  width: 60%;
+  margin: 0 auto;
+  height: 40px;
+  background-color: #fe454f;
+  outline: none;
+  border: none;
+  border-radius: 25px;
+  color: #fff;
+  font-size: 16px;
+  text-align: center; }
+
+.login-part div {
+  margin-bottom: 18px; }
+
+.login-part div:last-of-type {
+  margin-bottom: 54px; }
 
 .login-part:nth-child(2) {
   width: 65%;
@@ -61,3 +64,13 @@
 .login-part:nth-child(3) {
   width: 65%;
   margin: 0 auto; }
+
+.loginBtn {
+  margin-top: 58px; }
+
+.loginBtn li {
+  display: inline-block;
+  width: 50%;
+  text-align: center;
+  height: 26px;
+  line-height: 26px; }

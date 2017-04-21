@@ -10,6 +10,8 @@ import './style/library.css'
 
 let  apiSwitch = require('../../apiSwitch')
 
+let page = 2
+
 let historyData = []// 测试数据
 for(let i = 0; i < 50; i++) {
   historyData.push({
@@ -58,7 +60,8 @@ class LibraryClassification extends Component {
   }
   loadMoreData(value) {
     console.log('加载更多')
-    fetch(apiSwitch() + '/api/tsgbooks/books/?sort=' + this.props.match.params.id + '&page_size=' + 2, {
+    fetch(apiSwitch() + '/api/tsgbooks/books/?sort='
+    + this.props.match.params.id + '&page_size=20&page=' + page, {
       mode: 'cors',
       method: 'get',
       headers: {
@@ -73,6 +76,7 @@ class LibraryClassification extends Component {
         .then(json => {
           console.log(this.state.resultData)
           console.log(json)
+          page ++// 注意页数增加
           let newResultData = this.state.resultData
           json.results.map( (index)=> (
             // console.log(index)

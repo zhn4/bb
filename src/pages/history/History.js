@@ -19,7 +19,8 @@ class History extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      historyData: historyData
+      historyData: historyData,
+      title: '历史借书'
     }
   }
   componentWillMount() {
@@ -28,8 +29,8 @@ class History extends Component {
   render() {
     return (
       <div className="history">
-        <Back/>
-        <Results data={this.state.historyData}/>
+        <Back title={this.state.title}/>
+        <Results data={this.state.historyData} />
       </div>
     );
   }

@@ -20,7 +20,8 @@ class LibrarySearchResults extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      resultData: historyData
+      resultData: historyData,
+      title: '搜索结果'
     }
   }
   componentWillMount() {
@@ -58,7 +59,7 @@ class LibrarySearchResults extends Component {
     // console.log(this.props)
     return (
       <div className="library">
-        <Back/>
+        <Back title={this.state.title}/>
         <Results data={this.state.resultData}/>
       </div>
     );

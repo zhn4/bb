@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import './style/login.css'
 
-let data = localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : []// 新建数组读取localStorage是否存在用户数据
+// let data = localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : []// 新建数组读取localStorage是否存在用户数据
 
 let  apiSwitch = require('../../apiSwitch')
 
@@ -11,7 +11,6 @@ class UsernameLogin extends Component {
   //
   // }
   usernameLogin() {
-    // fetch('//192.168.1.84:8000/auth/login/', {
     if(this.refs.inputUsername.value !== '' && this.refs.inputPwd.value !== '') {
       console.log('非空，可发送请求')
       fetch(apiSwitch() + '/auth/login/', {
@@ -33,16 +32,16 @@ class UsernameLogin extends Component {
           .then(json => {
             console.log(json)
             console.log(json.token)
-            data.push({
-              token: json.token,// token，登陆状态
-              user: json.user// user用户数据
-            })
-            localStorage.setItem('userData', JSON.stringify(data))// localStorage保存token标识登陆状态
-            this.setState({
-              isLogin: true,
-              userData: json.user
-            })
-            // this.props.history.push('/passbook');
+            // data.push({
+            //   token: json.token,// token，登陆状态
+            //   user: json.user// user用户数据
+            // })
+            // localStorage.setItem('userData', JSON.stringify(data))// localStorage保存token标识登陆状态
+            // this.setState({
+            //   isLogin: true,
+            //   userData: json.user
+            // })
+            this.props.handleLoginStatus(json.token, json.user)
           })
         }else {
           res.json()
