@@ -8,7 +8,8 @@
     "react-dom": "^15.4.2",
     "react-icons": "^2.2.3",
     "react-router": "3",
-    "react-router-dom": "^4.0.0"
+    "react-router-dom": "^4.0.0",
+    "react-swipes": "^1.0.4"
   },
   "devDependencies": {
     "autoprefixer": "6.7.2",

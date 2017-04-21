@@ -7,7 +7,11 @@ import FaStar from 'react-icons/lib/fa/star'
 import FaPause from 'react-icons/lib/fa/pause'
 import FaShare from 'react-icons/lib/fa/share-square-o'
 
-let apiSwitch = require('../../apiSwitch')
+// let apiSwitch = require('../../apiSwitch')
+
+import ReactSwipe from 'react-swipes'
+// swipes 的配置
+
 
 
 // let  apiSwitch = require('../../apiSwitch')
@@ -97,7 +101,8 @@ class ReadingGroup extends Component {
       bookInfo: [],
       audioStatus: false,
       audioCurrentTime: '00:00',
-      tags: []
+      tags: [],
+      curCard: 1
     }
   }
   componentWillMount() {
@@ -191,19 +196,51 @@ class ReadingGroup extends Component {
       audioCurrentTime: '00:00'
     })
   }
+  componentWillUpdate() {
+    console.log('切换了')
+  }
+  componentWillReceiveProps() {
+    this.setState({
+      audioCurrentTime: '123'
+    })
+  }
   render() {
+    let opt = {
+      distance: 200, // 每次移动的距离，卡片的真实宽度
+      swTouchend: (ev) => {
+        let data = {
+          moved: ev.moved,
+          originalPoint: ev.originalPoint,
+          newPoint: ev.newPoint,
+          cancelled: ev.cancelled
+        }
+        console.log(data);
+        this.setState({
+            curCard: ev.newPoint
+        })
+        console.log('选中 >' + this.state.curCard)
+      }
+    }
     return (
       <div className="reading reading-group">
         <Back/>
-        <div className="switch">
-          {this.state.bookInfo.map((book, i) => (
-            <div className="cover">
-              <img src={book.cover} alt="cover"/>
-              <p>{book.title}</p>
-            </div>
-          ))}
-        </div>
 
+        <section className="demo" id="demo-distance">
+          <div className="viewport">
+            <div className="flipsnap">
+              <ReactSwipe className="card-slide" options={opt}>
+                {this.state.bookInfo.map((book, i) => (
+                  <div className="item" key={i}>
+                    <img src={book.cover} alt="cover"/>
+                    <p>{book.title}</p>
+                  </div>
+                ))}
+              </ReactSwipe>
+            </div>
+          </div>
+        </section>
+
+        <p>{this.state.bookInfo[this.state.curCard].title}</p>
 
         <div className="tags">
           <ul>
@@ -241,5 +278,29 @@ class ReadingGroup extends Component {
     );
   }
 }
+
+{/* <div className="switch">
+  {this.state.bookInfo.map((book, i) => (
+    <div className="cover" key={i}>
+      <img src={book.cover} alt="cover"/>
+      <p>{book.title}</p>
+    </div>
+  ))}
+</div> */}
+
+{/* <section className="demo" id="demo-distance">
+  <div className="viewport">
+    <div className="flipsnap">
+      <ReactSwipe className="card-slide" options={opt}>
+        {this.state.bookInfo.map((book, i) => (
+          <div className="item" key={i}>
+            <img src={book.cover} alt="cover"/>
+            <p>{book.title}</p>
+          </div>
+        ))}
+      </ReactSwipe>
+    </div>
+  </div>
+</section> */}
 
 export default ReadingGroup;
