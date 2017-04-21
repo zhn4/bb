@@ -160,6 +160,13 @@
         }
       }
     }
+    .no-login-tips {
+      & > div {
+        &:first-of-type {
+          line-height: 40px;
+        }
+      }
+    }
   }
   .reading-books {
     width: 70%;

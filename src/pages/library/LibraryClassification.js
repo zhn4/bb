@@ -28,7 +28,7 @@ class LibraryClassification extends Component {
     }
   }
   componentWillMount() {
-    console.log(this.props.match.params.id)
+    // console.log(this.props.match.params.id)
     fetch(apiSwitch() + '/api/tsgbooks/books/?sort=' + this.props.match.params.id, {
       mode: 'cors',
       method: 'get',
@@ -100,7 +100,7 @@ class LibraryClassification extends Component {
     })
   }
   render() {
-    // console.log(this.props)
+    // console.log(this.props)  
     return (
       <div className="library">
         <Back/>

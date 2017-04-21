@@ -18,11 +18,13 @@ class ReadingSingle extends Component {
     super(props)
     this.state = {
       bookInfo: [],
-      videoStatus: false
+      audioStatus: false,
+      audioCurrentTime: '00:00',
+      tags: []
     }
   }
   componentWillMount() {
-    console.log(this.props.match.params.book_id)
+    // console.log(this.props.match.params.book_id)
     fetch(apiSwitch() + '/api/tsgbooks/books/'+ this.props.match.params.book_id, {
       mode: 'cors',
       method: 'get',
@@ -38,7 +40,8 @@ class ReadingSingle extends Component {
         .then(json => {
           console.log(json)
           this.setState({
-            bookInfo: json
+            bookInfo: json,
+            tags: json.tag
           })
           this.refs.videoPlayer.load()
         })
@@ -53,25 +56,60 @@ class ReadingSingle extends Component {
       console.log('error', error)
     })
   }
+  changeTime(times) {
+    // let time = parseInt(this.refs.videoPlayer.duration, 10)
+    let time = parseInt(times, 10)
+    //分钟
+    let minute = time / 60
+    let minutes = parseInt(minute, 10)
+    if (minutes < 10) {
+      minutes = "0" + minutes
+    }
+    //秒
+    let second = time % 60
+    let seconds = parseInt(second, 10)
+    if (seconds < 10) {
+      seconds = "0" + seconds
+    }
+    let allTime = '' +
+    minutes +
+    '' +
+    ':' +
+    '' +
+    seconds +
+    ''
+    // console.log(allTime)
+    return allTime
+  }
   videoTime() {
-    showTime = setInterval(() => console.log(this.refs.videoPlayer.currentTime), 1000)
+    showTime = setInterval( () => {
+      this.setState({
+        audioCurrentTime: this.changeTime(this.refs.videoPlayer.currentTime)
+      })
+    }, 1000)
   }
   playVideo() {
     if(this.refs.videoPlayer.paused) {
       this.refs.videoPlayer.play()
-      console.log(this.refs.videoPlayer.currentTime)
-      // setInterval(() => console.log(this.refs.videoPlayer.currentTime), 1000)
       this.videoTime()
       this.setState({
-        videoStatus: true
+        audioStatus: true
       })
     }else {
       this.refs.videoPlayer.pause()
       window.clearInterval(showTime)
       this.setState({
-        videoStatus: false
+        audioStatus: false
       })
     }
+  }
+  audioEnd() {
+    console.log('end')
+    window.clearInterval(showTime)
+    this.setState({
+      audioStatus: false,
+      audioCurrentTime: '00:00'
+    })
   }
   render() {
     return (
@@ -83,13 +121,14 @@ class ReadingSingle extends Component {
         </div>
         <div className="tags">
           <ul>
-            <li>3-6</li>
-            <li>妈妈</li>
+          {this.state.tags.map((data, i) => (
+            <li key={i}>{data.name}</li>
+          ))}
           </ul>
         </div>
         <p className="desc">{this.state.bookInfo.content}</p>
         <div>
-          <audio controls="controls" id="video-player" ref="videoPlayer">
+          <audio controls="controls" id="video-player" ref="videoPlayer" onEnded={this.audioEnd.bind(this)}>
             <source src={this.state.bookInfo.audio} type="audio/mp3" />
           </audio>
         </div>
@@ -97,10 +136,10 @@ class ReadingSingle extends Component {
           <div>
             <div><FaShare size={28}/></div>
           </div>
-          <div className="active" data-value="5:00" onClick={this.playVideo.bind(this)}>
+          <div className="active" data-value={this.state.audioCurrentTime} onClick={this.playVideo.bind(this)}>
             <div>
               {
-                this.state.videoStatus
+                this.state.audioStatus
                 ?
                 <FaPause size={28}/>
                 :

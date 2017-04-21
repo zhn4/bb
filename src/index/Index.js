@@ -9,6 +9,7 @@ import Library from '../pages/library/Library'
 import History from '../pages/history/History'
 // import Reading from '../pages/reading/Reading'
 import ReadingSingle from '../pages/reading/ReadingSingle'
+import ReadingGroup from '../pages/reading/ReadingGroup'
 import LibraryClassification from '../pages/library/LibraryClassification'
 import LibrarySearchResults from '../pages/library/LibrarySearchResults'
 import Classification from '../pages/library/Classification'
@@ -73,6 +74,7 @@ class Index extends Component {
           <Route path="/login" component={Login}/>
           <Route path="/history" component={History}/>
           <Route path="/readingsingle/:book_id" component={ReadingSingle}/>
+          <Route path="/readinggroup/:service_consume_id" component={ReadingGroup}/>
         </div>
       </Router>
     )

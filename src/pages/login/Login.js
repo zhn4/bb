@@ -7,7 +7,7 @@ import './style/login.css'
 
 // let data = localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : []// 新建数组读取localStorage是否存在用户数据
 
-// let  apiSwitch = require('../../apiSwitch')
+let  apiSwitch = require('../../apiSwitch')
 
 class Login extends Component {
   constructor(props) {
@@ -28,6 +28,7 @@ class Login extends Component {
         isLogin: true,
         userData: data[0].user
       })
+      this.getUserDetailsInfo()
     }
   }
   componentDidMount() {
@@ -40,7 +41,8 @@ class Login extends Component {
     localStorage.setItem('userData', [])// localStorage保存token标识登陆状态
     this.setState({
       isLogin: false,
-      userData: []
+      userData: [],
+      userDetailsInfo: []
     })
   }
   handleLoginStatus(token, userInfo) {
@@ -70,6 +72,46 @@ class Login extends Component {
       })
     }
   }
+  // componentWillUpdate() {
+  //   console.log('可以获取具体信息')
+  //   if(this.state.isLogin === true) {
+  //     this.getUserDetailsInfo()
+  //   }
+  // }
+  getUserDetailsInfo() {
+    fetch(apiSwitch() + '/api/my-members/', {
+      mode: 'cors',
+      method: 'get',
+      headers: {
+        'Accept': 'application/json',
+        // 'Content-Type': 'application/json'
+      },
+    })
+    .then(res => {
+      console.log(res)
+      if(res.ok) {
+        res.json()
+        .then(json => {
+          console.log(json)
+          this.setState({
+            userDetailsInfo: json
+          })
+          console.log(this.state.userDetailsInfo[0].name)
+        })
+      }else {
+        res.json()
+        .then(json => {
+          console.log("gg")
+        })
+      }
+    })
+    .catch(function(error) {
+      console.log('error', error)
+    })
+  }
+  changeSon() {
+    console.log('切换儿子')
+  }
   render() {
     return (
       <div className="login">
@@ -79,9 +121,16 @@ class Login extends Component {
           <div className="after">
             <p>已经登陆</p>
             <div>昵称：{this.state.userData.username}</div>
-            <div>账号：{this.state.userData.email}</div>
+            {this.state.userDetailsInfo
+            ?
+              <div>
+                账号：{this.state.userDetailsInfo[0].name}
+                <span onClick={this.changeSon.bind(this)}>切换</span>
+              </div>
+            :
+              ''
+            }
             <div>电话号码：{this.state.userData.phone_number}</div>
-            <div>切换账号：</div>
             <div>办理分店：</div>
             <button onClick={this.logout.bind(this)}>退出</button>
           </div>

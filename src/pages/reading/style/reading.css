@@ -10,7 +10,8 @@
 .reading .cover {
   margin: 0 auto;
   width: 50%;
-  overflow: hidden; }
+  overflow: hidden;
+  margin-top: 16px; }
 
 .reading .cover img {
   width: 100%;
@@ -22,7 +23,8 @@
   font-weight: bold; }
 
 .reading .tags {
-  text-align: center; }
+  text-align: center;
+  margin-bottom: 16px; }
 
 .reading .tags li {
   background-color: red;
@@ -34,6 +36,12 @@
 
 .reading .tags li:last-of-type {
   margin-right: 0; }
+
+.reading .tags li:first-of-type {
+  background-color: #74c9ff; }
+
+.reading .tags li:nth-of-type(2) {
+  background-color: #fc90a7; }
 
 .reading .desc {
   width: 88%;
