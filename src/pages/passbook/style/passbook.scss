@@ -84,10 +84,16 @@
     }
   }
   .record {
-    border: 1px solid red;
+    // border: 1px solid red;
     width: 90%;
     margin: 0 auto;
     background-color: #fff;
+    & > div {
+      & > div {
+        border-bottom: 1px solid #ccc;
+        margin-bottom: 20px;
+      }
+    }
     .award {
       background-color: #ff604b;
       margin: 0 auto;
@@ -172,22 +178,31 @@
     width: 70%;
     margin: 0 auto;
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
+    justify-content: center;
     margin-bottom: 20px;
-    div {
+    & > div {
+      width: 30%;
       div {
         &:first-of-type {
-          border: 1px solid red;
+          // border: 1px solid red;
           width: 44px;
           height: 44px;
           border-radius: 50%;
           overflow: hidden;
+          margin: 0 auto;
           margin-bottom: 4px;
+          img {
+            width: 100%;
+          }
         }
         &:last-of-type {
           font-size: 14px;
           width: 100%;
           text-align: center;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
         }
       }
     }

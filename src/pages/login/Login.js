@@ -5,9 +5,9 @@ import UsernameLogin from './UsernameLogin'
 
 import './style/login.css'
 
-// let data = localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : []// 新建数组读取localStorage是否存在用户数据
-
 let  apiSwitch = require('../../apiSwitch')
+
+import { Link } from 'react-router-dom'
 
 class Login extends Component {
   constructor(props) {
@@ -31,18 +31,15 @@ class Login extends Component {
       this.getUserDetailsInfo()
     }
   }
-  componentDidMount() {
-    // if(!this.state.isLogin) {// 判断登陆状态focus登陆框
-    //   this.refs.inputUsername.focus()
-    // }
-  }
   logout() {
     console.log('退出，清除localStorage，发送退出请求')
     localStorage.setItem('userData', [])// localStorage保存token标识登陆状态
+    localStorage.setItem('switchSon', '')
     this.setState({
       isLogin: false,
       userData: [],
-      userDetailsInfo: []
+      userDetailsInfo: null,
+
     })
   }
   handleLoginStatus(token, userInfo) {
@@ -53,10 +50,12 @@ class Login extends Component {
       user: userInfo// user用户数据
     })
     localStorage.setItem('userData', JSON.stringify(data))// localStorage保存token标识登陆状态
+    // localStorage.setItem('switchSon', JSON.stringify(1))
     this.setState({
       isLogin: true,
       userData: userInfo
     })
+    this.getUserDetailsInfo()
   }
   loginMethods(e) {
     console.log(e.target.className)
@@ -72,19 +71,13 @@ class Login extends Component {
       })
     }
   }
-  // componentWillUpdate() {
-  //   console.log('可以获取具体信息')
-  //   if(this.state.isLogin === true) {
-  //     this.getUserDetailsInfo()
-  //   }
-  // }
   getUserDetailsInfo() {
+    let son = localStorage.getItem('switchSon') ? parseInt(localStorage.getItem('switchSon')) : 1
     fetch(apiSwitch() + '/api/my-members/', {
       mode: 'cors',
       method: 'get',
       headers: {
         'Accept': 'application/json',
-        // 'Content-Type': 'application/json'
       },
     })
     .then(res => {
@@ -94,9 +87,14 @@ class Login extends Component {
         .then(json => {
           console.log(json)
           this.setState({
-            userDetailsInfo: json
+            userDetailsInfo: json,
+            currentSon: son
           })
-          console.log(this.state.userDetailsInfo[0].name)
+          if(localStorage.getItem('switchSon')) {
+            return
+          }else {
+            localStorage.setItem('switchSon', JSON.stringify(this.state.currentSon))
+          }
         })
       }else {
         res.json()
@@ -109,8 +107,19 @@ class Login extends Component {
       console.log('error', error)
     })
   }
-  changeSon() {
+  changeSon() {// 切换儿子
     console.log('切换儿子')
+    if(this.state.currentSon === 1) {
+      this.setState({
+        currentSon: 2
+      })
+      localStorage.setItem('switchSon', JSON.stringify(2))
+    }else if(this.state.currentSon === 2){
+      this.setState({
+        currentSon: 1
+      })
+      localStorage.setItem('switchSon', JSON.stringify(1))
+    }
   }
   render() {
     return (
@@ -119,19 +128,34 @@ class Login extends Component {
           this.state.isLogin
           ?
           <div className="after">
-            <p>已经登陆</p>
             <div>昵称：{this.state.userData.username}</div>
             {this.state.userDetailsInfo
             ?
               <div>
-                账号：{this.state.userDetailsInfo[0].name}
+                账号：{this.state.userDetailsInfo[this.state.currentSon - 1].name}
                 <span onClick={this.changeSon.bind(this)}>切换</span>
               </div>
             :
               ''
             }
-            <div>电话号码：{this.state.userData.phone_number}</div>
-            <div>办理分店：</div>
+            {
+              this.state.userDetailsInfo
+              ?
+              <div>办理分店：{this.state.userDetailsInfo[this.state.currentSon - 1].shop[0].name}</div>
+              :
+              ''
+            }
+            {
+              this.state.userDetailsInfo
+              ?
+              <div>电话号码：{this.state.userDetailsInfo[this.state.currentSon - 1].shop[0].phone}</div>
+              :
+              ''
+            }
+            <div>
+              藏书：收藏的故事都在这里！
+              <Link to="/favourite">打开</Link>
+            </div>
             <button onClick={this.logout.bind(this)}>退出</button>
           </div>
           :

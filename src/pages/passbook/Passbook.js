@@ -29,7 +29,10 @@ class Passbook extends Component {
   }
   componentWillMount() {
     // /api/tsgbooks/member_book_tracks/
-    fetch(apiSwitch() + '/api/tsgbooks/member_book_tracks/2017/4/?service_consume__member=1', {
+    fetch(apiSwitch() +
+    '/api/tsgbooks/member_book_tracks/2017/4/?service_consume__member=' +
+    // this.props.history.service_consume__member, {
+    localStorage.getItem('switchSon'), {
       mode: 'cors',
       method: 'get',
       headers: {
@@ -61,6 +64,7 @@ class Passbook extends Component {
   }
   componentDidMount() {
     this.judgeLogin()
+    // console.log(this.props.history.service_consume__member)
   }
   componentWillReceiveProps() {
     this.judgeLogin()
@@ -78,7 +82,7 @@ class Passbook extends Component {
         <Calendar/>
         <div className="record" >
         {
-          this.props.isLogin
+          this.state.isLogin
           ?
             <ConsumeHistory data={this.state.consumeData}/>
           :
@@ -97,9 +101,6 @@ class Passbook extends Component {
 }
 
 class ConsumeHistory extends Component {
-  // constructor() {
-  //
-  // }
   render() {
     return (
       <div>
@@ -159,7 +160,7 @@ class Readingbooks extends Component {
     return (
       <div className="reading-books">
         {this.props.member_book.map((book, i) => (
-          <div>
+          <div key={i}>
             <div>
               <img src={book.icon} alt="cover"/>
             </div>

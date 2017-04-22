@@ -10,11 +10,11 @@ import FaShare from 'react-icons/lib/fa/share-square-o'
 // let apiSwitch = require('../../apiSwitch')
 
 import ReactSwipe from 'react-swipes'
-// swipes 的配置
 
+let  apiSwitch = require('../../apiSwitch')
 
+import './style/reading.css'
 
-// let  apiSwitch = require('../../apiSwitch')
 let testData = [
   {
     "id": 3,
@@ -85,12 +85,7 @@ let testData = [
       }
     ]
   }
-
 ]
-
-console.log(testData)
-
-import './style/reading.css'
 
 let showTime
 
@@ -101,45 +96,52 @@ class ReadingGroup extends Component {
       bookInfo: [],
       audioStatus: false,
       audioCurrentTime: '00:00',
-      tags: [],
-      curCard: 1
+      // tags: [],
+      curCard: 0
     }
   }
   componentWillMount() {
     this.setState({
       bookInfo: testData
     })
-    // console.log(this.props.match.params.service_consume_id)
-    // fetch(apiSwitch() + '/api/tsgbooks/books_by_service_consume/'+ this.props.match.params.service_consume_id, {
-    //   mode: 'cors',
-    //   method: 'get',
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     // 'Content-Type': 'application/json'
-    //   },
-    // })
-    // .then(res => {
-    //   console.log(res)
-    //   if(res.ok) {
-    //     res.json()
-    //     .then(json => {
-    //       console.log(json)
-    //       this.setState({
-    //         bookInfo: json,
-    //         tags: json.tag
-    //       })
-    //       this.refs.videoPlayer.load()
-    //     })
-    //   }else {
-    //     res.json()
-    //     .then(json => {
-    //       console.log("gg")
-    //     })
-    //   }
-    // })
-    // .catch(function(error) {
-    //   console.log('error', error)
-    // })
+
+  }
+  componentDidMount() {
+    console.log(this.props.match.params.service_consume_id)
+    fetch(apiSwitch() + '/api/tsgbooks/books_by_service_consume/'+
+    this.props.match.params.service_consume_id, {
+      mode: 'cors',
+      method: 'get',
+      headers: {
+        'Accept': 'application/json',
+        // 'Content-Type': 'application/json'
+      },
+    })
+    .then(res => {
+      console.log(res)
+      if(res.ok) {
+        res.json()
+        .then(json => {
+          console.log(json)
+          // this.setState({
+          //   bookInfo: json,
+          //   tags: json.tag
+          // })
+          this.setState({
+            bookInfo: json
+          })
+          this.refs.videoPlayer.load()
+        })
+      }else {
+        res.json()
+        .then(json => {
+          console.log("gg")
+        })
+      }
+    })
+    .catch(function(error) {
+      console.log('error', error)
+    })
   }
   changeTime(times) {
     // let time = parseInt(this.refs.videoPlayer.duration, 10)
@@ -200,9 +202,9 @@ class ReadingGroup extends Component {
     console.log('切换了')
   }
   componentWillReceiveProps() {
-    this.setState({
-      audioCurrentTime: '123'
-    })
+    // this.setState({
+    //   audioCurrentTime: '123'
+    // })
   }
   render() {
     let opt = {
@@ -240,21 +242,22 @@ class ReadingGroup extends Component {
           </div>
         </section>
 
-        <p>{this.state.bookInfo[this.state.curCard].title}</p>
-
         <div className="tags">
           <ul>
-            {this.state.tags.map((data, i) => (
-              <li key={i}>{data.name}</li>
+            {this.state.bookInfo[this.state.curCard].tag.map((tag, i) => (
+              <li key={i}>{tag.name}</li>
             ))}
           </ul>
         </div>
-        <p className="desc">{this.state.bookInfo.content}</p>
+
+        <p className="desc">{this.state.bookInfo[this.state.curCard].content}</p>
+
         <div>
           <audio controls="controls" id="video-player" ref="videoPlayer" onEnded={this.audioEnd.bind(this)}>
-            <source src={this.state.bookInfo.audio} type="audio/mp3" />
+            <source src={this.state.bookInfo[this.state.curCard].audio} type="audio/mp3" />
           </audio>
         </div>
+
         <div className="reading-nav">
           <div>
             <div><FaShare size={28}/></div>
@@ -278,29 +281,5 @@ class ReadingGroup extends Component {
     );
   }
 }
-
-{/* <div className="switch">
-  {this.state.bookInfo.map((book, i) => (
-    <div className="cover" key={i}>
-      <img src={book.cover} alt="cover"/>
-      <p>{book.title}</p>
-    </div>
-  ))}
-</div> */}
-
-{/* <section className="demo" id="demo-distance">
-  <div className="viewport">
-    <div className="flipsnap">
-      <ReactSwipe className="card-slide" options={opt}>
-        {this.state.bookInfo.map((book, i) => (
-          <div className="item" key={i}>
-            <img src={book.cover} alt="cover"/>
-            <p>{book.title}</p>
-          </div>
-        ))}
-      </ReactSwipe>
-    </div>
-  </div>
-</section> */}
 
 export default ReadingGroup;

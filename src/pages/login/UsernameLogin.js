@@ -2,14 +2,9 @@ import React, { Component } from 'react';
 
 import './style/login.css'
 
-// let data = localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : []// 新建数组读取localStorage是否存在用户数据
-
 let  apiSwitch = require('../../apiSwitch')
 
 class UsernameLogin extends Component {
-  // constructor() {
-  //
-  // }
   usernameLogin() {
     if(this.refs.inputUsername.value !== '' && this.refs.inputPwd.value !== '') {
       console.log('非空，可发送请求')
@@ -32,16 +27,7 @@ class UsernameLogin extends Component {
           .then(json => {
             console.log(json)
             console.log(json.token)
-            // data.push({
-            //   token: json.token,// token，登陆状态
-            //   user: json.user// user用户数据
-            // })
-            // localStorage.setItem('userData', JSON.stringify(data))// localStorage保存token标识登陆状态
-            // this.setState({
-            //   isLogin: true,
-            //   userData: json.user
-            // })
-            this.props.handleLoginStatus(json.token, json.user)
+            this.props.handleLoginStatus(json.token, json.user)// 成功登陆后调用父页面的handleLoginStatus，发送token，用户信息过去
           })
         }else {
           res.json()

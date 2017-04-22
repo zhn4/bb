@@ -116,6 +116,11 @@ class Tips extends Component {
     )
   }
 }
+// <div className="tips">
+//   <div>{data.award.slogan}</div>
+//   <div>{data.service_consume.borrow_time} ~ (+7)</div>
+//   <div>{data.count}</div>
+// </div>
 
 // 数组数据：封面，书名
 class Readingbooks extends Component {
@@ -132,6 +137,16 @@ class Readingbooks extends Component {
     )
   }
 }
+// <div className="reading-books">
+//   {data.service_consume.member_book.map((book, i) => (
+//     <div key={i}>
+//       <div>
+//         <img src={book.icon} alt="cover"/>
+//       </div>
+//       <div>{book.title}</div>
+//     </div>
+//   ))}
+// </div>
 
 // 判断状态显示按钮
 // @params isLogin
