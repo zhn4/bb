@@ -3,23 +3,21 @@
   background-image: url("../img/head-banner.png");
   background-size: cover;
   padding-top: 49%; }
-
-.passbook .load-history a {
-  text-decoration: none;
-  border-radius: 26px;
-  position: absolute;
-  right: 30px;
-  top: 40px;
-  width: 128px;
-  height: 46px;
-  letter-spacing: 3px;
-  background-image: url("../img/btn-bg.png");
-  background-size: cover; }
-
-.passbook .load-history:after {
-  content: '';
-  clear: both;
-  display: block; }
+  .passbook .load-history a {
+    text-decoration: none;
+    border-radius: 26px;
+    position: absolute;
+    right: 30px;
+    top: 40px;
+    width: 128px;
+    height: 46px;
+    letter-spacing: 3px;
+    background-image: url("../img/btn-bg.png");
+    background-size: cover; }
+  .passbook .load-history:after {
+    content: '';
+    clear: both;
+    display: block; }
 
 .passbook .calendar {
   margin: 0 auto;
@@ -31,124 +29,101 @@
   margin-top: -60px;
   position: relative;
   background-color: #fff; }
-
-.passbook .calendar .head {
-  display: none; }
-
-.passbook .calendar .week span, .passbook .calendar .day span {
-  width: 34px; }
-
-.passbook .calendar .week {
-  background-color: #ff2828;
-  color: #fff; }
-
-.passbook .calendar .day {
-  font-size: 14px; }
-
-.passbook .calendar .day span {
-  border-bottom: 1px solid #dadada;
-  border-right: 1px solid #dadada;
-  box-sizing: border-box; }
-
-.passbook .calendar .day span:nth-child(7n + 7) {
-  border-right: none; }
-
-.passbook .calendar .day span:nth-last-child(7) {
-  border-bottom: none; }
-
-.passbook .calendar .day span:nth-last-child(6) {
-  border-bottom: none; }
-
-.passbook .calendar .day span:nth-last-child(5) {
-  border-bottom: none; }
-
-.passbook .calendar .day span:nth-last-child(4) {
-  border-bottom: none; }
-
-.passbook .calendar .day span:nth-last-child(3) {
-  border-bottom: none; }
-
-.passbook .calendar .day span:nth-last-child(2) {
-  border-bottom: none; }
-
-.passbook .calendar .day span:nth-last-child(1) {
-  border-bottom: none; }
+  .passbook .calendar .head {
+    display: none; }
+  .passbook .calendar .week span, .passbook .calendar .day span {
+    width: 34px; }
+  .passbook .calendar .week {
+    background-color: #ff2828;
+    color: #fff; }
+  .passbook .calendar .day {
+    font-size: 14px; }
+    .passbook .calendar .day span {
+      border-bottom: 1px solid #dadada;
+      border-right: 1px solid #dadada;
+      box-sizing: border-box; }
+      .passbook .calendar .day span:nth-child(7n + 7) {
+        border-right: none; }
+      .passbook .calendar .day span:nth-last-child(7) {
+        border-bottom: none; }
+      .passbook .calendar .day span:nth-last-child(6) {
+        border-bottom: none; }
+      .passbook .calendar .day span:nth-last-child(5) {
+        border-bottom: none; }
+      .passbook .calendar .day span:nth-last-child(4) {
+        border-bottom: none; }
+      .passbook .calendar .day span:nth-last-child(3) {
+        border-bottom: none; }
+      .passbook .calendar .day span:nth-last-child(2) {
+        border-bottom: none; }
+      .passbook .calendar .day span:nth-last-child(1) {
+        border-bottom: none; }
 
 .passbook .record {
   width: 90%;
   margin: 0 auto;
   background-color: #fff; }
-
-.passbook .record > div > div {
-  border-bottom: 1px solid #ccc;
-  margin-bottom: 20px; }
-
-.passbook .record .award, .passbook .record .tips {
-  background-color: #ff604b;
-  margin: 0 auto;
-  width: 88%;
-  height: 46px;
-  border-radius: 25px;
-  text-align: center;
-  line-height: 46px;
-  color: #fff;
-  font-size: 18px;
-  font-weight: bold;
-  position: relative;
-  margin-left: 16px;
-  margin-bottom: 22px; }
-
-.passbook .record .award:before, .passbook .record .tips:before {
-  content: "";
-  display: inline-block;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  position: absolute;
-  top: -2px;
-  left: 0;
-  background-image: url("../img/gift.png");
-  background-size: cover; }
-
-.passbook .record .tips {
-  background-color: #fff5e6;
-  color: #ffa634;
-  line-height: normal;
-  padding-left: 16px;
-  box-sizing: border-box; }
-
-.passbook .record .tips:before {
-  display: none; }
-
-.passbook .record .tips div:first-of-type {
-  padding-top: 3px; }
-
-.passbook .record .tips div:nth-of-type(2) {
-  color: #000;
-  font-size: 11px;
-  font-weight: normal; }
-
-.passbook .record .tips div:last-of-type {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  position: absolute;
-  top: -2px;
-  left: 0;
-  background-color: #ffc000;
-  color: #fff;
-  font-size: 26px; }
-
-.passbook .record .tips div:last-of-type:after {
-  content: "BOOKS";
-  font-size: 10px;
-  display: block;
-  position: absolute;
-  width: 100%;
-  bottom: 8px; }
-
-.passbook .record .no-login-tips > div:first-of-type {
-  line-height: 40px; }
+  .passbook .record > div > div {
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px; }
+  .passbook .record .award, .passbook .record .tips {
+    background-color: #ff604b;
+    margin: 0 auto;
+    width: 88%;
+    height: 46px;
+    border-radius: 25px;
+    text-align: center;
+    line-height: 46px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    position: relative;
+    margin-left: 16px;
+    margin-bottom: 22px; }
+    .passbook .record .award:before, .passbook .record .tips:before {
+      content: "";
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      position: absolute;
+      top: -2px;
+      left: 0;
+      background-image: url("../img/gift.png");
+      background-size: cover; }
+  .passbook .record .tips {
+    background-color: #fff5e6;
+    color: #ffa634;
+    line-height: normal;
+    padding-left: 16px;
+    box-sizing: border-box; }
+    .passbook .record .tips:before {
+      display: none; }
+    .passbook .record .tips div:first-of-type {
+      padding-top: 3px; }
+    .passbook .record .tips div:nth-of-type(2) {
+      color: #000;
+      font-size: 11px;
+      font-weight: normal; }
+    .passbook .record .tips div:last-of-type {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      position: absolute;
+      top: -2px;
+      left: 0;
+      background-color: #ffc000;
+      color: #fff;
+      font-size: 26px; }
+      .passbook .record .tips div:last-of-type:after {
+        content: "BOOKS";
+        font-size: 10px;
+        display: block;
+        position: absolute;
+        width: 100%;
+        bottom: 8px; }
+  .passbook .record .no-login-tips > div:first-of-type {
+    line-height: 40px; }
 
 .passbook .reading-books {
   width: 70%;
@@ -156,28 +131,24 @@
   display: flex;
   justify-content: center;
   margin-bottom: 20px; }
-
-.passbook .reading-books > div {
-  width: 30%; }
-
-.passbook .reading-books > div div:first-of-type {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin: 0 auto;
-  margin-bottom: 4px; }
-
-.passbook .reading-books > div div:first-of-type img {
-  width: 100%; }
-
-.passbook .reading-books > div div:last-of-type {
-  font-size: 14px;
-  width: 100%;
-  text-align: center;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap; }
+  .passbook .reading-books > div {
+    width: 30%; }
+    .passbook .reading-books > div div:first-of-type {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto;
+      margin-bottom: 4px; }
+      .passbook .reading-books > div div:first-of-type img {
+        width: 100%; }
+    .passbook .reading-books > div div:last-of-type {
+      font-size: 14px;
+      width: 100%;
+      text-align: center;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap; }
 
 .passbook .lead-btn a {
   line-height: 40px;

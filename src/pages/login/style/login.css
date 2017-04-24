@@ -28,42 +28,37 @@
 
 .login .after {
   padding: 0 30px; }
-
-.login .after div {
-  border-bottom: 1px solid #e7e7e7;
-  color: #b4b4b4;
-  padding: 12px 0; }
-
-.login .after div:last-of-type {
-  margin-bottom: 55px; }
-
-.login .after div span, .login .after div a {
-  float: right;
-  background-color: #fe454f;
-  color: #fff;
-  padding: 0 8px;
-  border-radius: 25px;
-  font-size: 16px;
-  text-decoration: none; }
-
-.login .after button {
-  display: block;
-  width: 60%;
-  margin: 0 auto;
-  height: 40px;
-  background-color: #fe454f;
-  outline: none;
-  border: none;
-  border-radius: 25px;
-  color: #fff;
-  font-size: 16px;
-  text-align: center; }
+  .login .after div {
+    border-bottom: 1px solid #e7e7e7;
+    color: #b4b4b4;
+    padding: 12px 0; }
+    .login .after div:last-of-type {
+      margin-bottom: 55px; }
+    .login .after div span, .login .after div a {
+      float: right;
+      background-color: #fe454f;
+      color: #fff;
+      padding: 0 8px;
+      border-radius: 25px;
+      font-size: 16px;
+      text-decoration: none; }
+  .login .after button {
+    display: block;
+    width: 60%;
+    margin: 0 auto;
+    height: 40px;
+    background-color: #fe454f;
+    outline: none;
+    border: none;
+    border-radius: 25px;
+    color: #fff;
+    font-size: 16px;
+    text-align: center; }
 
 .login-part div {
   margin-bottom: 18px; }
-
-.login-part div:last-of-type {
-  margin-bottom: 54px; }
+  .login-part div:last-of-type {
+    margin-bottom: 54px; }
 
 .login-part:nth-child(2) {
   width: 65%;
@@ -76,10 +71,9 @@
 
 .loginBtn {
   margin-top: 58px; }
-
-.loginBtn li {
-  display: inline-block;
-  width: 50%;
-  text-align: center;
-  height: 26px;
-  line-height: 26px; }
+  .loginBtn li {
+    display: inline-block;
+    width: 50%;
+    text-align: center;
+    height: 26px;
+    line-height: 26px; }

@@ -111,6 +111,39 @@ class ReadingSingle extends Component {
       audioCurrentTime: '00:00'
     })
   }
+  handleFavourite() {
+    console.log('star')
+    console.log(this.props)
+    fetch(apiSwitch() + '/api/tsgbooks/user_favor_books/?book=' + this.props.match.params.book_id, {
+      mode: 'cors',
+      method: 'get',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+    })
+    .then(res => {
+      console.log(res)
+      if(res.ok) {
+        res.json()
+        .then(json => {
+          console.log(json)
+          this.setState({
+            consumeData: json
+          })
+          console.log(this.state.consumeData)
+        })
+      }else {
+        res.json()
+        .then(json => {
+          console.log("gg")
+        })
+      }
+    })
+    .catch(function(error) {
+      console.log('error', error)
+    })
+  }
   render() {
     return (
       <div className="reading">
@@ -128,7 +161,9 @@ class ReadingSingle extends Component {
         </div>
         <p className="desc">{this.state.bookInfo.content}</p>
         <div>
-          <audio controls="controls" id="video-player" ref="videoPlayer" onEnded={this.audioEnd.bind(this)}>
+          <audio controls="controls" id="video-player" ref="videoPlayer"
+            onEnded={this.audioEnd.bind(this)}
+          >
             <source src={this.state.bookInfo.audio} type="audio/mp3" />
           </audio>
         </div>
@@ -136,7 +171,9 @@ class ReadingSingle extends Component {
           <div>
             <div><FaShare size={28}/></div>
           </div>
-          <div className="active" data-value={this.state.audioCurrentTime} onClick={this.playVideo.bind(this)}>
+          <div className="active" data-value={this.state.audioCurrentTime}
+            onClick={this.playVideo.bind(this)}
+          >
             <div>
               {
                 this.state.audioStatus
@@ -147,7 +184,9 @@ class ReadingSingle extends Component {
               }
             </div>
           </div>
-          <div className="unstar">
+          <div className={this.state.bookInfo.is_favor ? 'star' : 'unstar'}
+            onClick={this.handleFavourite.bind(this)}
+          >
             <div><FaStar size={28}/></div>
           </div>
         </div>
