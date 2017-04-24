@@ -13,12 +13,12 @@ let  apiSwitch = require('../../apiSwitch')
 let page = 2
 
 let historyData = []// 测试数据
-for(let i = 0; i < 50; i++) {
-  historyData.push({
-    icon: 'https://img3.doubanio.com/lpic/s2449523.jpg',
-    title: '倚天屠龙记'
-  })
-}
+// for(let i = 0; i < 50; i++) {
+//   historyData.push({
+//     icon: 'https://img3.doubanio.com/lpic/s2449523.jpg',
+//     title: '倚天屠龙记'
+//   })
+// }
 
 class LibraryClassification extends Component {
   constructor(props) {
@@ -100,7 +100,7 @@ class LibraryClassification extends Component {
     })
   }
   render() {
-    // console.log(this.props)  
+    // console.log(this.props)
     return (
       <div className="library">
         <Back/>

@@ -46,9 +46,13 @@ class Passbook extends Component {
         res.json()
         .then(json => {
           console.log(json)
+          json.map((data, i) => {
+            data.service_consume.return_date = this.handleTime(data.service_consume.borrow_date)
+          })
           this.setState({
             consumeData: json
           })
+          console.log('数据在这哦里')
           console.log(this.state.consumeData)
         })
       }else {
@@ -62,15 +66,78 @@ class Passbook extends Component {
       console.log('error', error)
     })
   }
+  handleTime(time) {
+    console.log(time)
+    if(time.match(/^\d{4}[-]\d{1,2}[-]\d{2}$/)) {
+      console.log(time.split('-'))
+      let d = new Date()
+      d.setFullYear(time.split('-')[0], time.split('-')[1] - 1, time.split('-')[2])
+      console.log(d.toLocaleDateString())
+      let newDate = this.addSevenDay('d', 7, d);
+      let newTime = newDate.toLocaleDateString()
+      console.log(newTime)
+      console.log(newTime.replace(/\//g, '-'))
+      return newTime.replace(/\//g, '-')
+    }
+  }
   componentDidMount() {
     this.judgeLogin()
     // console.log(this.props.history.service_consume__member)
+    console.log(this.handleAward(123))
   }
   componentWillReceiveProps() {
     this.judgeLogin()
   }
-  handleAward() {
+  handleAward(number) {
     console.log('领取礼物，发ajax')
+    return number
+  }
+  addSevenDay(interval, number, date) {
+    switch (interval) {
+      case "y": {
+        date.setFullYear(date.getFullYear() + number)
+        return date
+        break
+      }
+      case "q": {
+        date.setMonth(date.getMonth() + number * 3)
+        return date
+        break
+      }
+      case "m ": {
+        date.setMonth(date.getMonth() + number)
+        return date
+        break
+      }
+      case "w ": {
+        date.setDate(date.getDate() + number * 7)
+        return date
+        break
+      }
+      case "d ": {
+        date.setDate(date.getDate() + number);
+        return date
+        break
+      }
+      default: {
+        date.setDate(date.getDate() + number)
+        return date
+        break
+      }
+    }
+  }
+  handleScroll() {
+    console.log('scscs')
+    let pbclientHeight = this.refs.pbscrollview.clientHeight
+    console.log(pbclientHeight)
+    let pbscrollTop = this.refs.pbscrollview.scrollTop
+    console.log(pbscrollTop)
+    let pbscrollHeight = this.refs.pbscrollview.scrollHeight
+    console.log(pbscrollHeight)
+    if(pbscrollHeight === (pbclientHeight + pbscrollTop)) {
+      console.log('回调父组件加载请求')
+      // this.props.loadMoreData(e.target.value)
+    }
   }
   render() {
     return (
@@ -80,7 +147,7 @@ class Passbook extends Component {
         </div>
 
         <Calendar/>
-        <div className="record" >
+        <div className="record" onScroll={this.handleScroll.bind(this)} ref="pbscrollview">
         {
           this.state.isLogin
           ?
@@ -107,8 +174,9 @@ class ConsumeHistory extends Component {
         {this.props.data.map((data, i) => (
           <div key={i}>
             <Tips slogan={data.award.slogan}
-                  borrow_time={data.service_consume.borrow_time}
+                  borrow_date={data.service_consume.borrow_date}
                   count={data.count}
+                  return_date={data.service_consume.return_date}
             />
             <Readingbooks member_book={data.service_consume.member_book}/>
             <div className="lead-btn">
@@ -142,7 +210,7 @@ class Tips extends Component {
     return (
       <div className="tips">
         <div>{this.props.slogan}</div>
-        <div>{this.props.borrow_time} ~ (+7)</div>
+        <div>{this.props.borrow_date} ~ {this.props.return_date}</div>
         <div>{this.props.count}</div>
       </div>
     )

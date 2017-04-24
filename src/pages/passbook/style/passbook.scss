@@ -38,6 +38,7 @@
     margin-top: -60px;
     position: relative;
     background-color: #fff;
+    margin-bottom: 18px;
     .head {
       display: none;
     }
@@ -85,13 +86,25 @@
   }
   .record {
     // border: 1px solid red;
-    width: 90%;
-    margin: 0 auto;
-    background-color: #fff;
+    // width: 90%;
+    // margin: 0 auto;
+    // background-color: #fff;
+
+    // background-color: red;
+    height: 43%;
+    position: absolute;
+    overflow: scroll;
+    width: 100%;
+    padding-top: 16px;
     & > div {
+      width: 90%;
+      margin: 0 auto;
       & > div {
         border-bottom: 1px solid #ccc;
         margin-bottom: 20px;
+        &:last-of-type {
+          border: none;
+        }
       }
     }
     .award {

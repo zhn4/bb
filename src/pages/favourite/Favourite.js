@@ -13,6 +13,8 @@ for(let i = 0; i < 50; i++) {
   })
 }
 
+let page = 2
+
 class Favourite extends Component {
   constructor(props) {
     super(props)
@@ -50,8 +52,46 @@ class Favourite extends Component {
       console.log('error', error)
     })
   }
-  loadMoreData() {
-    console.log('more data')
+  loadMoreData(value) {
+    console.log('加载更多')
+    fetch(apiSwitch() + '/api/tsgbooks/user_favor_books/?page='
+    + page, {
+      mode: 'cors',
+      method: 'get',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+    })
+    .then(res => {
+      console.log(res)
+      if(res.ok) {
+        res.json()
+        .then(json => {
+          console.log(this.state.resultData)
+          console.log(json)
+          page ++// 注意页数增加
+          let newResultData = this.state.data
+          json.results.map( (index)=> (
+            // console.log(index)
+            newResultData.push(index)
+          ))
+          // this.state.resultData.push(json.results)
+          console.log(this.state.data)
+          this.setState({
+            data: newResultData
+          })
+        })
+      }else {
+        res.json()
+        .then(json => {
+          console.log("gg")
+        })
+      }
+    })
+    .catch(function(error) {
+      console.log('error', error)
+    })
   }
   render() {
     return (
