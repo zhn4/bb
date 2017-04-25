@@ -1,19 +1,6 @@
 .login {
   // text-align: center;
   .before {
-    // div {
-    //   &:nth-child(2) {
-    //     // background-color: red;
-    //     width: 65%;
-    //     margin: 0 auto;
-    //     position: relative;
-    //   }
-    //   &:nth-child(3) {
-    //     // background-color: yellow;
-    //     width: 65%;
-    //     margin: 0 auto;
-    //   }
-    // }
     input[type="text"], input[type="password"] {
       box-sizing: border-box;
       width: 100%;
@@ -23,12 +10,6 @@
       border: 1px solid #919191;
       border-radius: 8px;
     }
-    // input[type="text"] {
-    //   margin-bottom: 17.5px;
-    // }
-    // input[type="password"] {
-    //   margin-bottom: 55px;
-    // }
     input[type="button"] {
       box-sizing: border-box;
       width: 35%;
@@ -49,20 +30,6 @@
       right: 0;
       font-size: 11px;
     }
-    // button {
-    //   display: block;
-    //   width: 60%;
-    //   margin: 0 auto;
-    //   height: 40px;
-    //   background-color: #fe454f;
-    //   outline: none;
-    //   border: none;
-    //   border-radius: 25px;
-    //   color: #fff;
-    //   font-size: 16px;
-    //   // letter-spacing: 10px;
-    //   text-align: center;
-    // }
   }
   .after {
     padding: 0 30px;
@@ -73,14 +40,20 @@
       &:last-of-type {
         margin-bottom: 55px;
       }
-      span, a {
+      .btns, a {
         float: right;
         background-color: #fe454f;
         color: #fff;
         padding: 0 8px;
-        border-radius: 25px;
-        font-size: 16px;
+        border-radius: 6px;
+        font-size: 14px;
         text-decoration: none;
+        height: 22px;
+        line-height: 22px;
+      }
+      .title {
+        width: 30%;
+        display: inline-block;
       }
     }
     button {
@@ -134,4 +107,9 @@
   div {
     // display: inline-block;
   }
+}
+
+// notie-textbox notie-background-error notie-alert notie-container
+.notie-alert {
+  z-index: 100;
 }

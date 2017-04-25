@@ -2,14 +2,11 @@ import React, { Component } from 'react';
 
 import './style/login.css'
 
-let data = localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : []// 新建数组读取localStorage是否存在用户数据
+// let data = localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : []// 新建数组读取localStorage是否存在用户数据
 
 let  apiSwitch = require('../../apiSwitch')
 
 class PhoneLogin extends Component {
-  // constructor() {
-  //
-  // }
   phoneLogin() {
     // fetch('//192.168.1.84:8000/auth/login/', {
     if(this.refs.inputPhone.value !== '' && this.refs.verificationCode.value !== '') {
@@ -33,21 +30,13 @@ class PhoneLogin extends Component {
           .then(json => {
             console.log(json)
             console.log(json.token)
-            // data.push({
-            //   token: json.token,// token，登陆状态
-            //   user: json.user// user用户数据
-            // })
-            // localStorage.setItem('userData', JSON.stringify(data))// localStorage保存token标识登陆状态
-            // this.setState({
-            //   isLogin: true,
-            //   userData: json.user
-            // })
             this.props.handleLoginStatus(json.token, json.user)
           })
         }else {
           res.json()
           .then(json => {
             console.log(json.non_field_errors[0])
+            alert('账号或密码错误，请稍后再试！')
           })
         }
       })
@@ -76,28 +65,9 @@ class PhoneLogin extends Component {
       })
       .then(res => {
         console.log(res)
-        if(res.ok) {
-          res.json()
-          .then(json => {
-            console.log(json)
-            console.log(json.token)
-            data.push({
-              token: json.token,// token，登陆状态
-              user: json.user// user用户数据
-            })
-            localStorage.setItem('userData', JSON.stringify(data))// localStorage保存token标识登陆状态
-            this.setState({
-              isLogin: true,
-              userData: json.user
-            })
-            // this.props.history.push('/passbook');
-          })
-        }else {
-          res.json()
-          .then(json => {
-            console.log(json.non_field_errors[0])
-          })
-        }
+        res.json().then(json => {
+          alert(json.non_field_errors[0])
+        })
       })
       .catch(function(error) {
         console.log('error', error)

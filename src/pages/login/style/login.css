@@ -37,14 +37,20 @@
 .login .after div:last-of-type {
   margin-bottom: 55px; }
 
-.login .after div span, .login .after div a {
+.login .after div .btns, .login .after div a {
   float: right;
   background-color: #fe454f;
   color: #fff;
   padding: 0 8px;
-  border-radius: 25px;
-  font-size: 16px;
-  text-decoration: none; }
+  border-radius: 6px;
+  font-size: 14px;
+  text-decoration: none;
+  height: 22px;
+  line-height: 22px; }
+
+.login .after div .title {
+  width: 30%;
+  display: inline-block; }
 
 .login .after button {
   display: block;
@@ -83,3 +89,6 @@
   text-align: center;
   height: 26px;
   line-height: 26px; }
+
+.notie-alert {
+  z-index: 100; }

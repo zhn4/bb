@@ -61,7 +61,7 @@ class History extends Component {
   loadMoreData(value) {
     console.log('加载更多')
     fetch(apiSwitch() + '/api/tsgbooks/member_books/?page='
-    + page, {
+    + page + '/', {
       mode: 'cors',
       method: 'get',
       headers: {

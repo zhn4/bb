@@ -33,3 +33,7 @@
 
 .calendar .day .not_this_month {
   color: #ccc; }
+
+.calendar .day .today {
+  color: #fff;
+  background-color: #ff2828; }

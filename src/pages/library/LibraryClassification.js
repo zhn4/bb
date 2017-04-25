@@ -61,7 +61,7 @@ class LibraryClassification extends Component {
   loadMoreData(value) {
     console.log('加载更多')
     fetch(apiSwitch() + '/api/tsgbooks/books/?sort='
-    + this.props.match.params.id + '&page_size=20&page=' + page, {
+    + this.props.match.params.id + '&page_size=20&page=' + page + '/', {
       mode: 'cors',
       method: 'get',
       headers: {

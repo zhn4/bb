@@ -20,18 +20,20 @@ class ReadingSingle extends Component {
       bookInfo: [],
       audioStatus: false,
       audioCurrentTime: '00:00',
-      tags: []
+      tags: [],
+      is_favor: false
     }
   }
   componentWillMount() {
     // console.log(this.props.match.params.book_id)
-    fetch(apiSwitch() + '/api/tsgbooks/books/'+ this.props.match.params.book_id, {
+    // fetch(apiSwitch() + '/api/tsgbooks/books/'+ this.props.match.params.book_id + '/', {
+    fetch(apiSwitch() + '/api/tsgbooks/books/' + this.props.match.params.book_id + '/', {
       mode: 'cors',
       method: 'get',
       headers: {
         'Accept': 'application/json',
-        // 'Content-Type': 'application/json'
-      },
+        'Content-Type': 'application/json'
+      }
     })
     .then(res => {
       console.log(res)
@@ -41,9 +43,8 @@ class ReadingSingle extends Component {
           console.log(json)
           this.setState({
             bookInfo: json,
-            tags: json.tag
+            is_favor: json.is_favor
           })
-          this.refs.videoPlayer.load()
         })
       }else {
         res.json()
@@ -112,37 +113,76 @@ class ReadingSingle extends Component {
     })
   }
   handleFavourite() {
-    console.log('star')
-    console.log(this.props)
-    fetch(apiSwitch() + '/api/tsgbooks/user_favor_books/?book=' + this.props.match.params.book_id, {
-      mode: 'cors',
-      method: 'get',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-    })
-    .then(res => {
-      console.log(res)
-      if(res.ok) {
-        res.json()
-        .then(json => {
-          console.log(json)
+    console.log('star or unstar')
+    if(this.state.is_favor) {
+      console.log('需要delete')
+      fetch(apiSwitch() + '/api/tsgbooks/user_favor_books/' + this.props.match.params.book_id + '/', {
+        mode: 'cors',
+        method: 'DELETE',
+        redirect: 'follow',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(res => {
+        console.log(res)
+        if(res.ok) {
+          console.log('123')
           this.setState({
-            consumeData: json
+            is_favor: false
           })
-          console.log(this.state.consumeData)
+          // res.json()
+          // .then(json => {
+          //   console.log(json)
+          //   this.setState({
+          //     is_favor: false
+          //   })
+          // })
+        }else {
+          res.json()
+          .then(json => {
+            console.log("gg")
+          })
+        }
+      })
+      .catch(function(error) {
+        console.log('error', error)
+      })
+    }else {
+      console.log('需要收藏')
+      fetch(apiSwitch() + '/api/tsgbooks/user_favor_books/', {
+        mode: 'cors',
+        method: 'post',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          book: this.props.match.params.book_id
         })
-      }else {
-        res.json()
-        .then(json => {
-          console.log("gg")
-        })
-      }
-    })
-    .catch(function(error) {
-      console.log('error', error)
-    })
+      })
+      .then(res => {
+        console.log(res)
+        if(res.ok) {
+          res.json()
+          .then(json => {
+            console.log(json)
+            this.setState({
+              is_favor: true
+            })
+          })
+        }else {
+          res.json()
+          .then(json => {
+            console.log("gg")
+          })
+        }
+      })
+      .catch(function(error) {
+        console.log('error', error)
+      })
+    }
   }
   render() {
     return (
@@ -184,7 +224,7 @@ class ReadingSingle extends Component {
               }
             </div>
           </div>
-          <div className={this.state.bookInfo.is_favor ? 'star' : 'unstar'}
+          <div className={this.state.is_favor ? 'star' : 'unstar'}
             onClick={this.handleFavourite.bind(this)}
           >
             <div><FaStar size={28}/></div>

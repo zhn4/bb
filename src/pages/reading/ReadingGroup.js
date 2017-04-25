@@ -109,7 +109,7 @@ class ReadingGroup extends Component {
   componentDidMount() {
     console.log(this.props.match.params.service_consume_id)
     fetch(apiSwitch() + '/api/tsgbooks/books_by_service_consume/'+
-    this.props.match.params.service_consume_id, {
+    this.props.match.params.service_consume_id + '/', {
       mode: 'cors',
       method: 'get',
       headers: {

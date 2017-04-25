@@ -28,11 +28,83 @@ class Passbook extends Component {
     }
   }
   componentWillMount() {
+    let today = new Date()
     // /api/tsgbooks/member_book_tracks/
     fetch(apiSwitch() +
-    '/api/tsgbooks/member_book_tracks/2017/4/?service_consume__member=' +
+    '/api/tsgbooks/member_book_tracks/' + today.getFullYear() +'/' + (today.getMonth() + 1) + '/?service_consume__member=' +
     // this.props.history.service_consume__member, {
-    localStorage.getItem('switchSon'), {
+    localStorage.getItem('switchSon') + '/', {
+      mode: 'cors',
+      method: 'get',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+    })
+    .then(res => {
+      console.log(res)
+      if(res.ok) {
+        res.json()
+        .then(json => {
+          console.log(json)
+          json.map((data, i) => {
+            data.service_consume.return_date = this.handleTime(data.service_consume.borrow_date)
+          })
+          this.setState({
+            consumeData: json
+          })
+        })
+      }else {
+        res.json()
+        .then(json => {
+          console.log("gg")
+        })
+      }
+    })
+    .catch(function(error) {
+      console.log('error', error)
+    })
+  }
+  handleTime(time) {
+    // console.log(time)
+    if(time.match(/^\d{4}[-]\d{1,2}[-]\d{2}$/)) {
+      let d = new Date()
+      d.setFullYear(time.split('-')[0], time.split('-')[1] - 1, time.split('-')[2])
+      let newDate = this.addSevenDay('d', 7, d);
+      let newTime = newDate.toLocaleDateString()
+      return newTime.replace(/\//g, '-')
+    }
+  }
+  componentDidMount() {
+    this.judgeLogin()
+    // console.log(this.props.history.service_consume__member)
+    console.log(this.handleAward(123))
+  }
+  componentWillReceiveProps() {
+    this.judgeLogin()
+  }
+  handleAward(number) {
+    console.log('领取礼物，发ajax')
+    return number
+  }
+  addSevenDay(interval, number, date) {
+    switch (interval) {
+      case "d ": {
+        date.setDate(date.getDate() + number);
+        return date
+        break
+      }
+      default: {
+        date.setDate(date.getDate() + number)
+        return date
+        break
+      }
+    }
+  }
+  handleAjax(year, month) {
+    // let today = new Date()
+    fetch(apiSwitch() + '/api/tsgbooks/member_book_tracks/' + year +'/' + month +
+    '/?service_consume__member=' + localStorage.getItem('switchSon') + '/', {
       mode: 'cors',
       method: 'get',
       headers: {
@@ -66,78 +138,13 @@ class Passbook extends Component {
       console.log('error', error)
     })
   }
-  handleTime(time) {
-    console.log(time)
-    if(time.match(/^\d{4}[-]\d{1,2}[-]\d{2}$/)) {
-      console.log(time.split('-'))
-      let d = new Date()
-      d.setFullYear(time.split('-')[0], time.split('-')[1] - 1, time.split('-')[2])
-      console.log(d.toLocaleDateString())
-      let newDate = this.addSevenDay('d', 7, d);
-      let newTime = newDate.toLocaleDateString()
-      console.log(newTime)
-      console.log(newTime.replace(/\//g, '-'))
-      return newTime.replace(/\//g, '-')
-    }
+  prevData(year, month) {
+    console.log('加载上一月数据')
+    this.handleAjax(year, month)
   }
-  componentDidMount() {
-    this.judgeLogin()
-    // console.log(this.props.history.service_consume__member)
-    console.log(this.handleAward(123))
-  }
-  componentWillReceiveProps() {
-    this.judgeLogin()
-  }
-  handleAward(number) {
-    console.log('领取礼物，发ajax')
-    return number
-  }
-  addSevenDay(interval, number, date) {
-    switch (interval) {
-      case "y": {
-        date.setFullYear(date.getFullYear() + number)
-        return date
-        break
-      }
-      case "q": {
-        date.setMonth(date.getMonth() + number * 3)
-        return date
-        break
-      }
-      case "m ": {
-        date.setMonth(date.getMonth() + number)
-        return date
-        break
-      }
-      case "w ": {
-        date.setDate(date.getDate() + number * 7)
-        return date
-        break
-      }
-      case "d ": {
-        date.setDate(date.getDate() + number);
-        return date
-        break
-      }
-      default: {
-        date.setDate(date.getDate() + number)
-        return date
-        break
-      }
-    }
-  }
-  handleScroll() {
-    console.log('scscs')
-    let pbclientHeight = this.refs.pbscrollview.clientHeight
-    console.log(pbclientHeight)
-    let pbscrollTop = this.refs.pbscrollview.scrollTop
-    console.log(pbscrollTop)
-    let pbscrollHeight = this.refs.pbscrollview.scrollHeight
-    console.log(pbscrollHeight)
-    if(pbscrollHeight === (pbclientHeight + pbscrollTop)) {
-      console.log('回调父组件加载请求')
-      // this.props.loadMoreData(e.target.value)
-    }
+  nextData(year, month) {
+    console.log('加载下一月数据')
+    this.handleAjax(year, month)
   }
   render() {
     return (
@@ -146,8 +153,8 @@ class Passbook extends Component {
           <Link to="/history"></Link>
         </div>
 
-        <Calendar/>
-        <div className="record" onScroll={this.handleScroll.bind(this)} ref="pbscrollview">
+        <Calendar prevData={this.prevData.bind(this)} nextData={this.nextData.bind(this)}/>
+        <div className="record" ref="pbscrollview">
         {
           this.state.isLogin
           ?

@@ -33,7 +33,9 @@ class UsernameLogin extends Component {
           res.json()
           .then(json => {
             console.log(json.non_field_errors[0])
+            alert('账号或密码错误，请稍后再试！')
           })
+
         }
       })
       .catch(function(error) {

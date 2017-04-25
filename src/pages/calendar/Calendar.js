@@ -29,12 +29,14 @@ class Calendar extends Component {
     if (n === 1) {
       n = -6;
     }
+    console.log(currentDate.getDate())
     activeDate.setDate(n)
     for(let i = 1; i <= 42; i++) {
       days_arr.push({
         date: activeDate.getDate(),
         judgeMonth: activeDate.getMonth() !== month ? false : true,
-        date_details: year + '-' + (activeDate.getMonth() + 1) + '-' + activeDate.getDate()
+        date_details: year + '-' + (activeDate.getMonth() + 1) + '-' + activeDate.getDate(),
+        today: currentDate.getDate() === activeDate.getDate() ? true : false
       })
       activeDate.setDate(activeDate.getDate() + 1)
     }
@@ -51,9 +53,11 @@ class Calendar extends Component {
   }
   prevBtn() {
     this.buildCalendar(--currentMonth)
+    this.props.prevData(currentYear, currentMonth)
   }
   nextBtn() {
     this.buildCalendar(++currentMonth)
+    this.props.nextData(currentYear, currentMonth)
   }
   handleClick(e) {
     console.log(e.target)
@@ -121,12 +125,15 @@ class Week extends Component {
 
 class Day extends Component {
   render() {
+    // let month = day.judgeMonth ? 'this_month' : 'not_this_month'
+    // let today = day.today ? 'today' : 'not_today'
+    // let style = `${day.judgeMonth ? 'this_month' : 'not_this_month'}, ${day.today ? 'today' : 'not_today'}`
     return(
       <div className="day">
         {this.props.day.map((day, i) => (
           // <span key={i}>{day}</span>
           <span key={i}
-          className={day.judgeMonth ? 'this_month' : 'not_this_month'}
+          className={`${day.judgeMonth ? 'this_month' : 'not_this_month'}  ${day.today ? 'today' : 'not_today'}`}
           data-date={day.date_details}
           >{day.date}</span>
         ))}

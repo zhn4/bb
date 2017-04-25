@@ -14,6 +14,7 @@ import LibraryClassification from '../pages/library/LibraryClassification'
 import LibrarySearchResults from '../pages/library/LibrarySearchResults'
 import Classification from '../pages/library/Classification'
 import Favourite from '../pages/favourite/Favourite'
+import About from '../pages/about/About'
 
 // import GoBook from 'react-icons/lib/go/book'
 import FaUser from 'react-icons/lib/fa/user'
@@ -77,6 +78,7 @@ class Index extends Component {
           <Route path="/readingsingle/:book_id" component={ReadingSingle}/>
           <Route path="/readinggroup/:service_consume_id" component={ReadingGroup}/>
           <Route path="/favourite" component={Favourite}/>
+          <Route path="/about" component={About}/>
         </div>
       </Router>
     )

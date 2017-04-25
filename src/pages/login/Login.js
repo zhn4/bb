@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import PhoneLogin from './PhoneLogin'
 import UsernameLogin from './UsernameLogin'
 
+
 import './style/login.css'
 
 let  apiSwitch = require('../../apiSwitch')
@@ -72,7 +73,7 @@ class Login extends Component {
     }
   }
   getUserDetailsInfo() {
-    let son = localStorage.getItem('switchSon') ? parseInt(localStorage.getItem('switchSon')) : 1
+    let son = localStorage.getItem('switchSon') ? parseInt(localStorage.getItem('switchSon'), 10) : 1
     fetch(apiSwitch() + '/api/my-members/', {
       mode: 'cors',
       method: 'get',
@@ -128,33 +129,46 @@ class Login extends Component {
           this.state.isLogin
           ?
           <div className="after">
-            <div>昵称：{this.state.userData.username}</div>
+            <div>
+              <span className="title">昵称</span>
+              {this.state.userData.username}
+            </div>
             {this.state.userDetailsInfo
             ?
-              <div>
-                账号：{this.state.userDetailsInfo[this.state.currentSon - 1].name}
-                <span onClick={this.changeSon.bind(this)}>切换</span>
-              </div>
+            <div>
+              <span className="title">账号</span>
+              {this.state.userDetailsInfo[this.state.currentSon - 1].name}
+              <span className="btns" onClick={this.changeSon.bind(this)}>切换</span>
+            </div>
             :
               ''
             }
             {
               this.state.userDetailsInfo
               ?
-              <div>办理分店：{this.state.userDetailsInfo[this.state.currentSon - 1].shop[0].name}</div>
+              <div>
+                <span className="title">办理分店</span>
+                {this.state.userDetailsInfo[this.state.currentSon - 1].shop[0].name}
+              </div>
               :
               ''
             }
             {
               this.state.userDetailsInfo
               ?
-              <div>电话号码：{this.state.userDetailsInfo[this.state.currentSon - 1].shop[0].phone}</div>
+              <div>
+                <span className="title">电话号码</span>
+                {this.state.userDetailsInfo[this.state.currentSon - 1].shop[0].phone}
+              </div>
               :
               ''
             }
             <div>
-              藏书：收藏的故事都在这里！
+              <span className="title">藏书</span>收藏的故事都在这里！
               <Link to="/favourite">打开</Link>
+            </div>
+            <div>
+              贝贝猴阅读存折<Link to="/about">关于</Link>
             </div>
             <button onClick={this.logout.bind(this)}>退出</button>
           </div>
