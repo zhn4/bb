@@ -29,7 +29,6 @@ class Calendar extends Component {
     if (n === 1) {
       n = -6;
     }
-    console.log(currentDate.getDate())
     activeDate.setDate(n)
     for(let i = 1; i <= 42; i++) {
       days_arr.push({

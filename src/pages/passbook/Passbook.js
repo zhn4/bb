@@ -43,8 +43,7 @@ class Passbook extends Component {
     }
   }
   componentWillMount() {
-    if(localStorage.getItem('userData') !== '') {
-    // console.log(JSON.parse(localStorage.getItem('userData'))[0].token)
+    if(localStorage.getItem('userData') && localStorage.getItem('userData') !== '') {
       let today = new Date()
       fetch(apiSwitch() +
       '/api/tsgbooks/member_book_tracks/' + today.getFullYear() +'/' + (today.getMonth() + 1) + '/?service_consume__member=' +
@@ -94,16 +93,14 @@ class Passbook extends Component {
   }
   componentDidMount() {
     this.judgeLogin()
-    // console.log(this.props.history.service_consume__member)
-    console.log(this.handleAward(123))
   }
   componentWillReceiveProps() {
     this.judgeLogin()
   }
-  handleAward(number) {
-    console.log('领取礼物，发ajax')
-    return number
-  }
+  // handleAward(number) {
+  //   console.log('领取礼物，发ajax')
+  //   return number
+  // }
   addSevenDay(interval, number, date) {
     switch (interval) {
       case "d ": {
