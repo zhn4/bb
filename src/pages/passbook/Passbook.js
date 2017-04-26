@@ -11,12 +11,27 @@ import './style/passbook.css'
 
 // let data = localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : []// 新建数组读取localStorage是否存在用户数据
 
+// import ImgZero from './img/0.png'
+// import ImgOne from './img/1.png'
+// import ImgTwo from './img/2.png'
+// import ImgThree from './img/3.png'
+// import ImgFour from './img/4.png'
+// import ImgFive from './img/1.png'
+// import ImgSix from './img/1.png'
+// import ImgSeven from './img/1.png'
+// import ImgEigth from './img/1.png'
+// import ImgNine from './img/1.png'
+
+let today = new Date()
+let todyMonth = today.getMonth()
+
 class Passbook extends Component {
   constructor(props) {
     super(props)
     this.state = {
       isLogin: false,
-      consumeData: []
+      consumeData: [],
+      month: todyMonth + 1
     }
   }
   judgeLogin() {
@@ -28,42 +43,44 @@ class Passbook extends Component {
     }
   }
   componentWillMount() {
-    let today = new Date()
-    // /api/tsgbooks/member_book_tracks/
-    fetch(apiSwitch() +
-    '/api/tsgbooks/member_book_tracks/' + today.getFullYear() +'/' + (today.getMonth() + 1) + '/?service_consume__member=' +
-    // this.props.history.service_consume__member, {
-    localStorage.getItem('switchSon') + '/', {
-      mode: 'cors',
-      method: 'get',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-    })
-    .then(res => {
-      console.log(res)
-      if(res.ok) {
-        res.json()
-        .then(json => {
-          console.log(json)
-          json.map((data, i) => {
-            data.service_consume.return_date = this.handleTime(data.service_consume.borrow_date)
+    if(localStorage.getItem('userData') !== '') {
+    // console.log(JSON.parse(localStorage.getItem('userData'))[0].token)
+      let today = new Date()
+      fetch(apiSwitch() +
+      '/api/tsgbooks/member_book_tracks/' + today.getFullYear() +'/' + (today.getMonth() + 1) + '/?service_consume__member=' +
+      localStorage.getItem('switchSon') + '/', {
+        mode: 'cors',
+        method: 'get',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': ' jwt ' + JSON.parse(localStorage.getItem('userData'))[0].token
+        },
+      })
+      .then(res => {
+        console.log(res)
+        if(res.ok) {
+          res.json()
+          .then(json => {
+            console.log(json)
+            json.map((data, i) => {
+              data.service_consume.return_date = this.handleTime(data.service_consume.borrow_date)
+            })
+            this.setState({
+              consumeData: json
+            })
           })
-          this.setState({
-            consumeData: json
+        }else {
+          res.json()
+          .then(json => {
+            console.log("gg")
           })
-        })
-      }else {
-        res.json()
-        .then(json => {
-          console.log("gg")
-        })
-      }
-    })
-    .catch(function(error) {
-      console.log('error', error)
-    })
+        }
+      })
+      .catch(function(error) {
+        console.log('error', error)
+      })
+    }
   }
   handleTime(time) {
     // console.log(time)
@@ -92,12 +109,10 @@ class Passbook extends Component {
       case "d ": {
         date.setDate(date.getDate() + number);
         return date
-        break
       }
       default: {
         date.setDate(date.getDate() + number)
         return date
-        break
       }
     }
   }
@@ -109,7 +124,8 @@ class Passbook extends Component {
       method: 'get',
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': ' jwt ' + JSON.parse(localStorage.getItem('userData'))[0].token
       },
     })
     .then(res => {
@@ -146,6 +162,13 @@ class Passbook extends Component {
     console.log('加载下一月数据')
     this.handleAjax(year, month)
   }
+  handleMonth(month) {
+    console.log('切换月份')
+    console.log(month)
+    this.setState({
+      month: month
+    })
+  }
   render() {
     return (
       <div className="passbook">
@@ -153,7 +176,132 @@ class Passbook extends Component {
           <Link to="/history"></Link>
         </div>
 
-        <Calendar prevData={this.prevData.bind(this)} nextData={this.nextData.bind(this)}/>
+        {
+          this.state.month === 1
+          ?
+          <div className="month">
+            <img src={require('./img/0.png')} alt="0"/>
+            <img src={require('./img/1.png')} alt="0"/>
+          </div>
+          :
+          ''
+        }
+        {
+          this.state.month === 2
+          ?
+          <div className="month">
+            <img src={require('./img/0.png')} alt="0"/>
+            <img src={require('./img/2.png')} alt="0"/>
+          </div>
+          :
+          ''
+        }
+        {
+          this.state.month === 3
+          ?
+          <div className="month">
+            <img src={require('./img/0.png')} alt="0"/>
+            <img src={require('./img/3.png')} alt="0"/>
+          </div>
+          :
+          ''
+        }
+        {
+          this.state.month === 4
+          ?
+          <div className="month">
+            <img src={require('./img/0.png')} alt="0"/>
+            <img src={require('./img/4.png')} alt="0"/>
+          </div>
+          :
+          ''
+        }
+        {
+          this.state.month === 5
+          ?
+          <div className="month">
+            <img src={require('./img/0.png')} alt="0"/>
+            <img src={require('./img/5.png')} alt="0"/>
+          </div>
+          :
+          ''
+        }
+        {
+          this.state.month === 6
+          ?
+          <div className="month">
+            <img src={require('./img/0.png')} alt="0"/>
+            <img src={require('./img/6.png')} alt="0"/>
+          </div>
+          :
+          ''
+        }
+        {
+          this.state.month === 7
+          ?
+          <div className="month">
+            <img src={require('./img/0.png')} alt="0"/>
+            <img src={require('./img/7.png')} alt="0"/>
+          </div>
+          :
+          ''
+        }
+        {
+          this.state.month === 8
+          ?
+          <div className="month">
+            <img src={require('./img/0.png')} alt="0"/>
+            <img src={require('./img/8.png')} alt="0"/>
+          </div>
+          :
+          ''
+        }
+        {
+          this.state.month === 9
+          ?
+          <div className="month">
+            <img src={require('./img/0.png')} alt="0"/>
+            <img src={require('./img/9.png')} alt="0"/>
+          </div>
+          :
+          ''
+        }
+        {
+          this.state.month === 10
+          ?
+          <div className="month">
+            <img src={require('./img/1.png')} alt="0"/>
+            <img src={require('./img/0.png')} alt="0"/>
+          </div>
+          :
+          ''
+        }
+        {
+          this.state.month === 11
+          ?
+          <div className="month">
+            <img src={require('./img/1.png')} alt="0"/>
+            <img src={require('./img/1.png')} alt="0"/>
+          </div>
+          :
+          ''
+        }
+        {
+          this.state.month === 12
+          ?
+          <div className="month">
+            <img src={require('./img/1.png')} alt="0"/>
+            <img src={require('./img/2.png')} alt="0"/>
+          </div>
+          :
+          ''
+        }
+
+        <Calendar
+          prevData={this.prevData.bind(this)}
+          nextData={this.nextData.bind(this)}
+          handleMonth={this.handleMonth.bind(this)}
+        />
         <div className="record" ref="pbscrollview">
         {
           this.state.isLogin
@@ -187,7 +335,7 @@ class ConsumeHistory extends Component {
             />
             <Readingbooks member_book={data.service_consume.member_book}/>
             <div className="lead-btn">
-            <Link className="btn" to={"/readinggroup/" + data.service_consume.id}>绘本阅读</Link>
+            <Link className="btn" to={"/readinggroup/" + data.service_consume.id}>绘本导读</Link>
             </div>
           </div>
         ))}

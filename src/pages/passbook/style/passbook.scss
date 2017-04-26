@@ -1,4 +1,14 @@
 .passbook {
+  .month {
+    // background-color: red;
+    width: 40%;
+    position: absolute;
+    top: 5%;
+    left: 40px;
+    img {
+      width: 40px;
+    }
+  }
   .load-history {
     position: relative;
     // padding: 46px 20px 36px 20px;

@@ -115,6 +115,7 @@ class ReadingGroup extends Component {
       headers: {
         'Accept': 'application/json',
         // 'Content-Type': 'application/json'
+        'Authorization': ' jwt ' + JSON.parse(localStorage.getItem('userData'))[0].token
       },
     })
     .then(res => {
@@ -123,10 +124,6 @@ class ReadingGroup extends Component {
         res.json()
         .then(json => {
           console.log(json)
-          // this.setState({
-          //   bookInfo: json,
-          //   tags: json.tag
-          // })
           this.setState({
             bookInfo: json
           })
@@ -206,6 +203,77 @@ class ReadingGroup extends Component {
     //   audioCurrentTime: '123'
     // })
   }
+  handleFavourite() {
+    console.log('fav')
+    console.log(this.state.bookInfo[this.state.curCard].is_favor)
+    // let bookInfoModifyData = this.state.bookInfo
+    // bookInfoModifyData[this.state.curCard].is_favor = false
+    // console.log(bookInfoModifyData[this.state.curCard].is_favor)
+    if(this.state.bookInfo[this.state.curCard].is_favor) {
+      console.log('取消')
+      fetch(apiSwitch() + '/api/tsgbooks/user_favor_books/' + this.state.bookInfo[this.state.curCard].id + '/', {
+        mode: 'cors',
+        method: 'DELETE',
+        redirect: 'follow',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': ' jwt ' + JSON.parse(localStorage.getItem('userData'))[0].token
+        }
+      })
+      .then(res => {
+        console.log(res)
+        if(res.ok) {
+          let bookInfoModifyData = this.state.bookInfo
+          bookInfoModifyData[this.state.curCard].is_favor = false
+          this.setState({
+            bookInfo: bookInfoModifyData
+          })
+        }else {
+          res.json()
+          .then(json => {
+            console.log("gg")
+          })
+        }
+      })
+      .catch(function(error) {
+        console.log('error', error)
+      })
+    }else {
+      console.log('收藏')
+      console.log(this.state.bookInfo[this.state.curCard].id)
+      fetch(apiSwitch() + '/api/tsgbooks/user_favor_books/', {
+        mode: 'cors',
+        method: 'post',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': ' jwt ' + JSON.parse(localStorage.getItem('userData'))[0].token
+        },
+        body: JSON.stringify({
+          book: this.state.bookInfo[this.state.curCard].id
+        })
+      })
+      .then(res => {
+        console.log(res)
+        if(res.ok) {
+          let bookInfoModifyData = this.state.bookInfo
+          bookInfoModifyData[this.state.curCard].is_favor = true
+          this.setState({
+            bookInfo: bookInfoModifyData
+          })
+        }else {
+          res.json()
+          .then(json => {
+            console.log("gg")
+          })
+        }
+      })
+      .catch(function(error) {
+        console.log('error', error)
+      })
+    }
+  }
   render() {
     let opt = {
       distance: 200, // 每次移动的距离，卡片的真实宽度
@@ -273,7 +341,9 @@ class ReadingGroup extends Component {
               }
             </div>
           </div>
-          <div className="unstar">
+          <div className={this.state.bookInfo[this.state.curCard].is_favor ? 'star' : 'unstar'}
+            onClick={this.handleFavourite.bind(this)}
+          >
             <div><FaStar size={28}/></div>
           </div>
         </div>

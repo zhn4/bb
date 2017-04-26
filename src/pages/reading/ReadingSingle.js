@@ -32,7 +32,8 @@ class ReadingSingle extends Component {
       method: 'get',
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': ' jwt ' + JSON.parse(localStorage.getItem('userData'))[0].token
       }
     })
     .then(res => {
@@ -122,7 +123,8 @@ class ReadingSingle extends Component {
         redirect: 'follow',
         headers: {
           'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': ' jwt ' + JSON.parse(localStorage.getItem('userData'))[0].token
         }
       })
       .then(res => {
@@ -156,7 +158,8 @@ class ReadingSingle extends Component {
         method: 'post',
         headers: {
           'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': ' jwt ' + JSON.parse(localStorage.getItem('userData'))[0].token
         },
         body: JSON.stringify({
           book: this.props.match.params.book_id

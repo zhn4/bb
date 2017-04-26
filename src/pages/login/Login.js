@@ -29,7 +29,12 @@ class Login extends Component {
         isLogin: true,
         userData: data[0].user
       })
-      this.getUserDetailsInfo()
+      let son = localStorage.getItem('switchSon') ? parseInt(localStorage.getItem('switchSon'), 10) : 1
+      // console.log(JSON.parse(localStorage.getItem('my-menbers')))
+      this.setState({
+        userDetailsInfo: JSON.parse(localStorage.getItem('my-menbers')),
+        currentSon: son
+      })
     }
   }
   logout() {
@@ -56,29 +61,17 @@ class Login extends Component {
       isLogin: true,
       userData: userInfo
     })
-    this.getUserDetailsInfo()
+    this.getUserDetailsInfo(token)
   }
-  loginMethods(e) {
-    console.log(e.target.className)
-    if(e.target.className === 'phone') {
-      this.setState({
-        phoneLogin: true,
-        usernameLogin: false
-      })
-    }else if(e.target.className === 'username'){
-      this.setState({
-        phoneLogin: false,
-        usernameLogin: true
-      })
-    }
-  }
-  getUserDetailsInfo() {
+  getUserDetailsInfo(token) {
     let son = localStorage.getItem('switchSon') ? parseInt(localStorage.getItem('switchSon'), 10) : 1
+    console.log(token)
     fetch(apiSwitch() + '/api/my-members/', {
       mode: 'cors',
       method: 'get',
       headers: {
         'Accept': 'application/json',
+        'Authorization': ' jwt ' + token
       },
     })
     .then(res => {
@@ -91,6 +84,7 @@ class Login extends Component {
             userDetailsInfo: json,
             currentSon: son
           })
+          localStorage.setItem('my-menbers', JSON.stringify(json))// 保存账号下子账号数据
           if(localStorage.getItem('switchSon')) {
             return
           }else {
@@ -107,6 +101,20 @@ class Login extends Component {
     .catch(function(error) {
       console.log('error', error)
     })
+  }
+  loginMethods(e) {
+    console.log(e.target.className)
+    if(e.target.className === 'phone') {
+      this.setState({
+        phoneLogin: true,
+        usernameLogin: false
+      })
+    }else if(e.target.className === 'username'){
+      this.setState({
+        phoneLogin: false,
+        usernameLogin: true
+      })
+    }
   }
   changeSon() {// 切换儿子
     console.log('切换儿子')

@@ -1,4 +1,26 @@
 .about {
-  color: green;
   padding-top: 34px;
+  .logo {
+    background-image: url('../img/logo.png');
+    width: 170px;
+    height: 170px;
+    margin: 0 auto;
+    margin-top: 30px;
+  }
+  .desc {
+    color: #b4b4b4;
+    width: 90%;
+    margin: 0 auto;
+    div {
+      border-bottom: 1px solid #e7e7e7;
+      // color: #b4b4b4;
+      padding: 12px 0;
+      // text-align: center;
+      span {
+        width: 40%;
+        display: inline-block;
+        margin-right: 20px;
+      }
+    }
+  }
 }

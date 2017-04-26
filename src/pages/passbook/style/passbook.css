@@ -1,3 +1,12 @@
+.passbook .month {
+  width: 40%;
+  position: absolute;
+  top: 5%;
+  left: 40px; }
+
+.passbook .month img {
+  width: 40px; }
+
 .passbook .load-history {
   position: relative;
   background-image: url("../img/head-banner.png");

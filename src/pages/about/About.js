@@ -6,6 +6,8 @@ let  apiSwitch = require('../../apiSwitch')
 
 import './style/about.css'
 
+// import mui from './mui'
+
 class About extends Component {
   constructor(props) {
     super(props)
@@ -55,8 +57,23 @@ class About extends Component {
     return (
       <div className="about">
         <Back/>
-        <div>
-          {this.state.data.rely_version}
+        <div className="logo"></div>
+        <div className="desc">
+          <div>
+            <span>贝贝猴公众号</span>beibeimonkey
+          </div>
+          <div>
+            <span>客服猴小贝公众号</span>bbmonkey02
+          </div>
+          <div>
+            <span>客服热线</span>电话号码
+          </div>
+          <div>
+            <span>电话号码</span>
+          </div>
+          <div>
+            <span>版本号</span>Ver
+          </div>
         </div>
       </div>
     )

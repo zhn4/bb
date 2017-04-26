@@ -21,6 +21,9 @@ import FaUser from 'react-icons/lib/fa/user'
 import FaBook from 'react-icons/lib/fa/book'
 import FaList from 'react-icons/lib/fa/list-alt'
 
+import initReactFastclick from 'react-fastclick';
+initReactFastclick();
+
 // import './index.scss'
 import './style/index.css'
 

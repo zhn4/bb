@@ -34,7 +34,8 @@ class LibraryClassification extends Component {
       method: 'get',
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': ' jwt ' + JSON.parse(localStorage.getItem('userData'))[0].token
       },
     })
     .then(res => {
@@ -66,7 +67,8 @@ class LibraryClassification extends Component {
       method: 'get',
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': ' jwt ' + JSON.parse(localStorage.getItem('userData'))[0].token
       },
     })
     .then(res => {

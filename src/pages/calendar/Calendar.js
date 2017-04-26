@@ -36,7 +36,7 @@ class Calendar extends Component {
         date: activeDate.getDate(),
         judgeMonth: activeDate.getMonth() !== month ? false : true,
         date_details: year + '-' + (activeDate.getMonth() + 1) + '-' + activeDate.getDate(),
-        today: currentDate.getDate() === activeDate.getDate() ? true : false
+        today: ( currentDate.getDate() === activeDate.getDate() && currentDate.getMonth() === activeDate.getMonth() ) ? true : false
       })
       activeDate.setDate(activeDate.getDate() + 1)
     }
@@ -44,6 +44,11 @@ class Calendar extends Component {
       date: year + '年' + (month + 1) + '月',
       day: days_arr
     })
+  }
+  handleMonth(m) {
+    let activeDate = new Date(currentYear, m, 1)
+    let month = activeDate.getMonth();
+    return (month + 1)
   }
   componentWillMount() {
     this.buildCalendar(currentMonth)
@@ -54,10 +59,12 @@ class Calendar extends Component {
   prevBtn() {
     this.buildCalendar(--currentMonth)
     this.props.prevData(currentYear, currentMonth)
+    this.props.handleMonth(this.handleMonth(currentMonth))
   }
   nextBtn() {
     this.buildCalendar(++currentMonth)
     this.props.nextData(currentYear, currentMonth)
+    this.props.handleMonth(this.handleMonth(currentMonth))
   }
   handleClick(e) {
     console.log(e.target)
