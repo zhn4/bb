@@ -3,8 +3,9 @@ import React, { Component } from 'react';
 import PhoneLogin from './PhoneLogin'
 import UsernameLogin from './UsernameLogin'
 
-
 import './style/login.css'
+
+import RightArrow from 'react-icons/lib/fa/angle-right'
 
 let  apiSwitch = require('../../apiSwitch')
 
@@ -103,7 +104,6 @@ class Login extends Component {
     })
   }
   loginMethods(e) {
-    console.log(e.target.className)
     if(e.target.className === 'phone') {
       this.setState({
         phoneLogin: true,
@@ -172,19 +172,20 @@ class Login extends Component {
               ''
             }
             <div>
-              <span className="title">藏书</span>收藏的故事都在这里！
-              <Link to="/favourite">打开</Link>
+              <Link to="/favourite">
+                <span className="title">藏书</span>收藏的故事都在这里！<span><RightArrow/></span>
+              </Link>
             </div>
             <div>
-              贝贝猴阅读存折<Link to="/about">关于</Link>
+              <Link to="/about">
+                贝贝猴阅读存折<span><RightArrow/></span>
+              </Link>
             </div>
             <button onClick={this.logout.bind(this)}>退出</button>
           </div>
           :
           <div className="before">
-            <div>
-              留一个banner
-            </div>
+            <div className="logo"></div>
 
             {
               this.state.phoneLogin

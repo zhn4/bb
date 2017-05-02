@@ -9,7 +9,8 @@
   vertical-align: top;
   width: 70px;
   margin-right: 10px;
-  margin-bottom: 14px; }
+  margin-bottom: 14px;
+  position: relative; }
 
 .results div a {
   text-decoration: none;
@@ -17,6 +18,12 @@
 
 .results div:nth-child(4n + 4) {
   margin-right: 0; }
+
+.results div .check {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  color: #7ae86f; }
 
 .results div img {
   width: 100%;

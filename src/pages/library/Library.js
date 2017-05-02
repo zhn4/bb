@@ -47,16 +47,4 @@ class Library extends Component {
   }
 }
 
-// class Classification extends Component {
-//   render() {
-//     return (
-//       <div className="classification">
-//         <Link to="/libraryclass/1"></Link>
-//         <Link to="/libraryclass/2"></Link>
-//         <Link to="/libraryclass/3"></Link>
-//       </div>
-//     )
-//   }
-// }
-
 export default Library;

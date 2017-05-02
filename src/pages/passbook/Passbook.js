@@ -3,24 +3,9 @@ import { Link } from 'react-router-dom'
 
 import Calendar from '../calendar/Calendar'
 
-// import GoHistory from 'react-icons/lib/go/history'
-
 let apiSwitch = require('../../apiSwitch')
 
 import './style/passbook.css'
-
-// let data = localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : []// 新建数组读取localStorage是否存在用户数据
-
-// import ImgZero from './img/0.png'
-// import ImgOne from './img/1.png'
-// import ImgTwo from './img/2.png'
-// import ImgThree from './img/3.png'
-// import ImgFour from './img/4.png'
-// import ImgFive from './img/1.png'
-// import ImgSix from './img/1.png'
-// import ImgSeven from './img/1.png'
-// import ImgEigth from './img/1.png'
-// import ImgNine from './img/1.png'
 
 let today = new Date()
 let todyMonth = today.getMonth()
@@ -46,7 +31,7 @@ class Passbook extends Component {
     if(localStorage.getItem('userData') && localStorage.getItem('userData') !== '') {
       let today = new Date()
       fetch(apiSwitch() +
-      '/api/tsgbooks/member_book_tracks/' + today.getFullYear() +'/' + (today.getMonth() + 1) + '/?service_consume__member=' +
+      '/api/tsgbooks/member_book_tracks/' + today.getFullYear() +'/' + today.getMonth() + '/?service_consume__member=' +
       localStorage.getItem('switchSon') + '/', {
         mode: 'cors',
         method: 'get',
@@ -114,7 +99,6 @@ class Passbook extends Component {
     }
   }
   handleAjax(year, month) {
-    // let today = new Date()
     fetch(apiSwitch() + '/api/tsgbooks/member_book_tracks/' + year +'/' + month +
     '/?service_consume__member=' + localStorage.getItem('switchSon') + '/', {
       mode: 'cors',
@@ -153,11 +137,15 @@ class Passbook extends Component {
   }
   prevData(year, month) {
     console.log('加载上一月数据')
-    this.handleAjax(year, month)
+    if(localStorage.getItem('userData') && localStorage.getItem('userData') !== '') {
+      this.handleAjax(year, month)
+    }
   }
   nextData(year, month) {
     console.log('加载下一月数据')
-    this.handleAjax(year, month)
+    if(localStorage.getItem('userData') && localStorage.getItem('userData') !== '') {
+      this.handleAjax(year, month)
+    }
   }
   handleMonth(month) {
     console.log('切换月份')

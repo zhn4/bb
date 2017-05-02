@@ -36,7 +36,7 @@ class PhoneLogin extends Component {
           res.json()
           .then(json => {
             console.log(json.non_field_errors[0])
-            alert('账号或密码错误，请稍后再试！')
+            alert('验证码，请稍后再试！')
           })
         }
       })
@@ -44,7 +44,7 @@ class PhoneLogin extends Component {
         console.log('error', error)
       })
     }else {
-      console.log('空，弹窗提示')
+      alert('验证码不能为空！')
     }
   }
   getCode() {

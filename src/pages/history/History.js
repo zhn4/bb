@@ -29,35 +29,37 @@ class History extends Component {
   }
   componentWillMount() {
     console.log('获取阅读过的书籍，发送ajax')
-    fetch(apiSwitch() + '/api/tsgbooks/member_books/', {
-      mode: 'cors',
-      method: 'get',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': ' jwt ' + JSON.parse(localStorage.getItem('userData'))[0].token
-      },
-    })
-    .then(res => {
-      console.log(res)
-      if(res.ok) {
-        res.json()
-        .then(json => {
-          console.log(json)
-          this.setState({
-            historyData: json.results
+    if(localStorage.getItem('userData') && localStorage.getItem('userData') !== '') {
+      fetch(apiSwitch() + '/api/tsgbooks/member_books/', {
+        mode: 'cors',
+        method: 'get',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': ' jwt ' + JSON.parse(localStorage.getItem('userData'))[0].token
+        },
+      })
+      .then(res => {
+        console.log(res)
+        if(res.ok) {
+          res.json()
+          .then(json => {
+            console.log(json)
+            this.setState({
+              historyData: json.results
+            })
           })
-        })
-      }else {
-        res.json()
-        .then(json => {
-          console.log("gg")
-        })
-      }
-    })
-    .catch(function(error) {
-      console.log('error', error)
-    })
+        }else {
+          res.json()
+          .then(json => {
+            console.log("gg")
+          })
+        }
+      })
+      .catch(function(error) {
+        console.log('error', error)
+      })
+    }
   }
   loadMoreData(value) {
     console.log('加载更多')

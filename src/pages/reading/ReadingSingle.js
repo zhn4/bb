@@ -25,8 +25,6 @@ class ReadingSingle extends Component {
     }
   }
   componentWillMount() {
-    // console.log(this.props.match.params.book_id)
-    // fetch(apiSwitch() + '/api/tsgbooks/books/'+ this.props.match.params.book_id + '/', {
     fetch(apiSwitch() + '/api/tsgbooks/books/' + this.props.match.params.book_id + '/', {
       mode: 'cors',
       method: 'get',
@@ -46,6 +44,7 @@ class ReadingSingle extends Component {
             bookInfo: json,
             is_favor: json.is_favor
           })
+          this.refs.videoPlayer.load()
         })
       }else {
         res.json()

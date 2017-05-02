@@ -12,6 +12,8 @@ import { Link } from 'react-router-dom'
 //   })
 // }
 // console.log(historyData)
+import FaCheck from 'react-icons/lib/fa/check'
+
 import './style/results.css'
 
 class Results extends Component {
@@ -45,6 +47,7 @@ class Results extends Component {
         {this.props.data.map((data, i) => (
           <div key={i}>
             <Link to={"/readingsingle/" + data.book_id}>
+              {data.is_read ? <div className="check"><FaCheck/></div> : ''}
               <img src={data.icon} alt="cover" />
               <p>{data.title}</p>
             </Link>

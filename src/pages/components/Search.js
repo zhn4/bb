@@ -10,12 +10,17 @@ class Search extends Component {
       this.props.getInputValue(e.target.value)
     }
   }
+  sendInputValueClick() {
+    if(this.refs.searchKey.value !== '') {
+      this.props.getInputValue(this.refs.searchKey.value)
+    }
+  }
   render() {
     return (
       <div className="search">
         <div>
-          <input type="text" placeholder="搜索绘本" onKeyPress={this.sendInputValue.bind(this)} />
-          <span><FaSearch size={18}/></span>
+          <input type="text" placeholder="搜索绘本" onKeyPress={this.sendInputValue.bind(this)} ref="searchKey"/>
+          <span onClick={this.sendInputValueClick.bind(this)}><FaSearch size={18}/></span>
         </div>
       </div>
     )

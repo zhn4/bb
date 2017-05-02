@@ -42,7 +42,7 @@ class UsernameLogin extends Component {
         console.log('error', error)
       })
     }else {
-      console.log('空，弹窗提示')
+      alert('密码不能为空！')
     }
   }
   render() {

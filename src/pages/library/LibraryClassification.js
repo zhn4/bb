@@ -29,35 +29,37 @@ class LibraryClassification extends Component {
   }
   componentWillMount() {
     // console.log(this.props.match.params.id)
-    fetch(apiSwitch() + '/api/tsgbooks/books/?sort=' + this.props.match.params.id, {
-      mode: 'cors',
-      method: 'get',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': ' jwt ' + JSON.parse(localStorage.getItem('userData'))[0].token
-      },
-    })
-    .then(res => {
-      console.log(res)
-      if(res.ok) {
-        res.json()
-        .then(json => {
-          console.log(json)
-          this.setState({
-            resultData: json.results
+    if(localStorage.getItem('userData') && localStorage.getItem('userData') !== '') {
+      fetch(apiSwitch() + '/api/tsgbooks/books/?sort=' + this.props.match.params.id, {
+        mode: 'cors',
+        method: 'get',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': ' jwt ' + JSON.parse(localStorage.getItem('userData'))[0].token
+        },
+      })
+      .then(res => {
+        console.log(res)
+        if(res.ok) {
+          res.json()
+          .then(json => {
+            console.log(json)
+            this.setState({
+              resultData: json.results
+            })
           })
-        })
-      }else {
-        res.json()
-        .then(json => {
-          console.log("gg")
-        })
-      }
-    })
-    .catch(function(error) {
-      console.log('error', error)
-    })
+        }else {
+          res.json()
+          .then(json => {
+            console.log("gg")
+          })
+        }
+      })
+      .catch(function(error) {
+        console.log('error', error)
+      })
+    }
   }
   loadMoreData(value) {
     console.log('加载更多')

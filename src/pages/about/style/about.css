@@ -6,7 +6,8 @@
   width: 170px;
   height: 170px;
   margin: 0 auto;
-  margin-top: 30px; }
+  margin-top: 30px;
+  margin-bottom: 30px; }
 
 .about .desc {
   color: #b4b4b4;

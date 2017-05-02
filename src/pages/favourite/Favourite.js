@@ -5,13 +5,13 @@ import Back from '../components/Back'
 
 let  apiSwitch = require('../../apiSwitch')
 
-let historyData = []// 测试数据
-for(let i = 0; i < 50; i++) {
-  historyData.push({
-    icon: 'https://img3.doubanio.com/lpic/s2449523.jpg',
-    title: '倚天屠龙记'
-  })
-}
+// let historyData = []// 测试数据
+// for(let i = 0; i < 50; i++) {
+//   historyData.push({
+//     icon: 'https://img3.doubanio.com/lpic/s2449523.jpg',
+//     title: '倚天屠龙记'
+//   })
+// }
 
 let page = 2
 
@@ -19,7 +19,7 @@ class Favourite extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      data: historyData
+      data: ''
     }
   }
   componentWillMount() {
@@ -100,7 +100,11 @@ class Favourite extends Component {
       <div className="favourite">
         <Back/>
         {
+          this.state.data
+          ?
           <Results data={this.state.data} loadMoreData={this.loadMoreData.bind(this)}/>
+          :
+          ''
         }
       </div>
     )
