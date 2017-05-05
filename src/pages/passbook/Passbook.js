@@ -42,11 +42,9 @@ class Passbook extends Component {
         },
       })
       .then(res => {
-        console.log(res)
         if(res.ok) {
           res.json()
           .then(json => {
-            console.log(json)
             json.map((data, i) => {
               data.service_consume.return_date = this.handleTime(data.service_consume.borrow_date)
             })
@@ -67,7 +65,6 @@ class Passbook extends Component {
     }
   }
   handleTime(time) {
-    // console.log(time)
     if(time.match(/^\d{4}[-]\d{1,2}[-]\d{2}$/)) {
       let d = new Date()
       d.setFullYear(time.split('-')[0], time.split('-')[1] - 1, time.split('-')[2])
@@ -110,19 +107,15 @@ class Passbook extends Component {
       },
     })
     .then(res => {
-      console.log(res)
       if(res.ok) {
         res.json()
         .then(json => {
-          console.log(json)
           json.map((data, i) => {
             data.service_consume.return_date = this.handleTime(data.service_consume.borrow_date)
           })
           this.setState({
             consumeData: json
           })
-          console.log('数据在这哦里')
-          console.log(this.state.consumeData)
         })
       }else {
         res.json()
@@ -135,21 +128,17 @@ class Passbook extends Component {
       console.log('error', error)
     })
   }
-  prevData(year, month) {
-    console.log('加载上一月数据')
+  prevData(year, month) {// 上一个月
     if(localStorage.getItem('userData') && localStorage.getItem('userData') !== '') {
       this.handleAjax(year, month)
     }
   }
-  nextData(year, month) {
-    console.log('加载下一月数据')
+  nextData(year, month) {// 下一个月
     if(localStorage.getItem('userData') && localStorage.getItem('userData') !== '') {
       this.handleAjax(year, month)
     }
   }
-  handleMonth(month) {
-    console.log('切换月份')
-    console.log(month)
+  handleMonth(month) {// 日历翻动，处理左上角的日期
     this.setState({
       month: month
     })
@@ -329,19 +318,6 @@ class ConsumeHistory extends Component {
   }
 }
 
-// 是否满足条件领取奖励
-// 领取阅读奖励需要绑定onClick事件触发ajax
-// 领取后改变提示文字
-// class Award extends Component {
-//   render() {
-//     return (
-//       <div className="award">
-//         <div onClick={this.props.handleAward}>领取阅读奖励</div>
-//       </div>
-//     )
-//   }
-// }
-
 // 借书次数
 // 时间
 // 多少本书（借书次数 x 3）
@@ -356,11 +332,6 @@ class Tips extends Component {
     )
   }
 }
-// <div className="tips">
-//   <div>{data.award.slogan}</div>
-//   <div>{data.service_consume.borrow_time} ~ (+7)</div>
-//   <div>{data.count}</div>
-// </div>
 
 // 数组数据：封面，书名
 class Readingbooks extends Component {
@@ -379,16 +350,5 @@ class Readingbooks extends Component {
     )
   }
 }
-// <div className="reading-books">
-//   {data.service_consume.member_book.map((book, i) => (
-//     <div key={i}>
-//       <div>
-//         <img src={book.icon} alt="cover"/>
-//       </div>
-//       <div>{book.title}</div>
-//     </div>
-//   ))}
-// </div>
-
 
 export default Passbook;

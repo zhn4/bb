@@ -1,5 +1,4 @@
 .login {
-  // text-align: center;
   .before {
     .logo {
       background-image: url('../img/logo.png');
@@ -28,7 +27,6 @@
       border-right: 1px solid #fe454f;
       border-bottom: 1px solid #fe454f;
       border-left: 1px solid #fe454f;
-      // border-radius: 9px;
       border-top-right-radius: 8px;
       border-bottom-right-radius: 8px;
       background-color: #fe454f;
@@ -83,7 +81,6 @@
       border-radius: 25px;
       color: #fff;
       font-size: 16px;
-      // letter-spacing: 10px;
       text-align: center;
     }
   }
@@ -99,13 +96,11 @@
     }
   }
   &:nth-child(2) {
-    // background-color: red;
     width: 65%;
     margin: 0 auto;
     position: relative;
   }
   &:nth-child(3) {
-    // background-color: yellow;
     width: 65%;
     margin: 0 auto;
   }
@@ -120,12 +115,8 @@
     height: 26px;
     line-height: 26px;
   }
-  div {
-    // display: inline-block;
-  }
 }
 
-// notie-textbox notie-background-error notie-alert notie-container
 .notie-alert {
   z-index: 100;
 }

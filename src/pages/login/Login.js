@@ -23,7 +23,6 @@ class Login extends Component {
   }
   componentWillMount() {
     // TODO 需要加入fetch请求判断token是否失效
-    // console.log(data)
     let data = localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : []// 新建数组读取localStorage是否存在用户数据
     if(data[0]) {
       this.setState({// 存在localStorage数据就读取
@@ -31,7 +30,6 @@ class Login extends Component {
         userData: data[0].user
       })
       let son = localStorage.getItem('switchSon') ? parseInt(localStorage.getItem('switchSon'), 10) : 1
-      // console.log(JSON.parse(localStorage.getItem('my-menbers')))
       this.setState({
         userDetailsInfo: JSON.parse(localStorage.getItem('my-menbers')),
         currentSon: son
@@ -49,22 +47,20 @@ class Login extends Component {
 
     })
   }
-  handleLoginStatus(token, userInfo) {
-    console.log('chang isLogin')
+  handleLoginStatus(token, userInfo) {// 处理登陆状态
     let data = []
     data.push({
       token: token,// token，登陆状态
       user: userInfo// user用户数据
     })
     localStorage.setItem('userData', JSON.stringify(data))// localStorage保存token标识登陆状态
-    // localStorage.setItem('switchSon', JSON.stringify(1))
     this.setState({
       isLogin: true,
       userData: userInfo
     })
     this.getUserDetailsInfo(token)
   }
-  getUserDetailsInfo(token) {
+  getUserDetailsInfo(token) {// 获取该账号下的子账号
     let son = localStorage.getItem('switchSon') ? parseInt(localStorage.getItem('switchSon'), 10) : 1
     console.log(token)
     fetch(apiSwitch() + '/api/my-members/', {
@@ -76,11 +72,9 @@ class Login extends Component {
       },
     })
     .then(res => {
-      console.log(res)
       if(res.ok) {
         res.json()
         .then(json => {
-          console.log(json)
           this.setState({
             userDetailsInfo: json,
             currentSon: son
@@ -117,7 +111,6 @@ class Login extends Component {
     }
   }
   changeSon() {// 切换儿子
-    console.log('切换儿子')
     if(this.state.currentSon === 1) {
       this.setState({
         currentSon: 2
@@ -178,7 +171,7 @@ class Login extends Component {
             </div>
             <div>
               <Link to="/about">
-                贝贝猴阅读存折<span><RightArrow/></span>
+                <span className="title">关于</span>贝贝猴阅读存折<span><RightArrow/></span>
               </Link>
             </div>
             <button onClick={this.logout.bind(this)}>退出</button>
@@ -190,7 +183,7 @@ class Login extends Component {
             {
               this.state.phoneLogin
               ?
-              <PhoneLogin/>
+              <PhoneLogin handleLoginStatus={this.handleLoginStatus.bind(this)}/>
               :
               ''
             }

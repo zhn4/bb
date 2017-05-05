@@ -2,16 +2,6 @@ import React, { Component } from 'react';
 
 import { Link } from 'react-router-dom'
 
-// import { HashRouter as Router, Route,  Link } from 'react-router-dom'
-
-// let historyData = []// 测试数据
-// for(let i = 0; i < 50; i++) {
-//   historyData.push({
-//     cover: 'http://blog.roodo.com/book100/3aecf7cc.jpg',
-//     name: '倚天屠龙记'
-//   })
-// }
-// console.log(historyData)
 import FaCheck from 'react-icons/lib/fa/check'
 
 import './style/results.css'
@@ -28,12 +18,11 @@ class Results extends Component {
       height: window.innerHeight - 55 -58
     })
   }
-  handleScroll(e) {
+  handleScroll(e) {// 监听组件的滚动事件，回调父组件的加载更多事件
     let clientHeight = this.refs.scrollview.clientHeight
     let scrollTop = this.refs.scrollview.scrollTop
     let scrollHeight = this.refs.scrollview.scrollHeight
     if(scrollHeight === (clientHeight + scrollTop)) {
-      console.log('回调父组件加载请求')
       this.props.loadMoreData(e.target.value)
     }
   }

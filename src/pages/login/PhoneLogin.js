@@ -2,13 +2,10 @@ import React, { Component } from 'react';
 
 import './style/login.css'
 
-// let data = localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : []// 新建数组读取localStorage是否存在用户数据
-
 let  apiSwitch = require('../../apiSwitch')
 
 class PhoneLogin extends Component {
   phoneLogin() {
-    // fetch('//192.168.1.84:8000/auth/login/', {
     if(this.refs.inputPhone.value !== '' && this.refs.verificationCode.value !== '') {
       console.log('非空，可发送请求')
       fetch(apiSwitch() + '/auth/login/', {
@@ -60,7 +57,6 @@ class PhoneLogin extends Component {
         },
         body: JSON.stringify({
           phone_number: this.refs.inputPhone.value,
-          // password: this.refs.inputPwd.value
         })
       })
       .then(res => {

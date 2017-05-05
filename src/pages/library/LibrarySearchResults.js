@@ -9,12 +9,6 @@ import './style/library.css'
 let  apiSwitch = require('../../apiSwitch')
 
 let historyData = []// 测试数据
-// for(let i = 0; i < 50; i++) {
-//   historyData.push({
-//     icon: 'https://img3.doubanio.com/lpic/s2449523.jpg',
-//     title: '倚天屠龙记'
-//   })
-// }
 
 class LibrarySearchResults extends Component {
   constructor(props) {
@@ -25,7 +19,6 @@ class LibrarySearchResults extends Component {
     }
   }
   componentWillMount() {
-    console.log(this.props.match.params.key)
     fetch(apiSwitch() + '/api/tsgbooks/books/?search=' + this.props.match.params.key, {
       mode: 'cors',
       method: 'get',
@@ -36,11 +29,9 @@ class LibrarySearchResults extends Component {
       },
     })
     .then(res => {
-      console.log(res)
       if(res.ok) {
         res.json()
         .then(json => {
-          console.log(json)
           this.setState({
             resultData: json.results
           })
@@ -57,7 +48,6 @@ class LibrarySearchResults extends Component {
     })
   }
   render() {
-    // console.log(this.props)
     return (
       <div className="library">
         <Back title={this.state.title}/>

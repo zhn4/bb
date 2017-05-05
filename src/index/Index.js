@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 
-// import { BrowserRouter as Router, Route,  Link } from 'react-router-dom'
 import { HashRouter as Router, Route,  Link } from 'react-router-dom'
 
 import Passbook from '../pages/passbook/Passbook'
 import Login from '../pages/login/Login'
 import Library from '../pages/library/Library'
 import History from '../pages/history/History'
-// import Reading from '../pages/reading/Reading'
 import ReadingSingle from '../pages/reading/ReadingSingle'
 import ReadingGroup from '../pages/reading/ReadingGroup'
 import LibraryClassification from '../pages/library/LibraryClassification'
@@ -16,7 +14,6 @@ import Classification from '../pages/library/Classification'
 import Favourite from '../pages/favourite/Favourite'
 import About from '../pages/about/About'
 
-// import GoBook from 'react-icons/lib/go/book'
 import FaUser from 'react-icons/lib/fa/user'
 import FaBook from 'react-icons/lib/fa/book'
 import FaList from 'react-icons/lib/fa/list-alt'
@@ -24,7 +21,6 @@ import FaList from 'react-icons/lib/fa/list-alt'
 import initReactFastclick from 'react-fastclick';
 initReactFastclick();
 
-// import './index.scss'
 import './style/index.css'
 
 class Index extends Component {
@@ -55,7 +51,7 @@ class Index extends Component {
     }
   }
   componentDidMount() {
-    this.contentHight()
+    // this.contentHight()
     this.judge_menu_state()
     this.setState({
       height: window.innerHeight - 55
@@ -89,9 +85,6 @@ class Index extends Component {
 }
 
 class Menu extends Component {
-  // constructor() {
-  //
-  // }
   render() {
     let judge_library = this.props.menu[0].library ? 'active' : 'none'
     let judge_passbook = this.props.menu[1].passbook ? 'active' : 'none'

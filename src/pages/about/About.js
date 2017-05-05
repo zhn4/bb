@@ -31,11 +31,9 @@ class About extends Component {
       },
     })
     .then(res => {
-      console.log(res)
       if(res.ok) {
         res.json()
         .then(json => {
-          console.log(json)
           this.setState({
             data: json
           })

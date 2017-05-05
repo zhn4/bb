@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 
-// import './calendar.scss'
 import './style/calendar.css'
 
-// let today = new Date()
-// let month = today.getMonth()
 let currentDate = new Date();
 let currentYear = currentDate.getFullYear();
 let currentMonth = currentDate.getMonth();
@@ -131,13 +128,9 @@ class Week extends Component {
 
 class Day extends Component {
   render() {
-    // let month = day.judgeMonth ? 'this_month' : 'not_this_month'
-    // let today = day.today ? 'today' : 'not_today'
-    // let style = `${day.judgeMonth ? 'this_month' : 'not_this_month'}, ${day.today ? 'today' : 'not_today'}`
     return(
       <div className="day">
         {this.props.day.map((day, i) => (
-          // <span key={i}>{day}</span>
           <span key={i}
           className={`${day.judgeMonth ? 'this_month' : 'not_this_month'}  ${day.today ? 'today' : 'not_today'}`}
           data-date={day.date_details}

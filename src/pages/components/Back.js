@@ -6,9 +6,6 @@ import './style/back.css'
 
 class Library extends Component {
   back() {
-    console.log('back')
-    // console.log(this.props)
-    // console.log()
     history.back()
   }
   render() {

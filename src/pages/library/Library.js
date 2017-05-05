@@ -8,14 +8,6 @@ import Results from '../components/Results'
 import './style/library.css'
 
 let historyData = []// 测试数据
-for(let i = 0; i < 50; i++) {
-  historyData.push({
-    icon: 'https://img3.doubanio.com/lpic/s2449523.jpg',
-    title: '倚天屠龙记'
-  })
-}
-
-// let  apiSwitch = require('../../apiSwitch')
 
 class Library extends Component {
   constructor(props) {

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { HashRouter as Router, Route,  Link } from 'react-router-dom'
 
 import './style/history.css'
 
@@ -9,13 +8,6 @@ import Back from '../components/Back'
 let  apiSwitch = require('../../apiSwitch')
 
 let historyData = []// 测试数据
-// for(let i = 0; i < 50; i++) {
-//   historyData.push({
-//     icon: 'https://img3.doubanio.com/lpic/s2449523.jpg',
-//     title: '倚天屠龙记'
-//   })
-// }
-// console.log(historyData)
 
 let page = 2
 
@@ -28,7 +20,6 @@ class History extends Component {
     }
   }
   componentWillMount() {
-    console.log('获取阅读过的书籍，发送ajax')
     if(localStorage.getItem('userData') && localStorage.getItem('userData') !== '') {
       fetch(apiSwitch() + '/api/tsgbooks/member_books/', {
         mode: 'cors',
@@ -40,11 +31,9 @@ class History extends Component {
         },
       })
       .then(res => {
-        console.log(res)
         if(res.ok) {
           res.json()
           .then(json => {
-            console.log(json)
             this.setState({
               historyData: json.results
             })
@@ -62,7 +51,6 @@ class History extends Component {
     }
   }
   loadMoreData(value) {
-    console.log('加载更多')
     fetch(apiSwitch() + '/api/tsgbooks/member_books/?page='
     + page + '/', {
       mode: 'cors',
@@ -74,20 +62,15 @@ class History extends Component {
       },
     })
     .then(res => {
-      console.log(res)
       if(res.ok) {
         res.json()
         .then(json => {
-          console.log(this.state.resultData)
-          console.log(json)
           page ++// 注意页数增加
           let newResultData = this.state.historyData
           json.results.map( (index)=> (
-            // console.log(index)
             newResultData.push(index)
           ))
           this.state.historyData.push(json.results)
-          console.log(this.state.historyData)
           this.setState({
             historyData: newResultData
           })

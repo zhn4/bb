@@ -35,11 +35,9 @@ class ReadingSingle extends Component {
       }
     })
     .then(res => {
-      console.log(res)
       if(res.ok) {
         res.json()
         .then(json => {
-          console.log(json)
           this.setState({
             bookInfo: json,
             is_favor: json.is_favor
@@ -79,7 +77,6 @@ class ReadingSingle extends Component {
     '' +
     seconds +
     ''
-    // console.log(allTime)
     return allTime
   }
   videoTime() {
@@ -113,9 +110,7 @@ class ReadingSingle extends Component {
     })
   }
   handleFavourite() {
-    console.log('star or unstar')
     if(this.state.is_favor) {
-      console.log('需要delete')
       fetch(apiSwitch() + '/api/tsgbooks/user_favor_books/' + this.props.match.params.book_id + '/', {
         mode: 'cors',
         method: 'DELETE',
@@ -127,19 +122,10 @@ class ReadingSingle extends Component {
         }
       })
       .then(res => {
-        console.log(res)
         if(res.ok) {
-          console.log('123')
           this.setState({
             is_favor: false
           })
-          // res.json()
-          // .then(json => {
-          //   console.log(json)
-          //   this.setState({
-          //     is_favor: false
-          //   })
-          // })
         }else {
           res.json()
           .then(json => {
@@ -151,7 +137,6 @@ class ReadingSingle extends Component {
         console.log('error', error)
       })
     }else {
-      console.log('需要收藏')
       fetch(apiSwitch() + '/api/tsgbooks/user_favor_books/', {
         mode: 'cors',
         method: 'post',
@@ -165,11 +150,9 @@ class ReadingSingle extends Component {
         })
       })
       .then(res => {
-        console.log(res)
         if(res.ok) {
           res.json()
           .then(json => {
-            console.log(json)
             this.setState({
               is_favor: true
             })

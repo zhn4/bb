@@ -20,8 +20,7 @@ class Classification extends Component {
       height: window.innerHeight - 55
     })
   }
-  getInputValue(value) {
-    console.log('搜索功能，进入结果页面')
+  getInputValue(value) {// 跳到搜索结果页面
     this.props.history.push('/librarysearchresults/' + value);
   }
   render() {

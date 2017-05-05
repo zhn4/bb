@@ -5,14 +5,6 @@ import Back from '../components/Back'
 
 let  apiSwitch = require('../../apiSwitch')
 
-// let historyData = []// 测试数据
-// for(let i = 0; i < 50; i++) {
-//   historyData.push({
-//     icon: 'https://img3.doubanio.com/lpic/s2449523.jpg',
-//     title: '倚天屠龙记'
-//   })
-// }
-
 let page = 2
 
 class Favourite extends Component {
@@ -33,11 +25,9 @@ class Favourite extends Component {
       },
     })
     .then(res => {
-      console.log(res)
       if(res.ok) {
         res.json()
         .then(json => {
-          console.log(json)
           this.setState({
             data: json.results
           })
@@ -54,7 +44,6 @@ class Favourite extends Component {
     })
   }
   loadMoreData(value) {
-    console.log('加载更多')
     fetch(apiSwitch() + '/api/tsgbooks/user_favor_books/?page='
     + page + '/', {
       mode: 'cors',
@@ -66,20 +55,14 @@ class Favourite extends Component {
       },
     })
     .then(res => {
-      console.log(res)
       if(res.ok) {
         res.json()
         .then(json => {
-          console.log(this.state.resultData)
-          console.log(json)
           page ++// 注意页数增加
           let newResultData = this.state.data
           json.results.map( (index)=> (
-            // console.log(index)
             newResultData.push(index)
           ))
-          // this.state.resultData.push(json.results)
-          console.log(this.state.data)
           this.setState({
             data: newResultData
           })
