@@ -30,9 +30,12 @@ class Classification extends Component {
       >
         <Back title={this.state.title}/>
         <Search getInputValue={this.getInputValue.bind(this)}/>
-        <Link to="/libraryclass/1"></Link>
-        <Link to="/libraryclass/2"></Link>
-        <Link to="/libraryclass/3"></Link>
+        <div className="tags">
+          <Link to="/libraryclass/1"></Link>
+          <Link to="/libraryclass/2"></Link>
+          <Link to="/libraryclass/3"></Link>
+          <Link to="/libraryclass/4"></Link>
+        </div>
       </div>
     )
   }

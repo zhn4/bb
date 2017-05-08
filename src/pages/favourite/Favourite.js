@@ -15,6 +15,7 @@ class Favourite extends Component {
     }
   }
   componentWillMount() {
+    page = 2
     fetch(apiSwitch() + '/api/tsgbooks/user_favor_books/', {
       mode: 'cors',
       method: 'get',
@@ -45,7 +46,7 @@ class Favourite extends Component {
   }
   loadMoreData(value) {
     fetch(apiSwitch() + '/api/tsgbooks/user_favor_books/?page='
-    + page + '/', {
+    + page, {
       mode: 'cors',
       method: 'get',
       headers: {

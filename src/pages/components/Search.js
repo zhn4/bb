@@ -6,12 +6,12 @@ import './style/search.css'
 
 class Search extends Component {
   sendInputValue(e) {
-    if(e.key && e.key === 'Enter' && e.target.value !== '') {
+    if(e.key && e.key === 'Enter' && e.target.value.trim() !== '') {
       this.props.getInputValue(e.target.value)
     }
   }
   sendInputValueClick() {
-    if(this.refs.searchKey.value !== '') {
+    if(this.refs.searchKey.value.trim() !== '') {
       this.props.getInputValue(this.refs.searchKey.value)
     }
   }

@@ -38,9 +38,11 @@ class ReadingSingle extends Component {
       if(res.ok) {
         res.json()
         .then(json => {
+          console.log(json)
           this.setState({
             bookInfo: json,
-            is_favor: json.is_favor
+            is_favor: json.is_favor,
+            audioCurrentTime: json.duration
           })
           this.refs.videoPlayer.load()
         })
@@ -87,18 +89,22 @@ class ReadingSingle extends Component {
     }, 1000)
   }
   playVideo() {
-    if(this.refs.videoPlayer.paused) {
-      this.refs.videoPlayer.play()
-      this.videoTime()
-      this.setState({
-        audioStatus: true
-      })
+    if(this.refs.videoPlayer.currentSrc !== '') {
+      if(this.refs.videoPlayer.paused) {
+        this.refs.videoPlayer.play()
+        this.videoTime()
+        this.setState({
+          audioStatus: true
+        })
+      }else {
+        this.refs.videoPlayer.pause()
+        window.clearInterval(showTime)
+        this.setState({
+          audioStatus: false
+        })
+      }
     }else {
-      this.refs.videoPlayer.pause()
-      window.clearInterval(showTime)
-      this.setState({
-        audioStatus: false
-      })
+      alert('绘本故事音频即将上线，谢谢您的支持！ ')
     }
   }
   audioEnd() {

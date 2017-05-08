@@ -20,6 +20,10 @@ class History extends Component {
     }
   }
   componentWillMount() {
+    this.setState({
+      login: true
+    })
+    page = 2
     if(localStorage.getItem('userData') && localStorage.getItem('userData') !== '') {
       fetch(apiSwitch() + '/api/tsgbooks/member_books/', {
         mode: 'cors',
@@ -48,11 +52,15 @@ class History extends Component {
       .catch(function(error) {
         console.log('error', error)
       })
+    }else {
+      this.setState({
+        login: false
+      })
     }
   }
   loadMoreData(value) {
     fetch(apiSwitch() + '/api/tsgbooks/member_books/?page='
-    + page + '/', {
+    + page, {
       mode: 'cors',
       method: 'get',
       headers: {
@@ -90,7 +98,15 @@ class History extends Component {
     return (
       <div className="history">
         <Back title={this.state.title}/>
-        <Results data={this.state.historyData} loadMoreData={this.loadMoreData.bind(this)}/>
+
+        {(() => {
+          switch (this.state.login) {
+            case true: return <Results data={this.state.historyData} loadMoreData={this.loadMoreData.bind(this)}/>
+            case false: return <div className="login-tips">请登陆</div>
+            default: return <div>加载中...</div>
+          }
+        })()}
+
       </div>
     );
   }

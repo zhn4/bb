@@ -56,6 +56,9 @@ class Index extends Component {
     this.setState({
       height: window.innerHeight - 55
     })
+    console.log(window.innerHeight)
+    console.log(window.innerWidth)
+
   }
   componentWillReceiveProps() {
     this.judge_menu_state()

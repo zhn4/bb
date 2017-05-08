@@ -27,7 +27,7 @@ class UsernameLogin extends Component {
           .then(json => {
             console.log(json)
             console.log(json.token)
-            this.props.handleLoginStatus(json.token, json.user)// 成功登陆后调用父页面的handleLoginStatus，发送token，用户信息过去
+            this.props.handleLoginStatus(json.token, json.user)// 成功登录后调用父页面的handleLoginStatus，发送token，用户信息过去
           })
         }else {
           res.json()
@@ -63,7 +63,7 @@ class UsernameLogin extends Component {
             ref='inputPwd'
           />
         </div>
-        <button className="btn" onClick={this.usernameLogin.bind(this)}>登陆</button>
+        <button className="btn" onClick={this.usernameLogin.bind(this)}>登录</button>
       </div>
     )
   }

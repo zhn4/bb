@@ -33,15 +33,22 @@ class Results extends Component {
         onScroll={this.handleScroll.bind(this)}
         ref="scrollview"
       >
-        {this.props.data.map((data, i) => (
-          <div key={i}>
-            <Link to={"/readingsingle/" + data.book_id}>
-              {data.is_read ? <div className="check"><FaCheck/></div> : ''}
-              <img src={data.icon} alt="cover" />
-              <p>{data.title}</p>
-            </Link>
-          </div>
-        ))}
+      {
+        this.props.data.length > 0
+        ?
+        ''
+        :
+        <div className="tips">暂无相关绘本数据</div>
+      }
+      {this.props.data.map((data, i) => (
+        <div key={i}>
+          <Link to={"/readingsingle/" + data.book_id}>
+            {data.is_read ? <div className="check"><FaCheck/></div> : ''}
+            <img src={data.icon} alt="cover" />
+            <p>{data.title}</p>
+          </Link>
+        </div>
+      ))}
       </div>
     )
   }

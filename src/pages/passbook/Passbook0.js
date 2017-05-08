@@ -159,7 +159,7 @@ class LeadBtn extends Component {
           ?
           <Link className="btn" to={"/readinggroup" + this.props.service_consume_id}>绘本阅读</Link>
           :
-          <Link className="btn" to="/login">登陆</Link>
+          <Link className="btn" to="/login">登录</Link>
         }
       </div>
     )

@@ -33,7 +33,7 @@ class PhoneLogin extends Component {
           res.json()
           .then(json => {
             console.log(json.non_field_errors[0])
-            alert('验证码，请稍后再试！')
+            alert('验证码错误或失效，请稍后再试！')
           })
         }
       })
@@ -92,7 +92,7 @@ class PhoneLogin extends Component {
             ref='verificationCode'
           />
         </div>
-        <button className="btn" onClick={this.phoneLogin.bind(this)}>登陆</button>
+        <button className="btn" onClick={this.phoneLogin.bind(this)}>登录</button>
       </div>
     )
   }

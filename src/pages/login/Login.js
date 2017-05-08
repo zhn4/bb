@@ -15,7 +15,7 @@ class Login extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isLogin: false,// 默认非登陆状态
+      isLogin: false,// 默认非登录状态
       userData: [],// 用户数据
       phoneLogin: false,
       usernameLogin: true
@@ -38,7 +38,7 @@ class Login extends Component {
   }
   logout() {
     console.log('退出，清除localStorage，发送退出请求')
-    localStorage.setItem('userData', [])// localStorage保存token标识登陆状态
+    localStorage.setItem('userData', [])// localStorage保存token标识登录状态
     localStorage.setItem('switchSon', '')
     this.setState({
       isLogin: false,
@@ -47,13 +47,13 @@ class Login extends Component {
 
     })
   }
-  handleLoginStatus(token, userInfo) {// 处理登陆状态
+  handleLoginStatus(token, userInfo) {// 处理登录状态
     let data = []
     data.push({
-      token: token,// token，登陆状态
+      token: token,// token，登录状态
       user: userInfo// user用户数据
     })
-    localStorage.setItem('userData', JSON.stringify(data))// localStorage保存token标识登陆状态
+    localStorage.setItem('userData', JSON.stringify(data))// localStorage保存token标识登录状态
     this.setState({
       isLogin: true,
       userData: userInfo
@@ -72,9 +72,11 @@ class Login extends Component {
       },
     })
     .then(res => {
+      console.log(res)
       if(res.ok) {
         res.json()
         .then(json => {
+          console.log(json)
           this.setState({
             userDetailsInfo: json,
             currentSon: son
@@ -139,7 +141,13 @@ class Login extends Component {
             <div>
               <span className="title">账号</span>
               {this.state.userDetailsInfo[this.state.currentSon - 1].name}
-              <span className="btns" onClick={this.changeSon.bind(this)}>切换</span>
+              {
+                this.state.userDetailsInfo.length < 2
+                ?
+                ''
+                :
+                <span className="btns" onClick={this.changeSon.bind(this)}>切换</span>
+              }
             </div>
             :
               ''

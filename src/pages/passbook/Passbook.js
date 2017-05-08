@@ -30,9 +30,7 @@ class Passbook extends Component {
   componentWillMount() {
     if(localStorage.getItem('userData') && localStorage.getItem('userData') !== '') {
       let today = new Date()
-      fetch(apiSwitch() +
-      '/api/tsgbooks/member_book_tracks/' + today.getFullYear() +'/' + today.getMonth() + '/?service_consume__member=' +
-      localStorage.getItem('switchSon') + '/', {
+      fetch(apiSwitch() + '/api/tsgbooks/member_book_tracks/' + today.getFullYear() +'/' + today.getMonth() + '/?service_consume__member=' + localStorage.getItem('switchSon'), {
         mode: 'cors',
         method: 'get',
         headers: {
@@ -97,7 +95,7 @@ class Passbook extends Component {
   }
   handleAjax(year, month) {
     fetch(apiSwitch() + '/api/tsgbooks/member_book_tracks/' + year +'/' + month +
-    '/?service_consume__member=' + localStorage.getItem('switchSon') + '/', {
+    '/?service_consume__member=' + localStorage.getItem('switchSon'), {
       mode: 'cors',
       method: 'get',
       headers: {
@@ -284,10 +282,10 @@ class Passbook extends Component {
           :
           <div className="lead-btn">
             <div className="tips no-login-tips">
-              <div>登陆查看宝宝借书记录</div>
+              <div>登录查看宝宝借书记录</div>
               <div>0</div>
             </div>
-            <Link className="btn" to="/login">登陆</Link>
+            <Link className="btn" to="/login">登录</Link>
           </div>
         }
         </div>

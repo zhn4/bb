@@ -1,3 +1,10 @@
+.library .login-tips {
+  width: 310px;
+  margin: 0 auto;
+  margin-top: 58px;
+  overflow: scroll;
+  text-align: center; }
+
 .library .search {
   background-color: yellow;
   background-image: url("../img/library-head.png");
@@ -17,26 +24,39 @@
 .classification {
   width: 100%;
   background-color: #effff7; }
-  .classification .search {
-    background-color: yellow;
-    background-image: url("../img/library-head2.png");
-    background-size: cover;
-    padding-top: 41%;
-    padding-bottom: 10%;
-    margin-bottom: 20px; }
-  .classification a {
-    width: 88%;
-    display: block;
-    border: 1px solid #b4d2c9;
-    margin: 0 auto;
-    margin-bottom: 12px;
-    border-radius: 12px;
-    padding-top: 23.8%;
-    overflow: hidden;
-    background-size: cover; }
-    .classification a:nth-of-type(1) {
-      background-image: url("../img/2-3.png"); }
-    .classification a:nth-of-type(2) {
-      background-image: url("../img/3-4.png"); }
-    .classification a:nth-of-type(3) {
-      background-image: url("../img/4-5.png"); }
+
+.classification .search {
+  background-color: yellow;
+  background-image: url("../img/library-head2.png");
+  background-size: cover;
+  padding-top: 41%;
+  padding-bottom: 10%;
+  margin-bottom: 20px; }
+
+.classification .tags {
+  width: 100%;
+  height: 54%;
+  overflow: scroll; }
+
+.classification a {
+  width: 88%;
+  display: block;
+  border: 1px solid #b4d2c9;
+  margin: 0 auto;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  padding-top: 23.8%;
+  overflow: hidden;
+  background-size: cover; }
+
+.classification a:nth-of-type(1) {
+  background-image: url("../img/2-3.png"); }
+
+.classification a:nth-of-type(2) {
+  background-image: url("../img/3-4.png"); }
+
+.classification a:nth-of-type(3) {
+  background-image: url("../img/4-5.png"); }
+
+.classification a:nth-of-type(4) {
+  background-image: url("../img/5-6.png"); }

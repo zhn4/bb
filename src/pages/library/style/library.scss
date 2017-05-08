@@ -1,4 +1,11 @@
 .library {
+  .login-tips {
+    width: 310px;
+    margin: 0 auto;
+    margin-top: 58px;
+    overflow: scroll;
+    text-align: center;
+  }
   .search {
     background-color: yellow;
     background-image: url('../img/library-head.png');
@@ -30,6 +37,11 @@
     padding-bottom: 10%;
     margin-bottom: 20px;
   }
+  .tags {
+    width: 100%;
+    height: 54%;
+    overflow: scroll;
+  }
   a {
     width: 88%;
     display: block;
@@ -48,6 +60,9 @@
     }
     &:nth-of-type(3) {
       background-image: url('../img/4-5.png');
+    }
+    &:nth-of-type(4) {
+      background-image: url('../img/5-6.png');
     }
   }
 }
