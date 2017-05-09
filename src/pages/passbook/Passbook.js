@@ -30,7 +30,8 @@ class Passbook extends Component {
   componentWillMount() {
     if(localStorage.getItem('userData') && localStorage.getItem('userData') !== '') {
       let today = new Date()
-      fetch(apiSwitch() + '/api/tsgbooks/member_book_tracks/' + today.getFullYear() +'/' + today.getMonth() + '/?service_consume__member=' + localStorage.getItem('switchSon'), {
+      fetch(apiSwitch() + '/api/tsgbooks/member_book_tracks/' + today.getFullYear() +'/' +
+      (today.getMonth() + 1) + '/?service_consume__member=' + localStorage.getItem('switchSon'), {
         mode: 'cors',
         method: 'get',
         headers: {
@@ -68,7 +69,15 @@ class Passbook extends Component {
       d.setFullYear(time.split('-')[0], time.split('-')[1] - 1, time.split('-')[2])
       let newDate = this.addSevenDay('d', 7, d);
       let newTime = newDate.toLocaleDateString()
-      return newTime.replace(/\//g, '-')
+      newTime = newTime.replace(/\//g, '-')
+      newTime = newTime.split('-')
+      if(newTime[1].length < 2) {
+        newTime[1] = '0' + newTime[1]
+      }
+      if(newTime[2].length < 2) {
+        newTime[2] = '0' + newTime[2]
+      }
+      return newTime[0] + '-' + newTime[1] + '-' + newTime[2]
     }
   }
   componentDidMount() {
@@ -94,7 +103,7 @@ class Passbook extends Component {
     }
   }
   handleAjax(year, month) {
-    fetch(apiSwitch() + '/api/tsgbooks/member_book_tracks/' + year +'/' + month +
+    fetch(apiSwitch() + '/api/tsgbooks/member_book_tracks/' + year +'/' + (month + 1) +
     '/?service_consume__member=' + localStorage.getItem('switchSon'), {
       mode: 'cors',
       method: 'get',
@@ -148,126 +157,83 @@ class Passbook extends Component {
           <Link to="/history"></Link>
         </div>
 
-        {
-          this.state.month === 1
-          ?
-          <div className="month">
-            <img src={require('./img/0.png')} alt="0"/>
-            <img src={require('./img/1.png')} alt="0"/>
-          </div>
-          :
-          ''
-        }
-        {
-          this.state.month === 2
-          ?
-          <div className="month">
-            <img src={require('./img/0.png')} alt="0"/>
-            <img src={require('./img/2.png')} alt="0"/>
-          </div>
-          :
-          ''
-        }
-        {
-          this.state.month === 3
-          ?
-          <div className="month">
-            <img src={require('./img/0.png')} alt="0"/>
-            <img src={require('./img/3.png')} alt="0"/>
-          </div>
-          :
-          ''
-        }
-        {
-          this.state.month === 4
-          ?
-          <div className="month">
-            <img src={require('./img/0.png')} alt="0"/>
-            <img src={require('./img/4.png')} alt="0"/>
-          </div>
-          :
-          ''
-        }
-        {
-          this.state.month === 5
-          ?
-          <div className="month">
-            <img src={require('./img/0.png')} alt="0"/>
-            <img src={require('./img/5.png')} alt="0"/>
-          </div>
-          :
-          ''
-        }
-        {
-          this.state.month === 6
-          ?
-          <div className="month">
-            <img src={require('./img/0.png')} alt="0"/>
-            <img src={require('./img/6.png')} alt="0"/>
-          </div>
-          :
-          ''
-        }
-        {
-          this.state.month === 7
-          ?
-          <div className="month">
-            <img src={require('./img/0.png')} alt="0"/>
-            <img src={require('./img/7.png')} alt="0"/>
-          </div>
-          :
-          ''
-        }
-        {
-          this.state.month === 8
-          ?
-          <div className="month">
-            <img src={require('./img/0.png')} alt="0"/>
-            <img src={require('./img/8.png')} alt="0"/>
-          </div>
-          :
-          ''
-        }
-        {
-          this.state.month === 9
-          ?
-          <div className="month">
-            <img src={require('./img/0.png')} alt="0"/>
-            <img src={require('./img/9.png')} alt="0"/>
-          </div>
-          :
-          ''
-        }
-        {
-          this.state.month === 10
-          ?
-          <div className="month">
-            <img src={require('./img/1.png')} alt="0"/>
-            <img src={require('./img/0.png')} alt="0"/>
-          </div>
-          :
-          ''
-        }
-        {
-          this.state.month === 11
-          ?
-          <div className="month">
-            <img src={require('./img/1.png')} alt="0"/>
-            <img src={require('./img/1.png')} alt="0"/>
-          </div>
-          :
-          ''
-        }
-        {
-          this.state.month === 12
-          ?
-          <div className="month">
-            <img src={require('./img/1.png')} alt="0"/>
-            <img src={require('./img/2.png')} alt="0"/>
-          </div>
-          :
-          ''
-        }
+        {(() => {
+          switch (this.state.month) {
+            case 1: return (
+              <div className="month">
+                <img src={require('./img/0.png')} alt="0"/>
+                <img src={require('./img/1.png')} alt="0"/>
+              </div>
+            )
+            case 2: return (
+              <div className="month">
+                <img src={require('./img/0.png')} alt="0"/>
+                <img src={require('./img/2.png')} alt="0"/>
+              </div>
+            )
+            case 3: return (
+              <div className="month">
+                <img src={require('./img/0.png')} alt="0"/>
+                <img src={require('./img/3.png')} alt="0"/>
+              </div>
+            )
+            case 4: return (
+              <div className="month">
+                <img src={require('./img/0.png')} alt="0"/>
+                <img src={require('./img/4.png')} alt="0"/>
+              </div>
+            )
+            case 5: return (
+              <div className="month">
+                <img src={require('./img/0.png')} alt="0"/>
+                <img src={require('./img/5.png')} alt="0"/>
+              </div>
+            )
+            case 6: return (
+              <div className="month">
+                <img src={require('./img/0.png')} alt="0"/>
+                <img src={require('./img/6.png')} alt="0"/>
+              </div>
+            )
+            case 7: return (
+              <div className="month">
+                <img src={require('./img/0.png')} alt="0"/>
+                <img src={require('./img/7.png')} alt="0"/>
+              </div>
+            )
+            case 8: return (
+              <div className="month">
+                <img src={require('./img/0.png')} alt="0"/>
+                <img src={require('./img/8.png')} alt="0"/>
+              </div>
+            )
+            case 9: return (
+              <div className="month">
+                <img src={require('./img/0.png')} alt="0"/>
+                <img src={require('./img/9.png')} alt="0"/>
+              </div>
+            )
+            case 10: return (
+              <div className="month">
+                <img src={require('./img/1.png')} alt="0"/>
+                <img src={require('./img/0.png')} alt="0"/>
+              </div>
+            )
+            case 11: return (
+              <div className="month">
+                <img src={require('./img/1.png')} alt="0"/>
+                <img src={require('./img/1.png')} alt="0"/>
+              </div>
+            )
+            case 12: return (
+              <div className="month">
+                <img src={require('./img/1.png')} alt="0"/>
+                <img src={require('./img/2.png')} alt="0"/>
+              </div>
+            )
+            default: return ''
+          }
+        })()}
 
         <Calendar
           prevData={this.prevData.bind(this)}
@@ -278,7 +244,7 @@ class Passbook extends Component {
         {
           this.state.isLogin
           ?
-            <ConsumeHistory data={this.state.consumeData}/>
+          <ConsumeHistory data={this.state.consumeData}/>
           :
           <div className="lead-btn">
             <div className="tips no-login-tips">
@@ -298,19 +264,29 @@ class ConsumeHistory extends Component {
   render() {
     return (
       <div>
-        {this.props.data.map((data, i) => (
-          <div key={i}>
-            <Tips slogan={data.award.slogan}
-                  borrow_date={data.service_consume.borrow_date}
-                  count={data.count}
-                  return_date={data.service_consume.return_date}
-            />
-            <Readingbooks member_book={data.service_consume.member_book}/>
-            <div className="lead-btn">
-            <Link className="btn" to={"/readinggroup/" + data.service_consume.id}>绘本导读</Link>
+      {
+        this.props.data.length > 0
+        ?
+        <div>
+          {this.props.data.map((data, i) => (
+            <div key={i}>
+              <Tips slogan={data.award.slogan}
+                    borrow_date={data.service_consume.borrow_date}
+                    count={data.count}
+                    return_date={data.service_consume.return_date}
+              />
+              <Readingbooks member_book={data.service_consume.member_book}/>
+              <div className="lead-btn">
+              <Link className="btn" to={"/readinggroup/" + data.service_consume.id}>绘本导读</Link>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+        :
+        <div>
+          <div className="warnning">快去贝贝猴童书馆借阅绘本，<br/>让小朋友养成读书的好习惯！</div>
+        </div>
+      }
       </div>
     )
   }

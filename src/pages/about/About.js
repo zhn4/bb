@@ -59,7 +59,7 @@ class About extends Component {
             <span>贝贝猴公众号</span>beibeimonkey
           </div>
           <div>
-            <span>客服猴小贝公众号</span>bbmonkey02
+            <span>客服猴小贝</span>bbmonkey02
           </div>
           <div>
             <span>客服热线</span>020-84219850

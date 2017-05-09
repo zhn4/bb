@@ -19,9 +19,6 @@ class LibrarySearchResults extends Component {
     }
   }
   componentWillMount() {
-    this.setState({
-      login: true
-    })
     if(localStorage.getItem('userData') && localStorage.getItem('userData') !== '') {
       fetch(apiSwitch() + '/api/tsgbooks/books/?search=' + this.props.match.params.key, {
         mode: 'cors',
@@ -36,9 +33,12 @@ class LibrarySearchResults extends Component {
         if(res.ok) {
           res.json()
           .then(json => {
-            this.setState({
-              resultData: json.results
-            })
+            setTimeout(() => {
+              this.setState({
+                resultData: json.results,
+                login: true
+              })
+            }, 400)
           })
         }else {
           res.json()
@@ -56,6 +56,11 @@ class LibrarySearchResults extends Component {
       })
     }
   }
+  componentDidMount() {
+    this.setState({
+      height: window.innerHeight - 55 - 58
+    })
+  }
   render() {
     return (
       <div className="library">
@@ -63,9 +68,9 @@ class LibrarySearchResults extends Component {
 
         {(() => {
           switch (this.state.login) {
-            case true: return <Results data={this.state.resultData}/>
+            case true: return <Results data={this.state.resultData} height={this.state.height}/>
             case false: return <div className="login-tips">请登陆</div>
-            default: return <div>加载中...</div>
+            default: return <div className="login-tips">加载中...</div>
           }
         })()}
 

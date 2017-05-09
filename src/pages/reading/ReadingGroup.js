@@ -41,6 +41,7 @@ class ReadingGroup extends Component {
           this.setState({// 借书的数据
             bookInfo: json
           })
+          console.log(this.state.bookInfo)
           this.refs.videoPlayer.load()
         })
       }else {
@@ -214,6 +215,7 @@ class ReadingGroup extends Component {
 
             <div className="tags">
               <ul>
+                <li>{this.state.bookInfo[this.state.curCard].sort.name}</li>
                 {this.state.bookInfo[this.state.curCard].tag.map((tag, i) => (
                   <li key={i}>{tag.name}</li>
                 ))}

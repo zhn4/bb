@@ -29,7 +29,7 @@ class Results extends Component {
   render() {
     return (
       <div className="results"
-        style={{'height': this.state.height + 'px'}}
+        style={{'height': this.props.height + 'px'}}
         onScroll={this.handleScroll.bind(this)}
         ref="scrollview"
       >

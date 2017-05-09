@@ -85,11 +85,26 @@
   border-bottom: none; }
 
 .passbook .record {
-  height: 43%;
   position: absolute;
   overflow: scroll;
   width: 100%;
   padding-top: 16px; }
+
+@media (min-width: 320px) {
+  .passbook .record {
+    height: 200px; } }
+
+@media (min-width: 375px) {
+  .passbook .record {
+    height: 260px; } }
+
+@media (min-width: 414px) {
+  .passbook .record {
+    height: 300px; } }
+
+@media (min-width: 768px) {
+  .passbook .record {
+    height: 440px; } }
 
 .passbook .record > div {
   width: 90%;
@@ -165,6 +180,13 @@
   position: absolute;
   width: 100%;
   bottom: 8px; }
+
+.passbook .record .warnning {
+  text-align: center;
+  line-height: 2;
+  background-color: #fff5e6;
+  color: #ffa634;
+  border-radius: 26px; }
 
 .passbook .record .no-login-tips > div:first-of-type {
   line-height: 40px; }

@@ -17,8 +17,8 @@ class Login extends Component {
     this.state = {
       isLogin: false,// 默认非登录状态
       userData: [],// 用户数据
-      phoneLogin: false,
-      usernameLogin: true
+      phoneLogin: true,
+      usernameLogin: false
     }
   }
   componentWillMount() {
@@ -203,10 +203,16 @@ class Login extends Component {
               :
               ''
             }
-            <ul className="loginBtn" onClick={this.loginMethods.bind(this)}>
-              <li><div className="phone">手机登录</div></li>
-              <li><div className="username">账号登录</div></li>
-            </ul>
+            {
+              this.state.loginmethodFunction
+              ?
+              <ul className="loginBtn" onClick={this.loginMethods.bind(this)}>
+                <li><div className="phone">手机登录</div></li>
+                <li><div className="username">账号登录</div></li>
+              </ul>
+              :
+              ''
+            }
           </div>
         }
       </div>

@@ -44,6 +44,11 @@ class Favourite extends Component {
       console.log('error', error)
     })
   }
+  componentDidMount() {
+    this.setState({
+      height: window.innerHeight - 55 - 58
+    })
+  }
   loadMoreData(value) {
     fetch(apiSwitch() + '/api/tsgbooks/user_favor_books/?page='
     + page, {
@@ -86,7 +91,7 @@ class Favourite extends Component {
         {
           this.state.data
           ?
-          <Results data={this.state.data} loadMoreData={this.loadMoreData.bind(this)}/>
+          <Results data={this.state.data} loadMoreData={this.loadMoreData.bind(this)} height={this.state.height}/>
           :
           ''
         }

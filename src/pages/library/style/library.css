@@ -21,6 +21,26 @@
   background-size: cover;
   padding-top: 51%; }
 
+.library .banner {
+  margin-top: 30px;
+  padding-top: 38%;
+  background-size: cover; }
+
+.library .one {
+  background-image: url("../img/2-3a.png"); }
+
+.library .two {
+  background-image: url("../img/3-4a.png"); }
+
+.library .three {
+  background-image: url("../img/4-5a.png"); }
+
+.library .four {
+  background-image: url("../img/5-6a.png"); }
+
+.libraryClassResults .results {
+  margin-top: 0; }
+
 .classification {
   width: 100%;
   background-color: #effff7; }

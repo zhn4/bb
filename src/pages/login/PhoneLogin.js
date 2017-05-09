@@ -45,8 +45,7 @@ class PhoneLogin extends Component {
     }
   }
   getCode() {
-    console.log('这里应该发送一个ajax请求')
-    if(this.refs.inputPhone.value !== '') {
+    if(this.refs.inputPhone.value !== '' && this.refs.inputPhone.value.match(/^[1][3][0-9]{9}$/)) {
       console.log('获取验证码')
       fetch(apiSwitch() + '/auth/login/', {
         mode: 'cors',
@@ -60,7 +59,6 @@ class PhoneLogin extends Component {
         })
       })
       .then(res => {
-        console.log(res)
         res.json().then(json => {
           alert(json.non_field_errors[0])
         })
@@ -69,7 +67,7 @@ class PhoneLogin extends Component {
         console.log('error', error)
       })
     }else {
-      console.log('空，弹窗提示')
+      alert('请输入正确的手机格式！')
     }
   }
   render() {
@@ -82,8 +80,7 @@ class PhoneLogin extends Component {
             ref='inputPhone'
             className="username"
           />
-          <input type="button" value="获取验证码"
-            onClick={this.getCode.bind(this)}/>
+          <button className="getcode-btn" onClick={this.getCode.bind(this)} >获取验证码</button>
         </div>
         <div>
           <input
