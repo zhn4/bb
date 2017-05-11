@@ -17,10 +17,6 @@ ul, ol {
 ::-webkit-scrollbar {
   display: none; }
 
-input[type="text"],
-input[type="password"] {
-  -webkit-appearance: none; }
-
 .btn {
   display: block;
   width: 60%;

@@ -154,6 +154,13 @@
 .passbook .record .tips:before {
   display: none; }
 
+.passbook .record .tips div {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 66%;
+  white-space: nowrap;
+  margin: 0 auto; }
+
 .passbook .record .tips div:first-of-type {
   padding-top: 3px; }
 

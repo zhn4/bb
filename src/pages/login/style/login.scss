@@ -37,24 +37,26 @@
     }
   }
   .after {
-    padding: 0 30px;
+    background-color: #ebebeb;
     div {
       border-bottom: 1px solid #e7e7e7;
       color: #b4b4b4;
-      padding: 16px 0;
+      padding: 16px 10px;
+      background-color: #fff;
+      &:first-of-type {
+        margin-bottom: 20px;
+        box-sizing: border-box;
+        // margin-top: 20px;
+      }
+      &:nth-of-type(4) {
+        margin-bottom: 20px;
+      }
       &:last-of-type {
         margin-bottom: 55px;
       }
       .btns {
         float: right;
-        background-color: #fe454f;
-        color: #fff;
-        padding: 0 8px;
-        border-radius: 6px;
-        font-size: 14px;
-        text-decoration: none;
-        height: 22px;
-        line-height: 22px;
+        line-height: 18px;
       }
       a {
         text-decoration: none;
@@ -67,17 +69,18 @@
       .title {
         width: 30%;
         display: inline-block;
+        color: #000;
+        padding-left: 10px;
       }
     }
     button {
       display: block;
-      width: 60%;
+      width: 90%;
       margin: 0 auto;
       height: 40px;
       background-color: #fe454f;
       outline: none;
       border: none;
-      border-radius: 25px;
       color: #fff;
       font-size: 16px;
       text-align: center;

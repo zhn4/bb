@@ -45,7 +45,12 @@
   width: 88%;
   margin: 0 auto;
   overflow: scroll;
-  height: 180px; }
+  height: 30%;
+  white-space: pre-wrap; }
+
+@media (max-width: 360px) {
+  .reading .desc {
+    height: 26%; } }
 
 .reading #video-player {
   display: none; }
@@ -221,18 +226,3 @@
 
 .sample pre {
   display: none; }
-
-@media (max-width: 414px) {
-  .reading .desc {
-    height: 240px; } }
-
-@media (max-width: 375px) {
-  .reading .desc {
-    height: 180px; } }
-
-@media (max-width: 320px) {
-  .viewport {
-    padding: 20px 0 0 0; }
-  .reading .desc {
-    font-size: 14px;
-    height: 140px; } }

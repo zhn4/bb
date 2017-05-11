@@ -48,8 +48,14 @@ class Passbook extends Component {
               data.service_consume.return_date = this.handleTime(data.service_consume.borrow_date)
             })
             this.setState({
-              consumeData: json
+              consumeData: json,
+              borrow_date_array: borrow_date_array
             })
+            let borrow_date_array = []
+            json.map((data, i) => {
+              borrow_date_array.push(data.service_consume.borrow_date)
+            })
+            this.markBorrowDay(borrow_date_array)
           })
         }else {
           res.json()
@@ -67,7 +73,7 @@ class Passbook extends Component {
     if(time.match(/^\d{4}[-]\d{1,2}[-]\d{2}$/)) {
       let d = new Date()
       d.setFullYear(time.split('-')[0], time.split('-')[1] - 1, time.split('-')[2])
-      let newDate = this.addSevenDay('d', 7, d);
+      let newDate = this.addSevenDay('d', 14, d);
       let newTime = newDate.toLocaleDateString()
       newTime = newTime.replace(/\//g, '-')
       newTime = newTime.split('-')
@@ -80,11 +86,25 @@ class Passbook extends Component {
       return newTime[0] + '-' + newTime[1] + '-' + newTime[2]
     }
   }
+  markBorrowDay(borrow_date_array) {
+    let days = document.getElementsByClassName('days')
+    for(let i = 0; i < days.length; i++) {
+      days[i].classList.remove('borrow_day')
+      for(let j = 0; j < borrow_date_array.length; j++) {
+        if(days[i].getAttribute('data-date') === borrow_date_array[j]) {
+          days[i].classList.add('borrow_day')
+        }
+      }
+    }
+  }
   componentDidMount() {
     this.judgeLogin()
   }
   componentWillReceiveProps() {
     this.judgeLogin()
+  }
+  sendArray() {
+    console.log('change state, send arr')
   }
   // handleAward(number) {
   //   console.log('领取礼物，发ajax')
@@ -123,6 +143,13 @@ class Passbook extends Component {
           this.setState({
             consumeData: json
           })
+          let borrow_date_array = []
+          json.map((data, i) => {
+            console.log(data.service_consume.borrow_date)
+            borrow_date_array.push(data.service_consume.borrow_date)
+          })
+          console.log(borrow_date_array)
+          this.markBorrowDay(borrow_date_array)
         })
       }else {
         res.json()

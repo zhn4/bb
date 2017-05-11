@@ -39,7 +39,8 @@ class ReadingGroup extends Component {
         res.json()
         .then(json => {
           this.setState({// 借书的数据
-            bookInfo: json
+            bookInfo: json,
+            audioCurrentTime: json[0].duration
           })
           console.log(this.state.bookInfo)
           this.refs.videoPlayer.load()
@@ -173,6 +174,10 @@ class ReadingGroup extends Component {
       })
     }
   }
+  componentWillUpdate() {
+    // console.log('切换音频')
+    // this.refs.videoPlayer.load()
+  }
   render() {
     let opt = {
       distance: 200, // 每次移动的距离，卡片的真实宽度
@@ -185,8 +190,12 @@ class ReadingGroup extends Component {
         }
         // console.log(data);
         this.setState({
-            curCard: ev.newPoint
+            curCard: ev.newPoint,
+            audioStatus: false,
+            audioCurrentTime: this.state.bookInfo[this.state.curCard].duration
         })
+        this.refs.videoPlayer.load()
+        window.clearInterval(showTime)
         // console.log('选中 >' + this.state.curCard)
       }
     }
@@ -234,7 +243,10 @@ class ReadingGroup extends Component {
               <div>
                 <div><FaShare size={28}/></div>
               </div>
-              <div className="active" data-value={this.state.audioCurrentTime} onClick={this.playVideo.bind(this)}>
+              <div className="active"
+                    data-value={this.state.audioCurrentTime}
+                    onClick={this.playVideo.bind(this)}
+              >
                 <div>
                   {
                     this.state.audioStatus

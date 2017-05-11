@@ -153,6 +153,11 @@
         display: none;
       }
       div {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 66%;
+        white-space: nowrap;
+        margin: 0 auto;
         &:first-of-type {
           padding-top: 3px;
         }

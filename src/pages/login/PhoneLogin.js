@@ -45,7 +45,7 @@ class PhoneLogin extends Component {
     }
   }
   getCode() {
-    if(this.refs.inputPhone.value !== '' && this.refs.inputPhone.value.match(/^[1][3][0-9]{9}$/)) {
+    if(this.refs.inputPhone.value !== '' && this.refs.inputPhone.value.match(/^1[3|4|5|7|8][0-9]\d{4,8}$/)) {
       console.log('获取验证码')
       fetch(apiSwitch() + '/auth/login/', {
         mode: 'cors',

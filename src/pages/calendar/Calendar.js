@@ -17,7 +17,7 @@ class Calendar extends Component {
       day: ''
     }
   }
-  buildCalendar(m) {
+  buildCalendar(m, arr) {
     let activeDate = new Date(currentYear, m, 1)
     let year = activeDate.getFullYear();
     let month = activeDate.getMonth();
@@ -31,10 +31,17 @@ class Calendar extends Component {
       days_arr.push({
         date: activeDate.getDate(),
         judgeMonth: activeDate.getMonth() !== month ? false : true,
-        date_details: year + '-' + (activeDate.getMonth() + 1) + '-' + activeDate.getDate(),
-        today: ( currentDate.getDate() === activeDate.getDate() && currentDate.getMonth() === activeDate.getMonth() ) ? true : false
+        date_details: year + '-' + (activeDate.getMonth() + 1 > 9 ? activeDate.getMonth() + 1 : '0' + ( activeDate.getMonth() + 1)) + '-' +
+                      (activeDate.getDate() > 9 ? activeDate.getDate() : '0' + activeDate.getDate()),
+        today: ( currentDate.getDate() === activeDate.getDate() &&
+                currentDate.getMonth() === activeDate.getMonth() ) ? true : false
       })
       activeDate.setDate(activeDate.getDate() + 1)
+    }
+    if(arr) {
+      console.log('you arr')
+    }else {
+      console.log('mei arr')
     }
     this.setState({
       date: year + '年' + (month + 1) + '月',
@@ -48,9 +55,6 @@ class Calendar extends Component {
   }
   componentWillMount() {
     this.buildCalendar(currentMonth)
-  }
-  componentDidMount() {
-
   }
   prevBtn() {
     this.buildCalendar(--currentMonth)
@@ -132,7 +136,7 @@ class Day extends Component {
       <div className="day">
         {this.props.day.map((day, i) => (
           <span key={i}
-          className={`${day.judgeMonth ? 'this_month' : 'not_this_month'}  ${day.today ? 'today' : 'not_today'}`}
+          className={`${day.judgeMonth ? 'this_month' : 'not_this_month'}  ${day.today ? 'today' : 'not_today'} days`}
           data-date={day.date_details}
           >{day.date}</span>
         ))}

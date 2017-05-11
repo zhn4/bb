@@ -31,7 +31,7 @@ class ReadingSingle extends Component {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'Authorization': ' jwt ' + JSON.parse(localStorage.getItem('userData'))[0].token
+        // 'Authorization': ' jwt ' + JSON.parse(localStorage.getItem('userData'))[0].token
       }
     })
     .then(res => {
@@ -42,7 +42,9 @@ class ReadingSingle extends Component {
           this.setState({
             bookInfo: json,
             is_favor: json.is_favor,
-            audioCurrentTime: json.duration
+            audioCurrentTime: json.duration,
+            sort: json.sort.name,
+            tags: json.tag
           })
           this.refs.videoPlayer.load()
         })
@@ -89,6 +91,7 @@ class ReadingSingle extends Component {
     }, 1000)
   }
   playVideo() {
+    this.refs.videoPlayer.load()
     if(this.refs.videoPlayer.currentSrc !== '') {
       if(this.refs.videoPlayer.paused) {
         this.refs.videoPlayer.play()
@@ -185,12 +188,13 @@ class ReadingSingle extends Component {
         </div>
         <div className="tags">
           <ul>
-          {this.state.tags.map((data, i) => (
-            <li key={i}>{data.name}</li>
-          ))}
+              <li>{this.state.sort}</li>
+            {this.state.tags.map((data, i) => (
+              <li key={i}>{data.name}</li>
+            ))}
           </ul>
         </div>
-        <p className="desc">{this.state.bookInfo.content}</p>
+        <div className="desc">{this.state.bookInfo.content}</div>
         <div>
           <audio controls="controls" id="video-player" ref="videoPlayer"
             onEnded={this.audioEnd.bind(this)}
@@ -215,9 +219,7 @@ class ReadingSingle extends Component {
               }
             </div>
           </div>
-          <div className={this.state.is_favor ? 'star' : 'unstar'}
-            onClick={this.handleFavourite.bind(this)}
-          >
+          <div className={this.state.is_favor ? 'star' : 'unstar'} onClick={this.handleFavourite.bind(this)}>
             <div><FaStar size={28}/></div>
           </div>
         </div>

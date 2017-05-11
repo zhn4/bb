@@ -19,14 +19,14 @@ class LibrarySearchResults extends Component {
     }
   }
   componentWillMount() {
-    if(localStorage.getItem('userData') && localStorage.getItem('userData') !== '') {
+    // if(localStorage.getItem('userData') && localStorage.getItem('userData') !== '') {
       fetch(apiSwitch() + '/api/tsgbooks/books/?search=' + this.props.match.params.key, {
         mode: 'cors',
         method: 'get',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'Authorization': ' jwt ' + JSON.parse(localStorage.getItem('userData'))[0].token
+          // 'Authorization': ' jwt ' + JSON.parse(localStorage.getItem('userData'))[0].token
         },
       })
       .then(res => {
@@ -50,11 +50,11 @@ class LibrarySearchResults extends Component {
       .catch(function(error) {
         console.log('error', error)
       })
-    }else {
-      this.setState({
-        login: false
-      })
-    }
+    // }else {
+    //   this.setState({
+    //     login: false
+    //   })
+    // }
   }
   componentDidMount() {
     this.setState({
@@ -69,7 +69,7 @@ class LibrarySearchResults extends Component {
         {(() => {
           switch (this.state.login) {
             case true: return <Results data={this.state.resultData} height={this.state.height}/>
-            case false: return <div className="login-tips">请登陆</div>
+            case false: return <div className="login-tips">请登录</div>
             default: return <div className="login-tips">加载中...</div>
           }
         })()}

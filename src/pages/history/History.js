@@ -107,7 +107,7 @@ class History extends Component {
         {(() => {
           switch (this.state.login) {
             case true: return <Results data={this.state.historyData} loadMoreData={this.loadMoreData.bind(this)} height={this.state.height}/>
-            case false: return <div className="login-tips">请登陆</div>
+            case false: return <div className="login-tips">请登录</div>
             default: return <div>加载中...</div>
           }
         })()}

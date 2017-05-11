@@ -6,6 +6,7 @@ import UsernameLogin from './UsernameLogin'
 import './style/login.css'
 
 import RightArrow from 'react-icons/lib/fa/angle-right'
+import Refresh from 'react-icons/lib/fa/refresh'
 
 let  apiSwitch = require('../../apiSwitch')
 
@@ -18,7 +19,8 @@ class Login extends Component {
       isLogin: false,// 默认非登录状态
       userData: [],// 用户数据
       phoneLogin: true,
-      usernameLogin: false
+      usernameLogin: false,
+      height: window.innerHeight - 55
     }
   }
   componentWillMount() {
@@ -43,8 +45,7 @@ class Login extends Component {
     this.setState({
       isLogin: false,
       userData: [],
-      userDetailsInfo: null,
-
+      userDetailsInfo: null
     })
   }
   handleLoginStatus(token, userInfo) {// 处理登录状态
@@ -131,22 +132,22 @@ class Login extends Component {
         {
           this.state.isLogin
           ?
-          <div className="after">
+          <div className="after" style={{'height': this.state.height + 'px'}}>
             <div>
-              <span className="title">昵称</span>
+              <span className="title">账号</span>
               {this.state.userData.username}
             </div>
             {this.state.userDetailsInfo
             ?
-            <div>
-              <span className="title">账号</span>
+            <div onClick={this.changeSon.bind(this)}>
+              <span className="title">名称</span>
               {this.state.userDetailsInfo[this.state.currentSon - 1].name}
               {
                 this.state.userDetailsInfo.length < 2
                 ?
                 ''
                 :
-                <span className="btns" onClick={this.changeSon.bind(this)}>切换</span>
+                <span className="btns" ><Refresh/></span>
               }
             </div>
             :
@@ -166,7 +167,7 @@ class Login extends Component {
               this.state.userDetailsInfo
               ?
               <div>
-                <span className="title">电话号码</span>
+                <span className="title">分店电话</span>
                 {this.state.userDetailsInfo[this.state.currentSon - 1].shop[0].phone}
               </div>
               :
@@ -179,7 +180,7 @@ class Login extends Component {
             </div>
             <div>
               <Link to="/about">
-                <span className="title">关于</span>贝贝猴阅读存折<span><RightArrow/></span>
+                <span className="title">关于</span>贝贝猴童书馆<span><RightArrow/></span>
               </Link>
             </div>
             <button onClick={this.logout.bind(this)}>退出</button>
