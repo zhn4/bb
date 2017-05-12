@@ -83,7 +83,8 @@ class Passbook extends Component {
       if(newTime[2].length < 2) {
         newTime[2] = '0' + newTime[2]
       }
-      return newTime[0] + '-' + newTime[1] + '-' + newTime[2]
+      // return newTime[0] + '-' + newTime[1] + '-' + newTime[2]
+      return '截至日期:' + newTime[1] + '-' + newTime[2]
     }
   }
   markBorrowDay(borrow_date_array) {
@@ -298,7 +299,11 @@ class ConsumeHistory extends Component {
           {this.props.data.map((data, i) => (
             <div key={i}>
               <Tips slogan={data.award.slogan}
-                    borrow_date={data.service_consume.borrow_date}
+                    borrow_date={(() => {
+                      return '借书日期:' +
+                              data.service_consume.borrow_date.split('-')[1] + '-' +
+                              data.service_consume.borrow_date.split('-')[2]
+                    })()}
                     count={data.count}
                     return_date={data.service_consume.return_date}
               />
