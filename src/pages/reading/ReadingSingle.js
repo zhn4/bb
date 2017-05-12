@@ -91,7 +91,7 @@ class ReadingSingle extends Component {
     }, 1000)
   }
   playVideo() {
-    this.refs.videoPlayer.load()
+    // this.refs.videoPlayer.load()
     if(this.refs.videoPlayer.currentSrc !== '') {
       if(this.refs.videoPlayer.paused) {
         this.refs.videoPlayer.play()
@@ -181,7 +181,7 @@ class ReadingSingle extends Component {
   render() {
     return (
       <div className="reading">
-        <Back/>
+        <Back onClick={window.clearInterval(showTime)}/>
         <div className="cover">
           <img src={this.state.bookInfo.cover} alt="cover"/>
           <p>{this.state.bookInfo.title}</p>
@@ -219,9 +219,17 @@ class ReadingSingle extends Component {
               }
             </div>
           </div>
-          <div className={this.state.is_favor ? 'star' : 'unstar'} onClick={this.handleFavourite.bind(this)}>
-            <div><FaStar size={28}/></div>
-          </div>
+          {
+            localStorage.getItem('userData') && localStorage.getItem('userData') !== ''
+            ?
+            <div className={this.state.is_favor ? 'star' : 'unstar'} onClick={this.handleFavourite.bind(this)}>
+              <div><FaStar size={28}/></div>
+            </div>
+            :
+            <div className="unstar">
+              <div><FaStar size={28}/></div>
+            </div>
+          }
         </div>
       </div>
     );
