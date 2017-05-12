@@ -51,6 +51,23 @@
       height: 26%;
     }
   }
+  .group-desc {
+    @media(max-width: 414px) {
+      height: 250px;
+    }
+    @media(max-width: 412px) {
+      height: 180px;
+    }
+    @media(max-width: 375px) {
+      height: 180px;
+    }
+    @media(max-width: 360px) {
+      height: 126px;
+    }
+    @media(max-width: 320px) {
+      height: 120px;
+    }
+  }
   #video-player {
     display: none;
   }
@@ -261,30 +278,14 @@
   display: none;
 }
 
-// @media(max-width: 414px) {
-//   .reading {
-//     .desc {
-//       height: 230px;
-//     }
-//   }
-// }
-//
-// @media(max-width: 375px) {
-//   .reading {
-//     .desc {
-//       height: 126px;
-//     }
-//   }
-// }
-//
-// @media(max-width: 320px) {
-//   .viewport {
-//     padding: 20px 0 0 0;
-//   }
-//   .reading {
-//     .desc {
-//       font-size: 14px;
-//       height: 130px;
-//     }
-//   }
-// }
+@media(max-width: 320px) {
+  .viewport {
+    padding: 20px 0 0 0;
+  }
+  .reading {
+    .desc {
+      font-size: 14px;
+      height: 130px;
+    }
+  }
+}

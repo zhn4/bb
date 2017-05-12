@@ -25,39 +25,77 @@ class ReadingSingle extends Component {
     }
   }
   componentWillMount() {
-    fetch(apiSwitch() + '/api/tsgbooks/books/' + this.props.match.params.book_id + '/', {
-      mode: 'cors',
-      method: 'get',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        // 'Authorization': ' jwt ' + JSON.parse(localStorage.getItem('userData'))[0].token
-      }
-    })
-    .then(res => {
-      if(res.ok) {
-        res.json()
-        .then(json => {
-          console.log(json)
-          this.setState({
-            bookInfo: json,
-            is_favor: json.is_favor,
-            audioCurrentTime: json.duration,
-            sort: json.sort.name,
-            tags: json.tag
+    if(localStorage.getItem('userData') && localStorage.getItem('userData') !== '') {
+      alert('有数据，发送带token的数据')
+      fetch(apiSwitch() + '/api/tsgbooks/books/' + this.props.match.params.book_id + '/', {
+        mode: 'cors',
+        method: 'get',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': ' jwt ' + JSON.parse(localStorage.getItem('userData'))[0].token
+        }
+      })
+      .then(res => {
+        if(res.ok) {
+          res.json()
+          .then(json => {
+            console.log(json)
+            this.setState({
+              bookInfo: json,
+              is_favor: json.is_favor,
+              audioCurrentTime: json.duration,
+              sort: json.sort.name,
+              tags: json.tag
+            })
+            this.refs.videoPlayer.load()
           })
-          this.refs.videoPlayer.load()
-        })
-      }else {
-        res.json()
-        .then(json => {
-          console.log("gg")
-        })
-      }
-    })
-    .catch(function(error) {
-      console.log('error', error)
-    })
+        }else {
+          res.json()
+          .then(json => {
+            console.log("gg")
+          })
+        }
+      })
+      .catch(function(error) {
+        console.log('error', error)
+      })
+    }else {
+      alert('数据，发送带token的数据')
+      fetch(apiSwitch() + '/api/tsgbooks/books/' + this.props.match.params.book_id + '/', {
+        mode: 'cors',
+        method: 'get',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          // 'Authorization': ' jwt ' + JSON.parse(localStorage.getItem('userData'))[0].token
+        }
+      })
+      .then(res => {
+        if(res.ok) {
+          res.json()
+          .then(json => {
+            console.log(json)
+            this.setState({
+              bookInfo: json,
+              is_favor: json.is_favor,
+              audioCurrentTime: json.duration,
+              sort: json.sort.name,
+              tags: json.tag
+            })
+            this.refs.videoPlayer.load()
+          })
+        }else {
+          res.json()
+          .then(json => {
+            console.log("gg")
+          })
+        }
+      })
+      .catch(function(error) {
+        console.log('error', error)
+      })
+    }
   }
   changeTime(times) {
     // let time = parseInt(this.refs.videoPlayer.duration, 10)
@@ -95,7 +133,12 @@ class ReadingSingle extends Component {
     if(this.refs.videoPlayer.currentSrc !== '') {
       if(this.refs.videoPlayer.paused) {
         this.refs.videoPlayer.play()
-        this.videoTime()
+        // this.videoTime()
+        setInterval( () => {
+          this.setState({
+            audioCurrentTime: this.changeTime(this.refs.videoPlayer.currentTime)
+          })
+        }, 1000)
         this.setState({
           audioStatus: true
         })
@@ -178,6 +221,9 @@ class ReadingSingle extends Component {
       })
     }
   }
+  alertTips() {
+    alert('请登录后操作，谢谢！')
+  }
   render() {
     return (
       <div className="reading">
@@ -220,13 +266,13 @@ class ReadingSingle extends Component {
             </div>
           </div>
           {
-            localStorage.getItem('userData') && localStorage.getItem('userData') !== ''
+            localStorage.getItem('userData')
             ?
             <div className={this.state.is_favor ? 'star' : 'unstar'} onClick={this.handleFavourite.bind(this)}>
               <div><FaStar size={28}/></div>
             </div>
             :
-            <div className="unstar">
+            <div className="unstar" onClick={this.alertTips.bind(this)}>
               <div><FaStar size={28}/></div>
             </div>
           }

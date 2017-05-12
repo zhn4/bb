@@ -41,7 +41,7 @@ class PhoneLogin extends Component {
         console.log('error', error)
       })
     }else {
-      alert('验证码不能为空！')
+      alert('手机号码或验证码不能为空！')
     }
   }
   getCode() {

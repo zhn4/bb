@@ -82,25 +82,35 @@ class ReadingGroup extends Component {
     return allTime
   }
   videoTime() {
-    showTime = setInterval( () => {
+    window.showTime = setInterval( () => {
       this.setState({
         audioCurrentTime: this.changeTime(this.refs.videoPlayer.currentTime)
       })
     }, 1000)
+    return this.videoTime()
   }
   playVideo() {
-    if(this.refs.videoPlayer.paused) {
-      this.refs.videoPlayer.play()
-      this.videoTime()
-      this.setState({
-        audioStatus: true
-      })
+    if(this.refs.videoPlayer.currentSrc && this.refs.videoPlayer.currentSrc !== '') {
+      if(this.refs.videoPlayer.paused) {
+        this.refs.videoPlayer.play()
+        // this.videoTime()
+        setInterval( () => {
+          this.setState({
+            audioCurrentTime: this.changeTime(this.refs.videoPlayer.currentTime)
+          })
+        }, 1000)
+        this.setState({
+          audioStatus: true
+        })
+      }else {
+        this.refs.videoPlayer.pause()
+        window.clearInterval(showTime)
+        this.setState({
+          audioStatus: false
+        })
+      }
     }else {
-      this.refs.videoPlayer.pause()
-      window.clearInterval(showTime)
-      this.setState({
-        audioStatus: false
-      })
+      alert('绘本故事音频即将上线，谢谢您的支持！ ')
     }
   }
   audioEnd() {
@@ -192,7 +202,7 @@ class ReadingGroup extends Component {
         this.setState({
             curCard: ev.newPoint,
             audioStatus: false,
-            audioCurrentTime: this.state.bookInfo[this.state.curCard].duration
+            audioCurrentTime: this.state.bookInfo[ev.newPoint].duration
         })
         this.refs.videoPlayer.load()
         window.clearInterval(showTime)
@@ -201,7 +211,7 @@ class ReadingGroup extends Component {
     }
     return (
       <div className="reading reading-group">
-        <Back/>
+        <Back />
 
         {
           this.state.bookInfo
@@ -231,7 +241,7 @@ class ReadingGroup extends Component {
               </ul>
             </div>
 
-            <p className="desc">{this.state.bookInfo[this.state.curCard].content}</p>
+            <div className="desc group-desc">{this.state.bookInfo[this.state.curCard].content}</div>
 
             <div>
               <audio controls="controls" id="video-player" ref="videoPlayer" onEnded={this.audioEnd.bind(this)}>

@@ -52,6 +52,26 @@
   .reading .desc {
     height: 26%; } }
 
+@media (max-width: 414px) {
+  .reading .group-desc {
+    height: 250px; } }
+
+@media (max-width: 412px) {
+  .reading .group-desc {
+    height: 180px; } }
+
+@media (max-width: 375px) {
+  .reading .group-desc {
+    height: 180px; } }
+
+@media (max-width: 360px) {
+  .reading .group-desc {
+    height: 126px; } }
+
+@media (max-width: 320px) {
+  .reading .group-desc {
+    height: 120px; } }
+
 .reading #video-player {
   display: none; }
 
@@ -226,3 +246,10 @@
 
 .sample pre {
   display: none; }
+
+@media (max-width: 320px) {
+  .viewport {
+    padding: 20px 0 0 0; }
+  .reading .desc {
+    font-size: 14px;
+    height: 130px; } }
