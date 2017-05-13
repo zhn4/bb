@@ -84,7 +84,7 @@ class Passbook extends Component {
         newTime[2] = '0' + newTime[2]
       }
       // return newTime[0] + '-' + newTime[1] + '-' + newTime[2]
-      return '截至日期:' + newTime[1] + '-' + newTime[2]
+      return '截止日期:' + newTime[1] + '-' + newTime[2]
     }
   }
   markBorrowDay(borrow_date_array) {
@@ -146,10 +146,8 @@ class Passbook extends Component {
           })
           let borrow_date_array = []
           json.map((data, i) => {
-            console.log(data.service_consume.borrow_date)
             borrow_date_array.push(data.service_consume.borrow_date)
           })
-          console.log(borrow_date_array)
           this.markBorrowDay(borrow_date_array)
         })
       }else {

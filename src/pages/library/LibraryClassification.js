@@ -34,7 +34,7 @@ class LibraryClassification extends Component {
         if(res.ok) {
           res.json()
           .then(json => {
-            console.log(json)
+            // console.log(json)
             setTimeout(() => {
               this.setState({
                 resultData: json.results,

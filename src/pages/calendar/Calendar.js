@@ -38,11 +38,6 @@ class Calendar extends Component {
       })
       activeDate.setDate(activeDate.getDate() + 1)
     }
-    if(arr) {
-      console.log('you arr')
-    }else {
-      console.log('mei arr')
-    }
     this.setState({
       date: year + '年' + (month + 1) + '月',
       day: days_arr

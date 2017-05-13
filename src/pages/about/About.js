@@ -65,7 +65,7 @@ class About extends Component {
             <span>客服热线</span>020-84219850
           </div>
           <div id="version">
-            <span>版本号</span>Ver 0.0.1
+            <span>版本号</span>Ver <span id="show-version">1.0.0</span>
           </div>
         </div>
       </div>

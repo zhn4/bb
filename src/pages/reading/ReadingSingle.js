@@ -26,7 +26,7 @@ class ReadingSingle extends Component {
   }
   componentWillMount() {
     if(localStorage.getItem('userData') && localStorage.getItem('userData') !== '') {
-      alert('有数据，发送带token的数据')
+      // alert('有数据，发送带token的数据')
       fetch(apiSwitch() + '/api/tsgbooks/books/' + this.props.match.params.book_id + '/', {
         mode: 'cors',
         method: 'get',
@@ -40,7 +40,7 @@ class ReadingSingle extends Component {
         if(res.ok) {
           res.json()
           .then(json => {
-            console.log(json)
+            // console.log(json)
             this.setState({
               bookInfo: json,
               is_favor: json.is_favor,
@@ -61,7 +61,7 @@ class ReadingSingle extends Component {
         console.log('error', error)
       })
     }else {
-      alert('数据，发送带token的数据')
+      // alert('数据，发送带token的数据')
       fetch(apiSwitch() + '/api/tsgbooks/books/' + this.props.match.params.book_id + '/', {
         mode: 'cors',
         method: 'get',
