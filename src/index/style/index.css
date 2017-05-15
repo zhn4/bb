@@ -46,4 +46,6 @@
   overflow: scroll;
   background-image: url("../img/bg.jpg");
   background-size: cover;
-  width: 100%; }
+  width: 100%;
+  max-width: 768px;
+  margin: 0 auto; }

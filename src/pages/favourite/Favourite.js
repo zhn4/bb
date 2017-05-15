@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Results from '../components/Results'
 import Back from '../components/Back'
 
-let  apiSwitch = require('../../apiSwitch')
+import apiSwitch from '../../apiSwitch'
 
 let page = 2
 

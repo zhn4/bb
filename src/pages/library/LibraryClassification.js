@@ -5,7 +5,7 @@ import Back from '../components/Back'
 
 import './style/library.css'
 
-let  apiSwitch = require('../../apiSwitch')
+import apiSwitch from '../../apiSwitch'
 
 let page = 2
 

@@ -1,3 +1,8 @@
+.passbook {
+  background-image: url("../img/passbook-bg2.png");
+  background-size: cover;
+  position: relative; }
+
 .passbook .month {
   width: 40%;
   position: absolute;
@@ -10,8 +15,7 @@
 .passbook .load-history {
   position: relative;
   background-image: url("../img/head-banner.png");
-  background-size: cover;
-  padding-top: 49%; }
+  background-size: cover; }
 
 .passbook .load-history a {
   text-decoration: none;
@@ -37,10 +41,13 @@
   border-radius: 10px;
   overflow: hidden;
   width: 240px;
-  margin-top: -60px;
-  position: relative;
   background-color: #fff;
-  margin-bottom: 18px; }
+  margin-bottom: 18px;
+  position: absolute;
+  top: 18%;
+  left: 50%;
+  margin-left: -120px;
+  z-index: 1; }
 
 .passbook .calendar .head {
   display: none; }
@@ -85,30 +92,54 @@
   border-bottom: none; }
 
 .passbook .record {
-  position: absolute;
+  height: 40%;
   overflow: scroll;
   width: 100%;
-  padding-top: 16px; }
+  padding-top: 16px;
+  position: absolute; }
 
 @media (min-width: 320px) {
   .passbook .record {
-    height: 200px; } }
+    height: 35%; } }
 
 @media (min-width: 375px) {
   .passbook .record {
-    height: 260px; } }
+    height: 40%; } }
 
 @media (min-width: 414px) {
   .passbook .record {
-    height: 300px; } }
+    height: 44%; } }
 
 @media (min-width: 768px) {
   .passbook .record {
-    height: 440px; } }
+    height: 46%; } }
+
+@media (max-width: 768px) {
+  .passbook .record {
+    bottom: 3%; } }
+
+@media (max-width: 414px) {
+  .passbook .record {
+    bottom: 10%; } }
 
 .passbook .record > div {
-  width: 90%;
   margin: 0 auto; }
+
+@media (max-width: 768px) {
+  .passbook .record > div {
+    width: 74.5%; } }
+
+@media (max-width: 414px) {
+  .passbook .record > div {
+    width: 83%; } }
+
+@media (max-width: 375px) {
+  .passbook .record > div {
+    width: 86%; } }
+
+@media (max-width: 320px) {
+  .passbook .record > div {
+    width: 89%; } }
 
 .passbook .record > div > div {
   border-bottom: 1px solid #ccc;

@@ -5,7 +5,7 @@ import './style/history.css'
 import Results from '../components/Results'
 import Back from '../components/Back'
 
-let  apiSwitch = require('../../apiSwitch')
+import apiSwitch from '../../apiSwitch'
 
 let historyData = []// 测试数据
 

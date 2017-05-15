@@ -16,7 +16,8 @@ class Passbook extends Component {
     this.state = {
       isLogin: false,
       consumeData: [],
-      month: todyMonth + 1
+      month: todyMonth + 1,
+      height: window.innerHeight - 55
     }
   }
   judgeLogin() {
@@ -178,7 +179,7 @@ class Passbook extends Component {
   }
   render() {
     return (
-      <div className="passbook">
+      <div className="passbook" style={{'height': this.state.height + 'px'}}>
         <div className="load-history">
           <Link to="/history"></Link>
         </div>

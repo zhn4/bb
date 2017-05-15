@@ -8,7 +8,7 @@ import './style/login.css'
 import RightArrow from 'react-icons/lib/fa/angle-right'
 import Refresh from 'react-icons/lib/fa/refresh'
 
-let  apiSwitch = require('../../apiSwitch')
+import apiSwitch from '../../apiSwitch'
 
 import { Link } from 'react-router-dom'
 

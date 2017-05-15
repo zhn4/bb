@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Back from '../components/Back'
 
-let  apiSwitch = require('../../apiSwitch')
+import apiSwitch from '../../apiSwitch'
 
 import './style/about.css'
 

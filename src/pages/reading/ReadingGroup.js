@@ -9,7 +9,7 @@ import FaShare from 'react-icons/lib/fa/share-square-o'
 
 import ReactSwipe from 'react-swipes'
 
-let  apiSwitch = require('../../apiSwitch')
+import apiSwitch from '../../apiSwitch'
 
 import './style/reading.css'
 
@@ -42,7 +42,6 @@ class ReadingGroup extends Component {
             bookInfo: json,
             audioCurrentTime: json[0].duration
           })
-          console.log(this.state.bookInfo)
           this.refs.videoPlayer.load()
         })
       }else {
@@ -57,28 +56,16 @@ class ReadingGroup extends Component {
     })
   }
   changeTime(times) {
-    // let time = parseInt(this.refs.videoPlayer.duration, 10)
     let time = parseInt(times, 10)
-    //分钟
-    let minute = time / 60
-    let minutes = parseInt(minute, 10)
+    let minutes = parseInt(time / 60, 10)//分钟
     if (minutes < 10) {
       minutes = "0" + minutes
     }
-    //秒
-    let second = time % 60
-    let seconds = parseInt(second, 10)
+    let seconds = parseInt(time % 60, 10)//秒
     if (seconds < 10) {
       seconds = "0" + seconds
     }
-    let allTime = '' +
-    minutes +
-    '' +
-    ':' +
-    '' +
-    seconds +
-    ''
-    // console.log(allTime)
+    let allTime = '' + minutes + ' : ' + seconds + ''
     return allTime
   }
   videoTime() {
@@ -114,7 +101,6 @@ class ReadingGroup extends Component {
     }
   }
   audioEnd() {
-    console.log('end')
     window.clearInterval(showTime)
     this.setState({
       audioStatus: false,
@@ -122,8 +108,7 @@ class ReadingGroup extends Component {
     })
   }
   handleFavourite() {
-    if(this.state.bookInfo[this.state.curCard].is_favor) {
-      // console.log('取消')
+    if(this.state.bookInfo[this.state.curCard].is_favor) {// 取消
       fetch(apiSwitch() + '/api/tsgbooks/user_favor_books/' + this.state.bookInfo[this.state.curCard].id + '/', {
         mode: 'cors',
         method: 'DELETE',
@@ -151,8 +136,7 @@ class ReadingGroup extends Component {
       .catch(function(error) {
         console.log('error', error)
       })
-    }else {
-      // console.log('收藏')
+    }else {// 收藏
       fetch(apiSwitch() + '/api/tsgbooks/user_favor_books/', {
         mode: 'cors',
         method: 'post',
@@ -184,29 +168,16 @@ class ReadingGroup extends Component {
       })
     }
   }
-  componentWillUpdate() {
-    // console.log('切换音频')
-    // this.refs.videoPlayer.load()
-  }
   render() {
     let opt = {
       distance: 200, // 每次移动的距离，卡片的真实宽度
       swTouchend: (ev) => {
-        let data = {
-          moved: ev.moved,
-          originalPoint: ev.originalPoint,
-          newPoint: ev.newPoint,
-          cancelled: ev.cancelled
-        }
-        // console.log(data);
         this.setState({
             curCard: ev.newPoint,
             audioStatus: false,
             audioCurrentTime: this.state.bookInfo[ev.newPoint].duration
         })
         this.refs.videoPlayer.load()
-        window.clearInterval(showTime)
-        // console.log('选中 >' + this.state.curCard)
       }
     }
     return (

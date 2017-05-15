@@ -7,7 +7,7 @@ import FaStar from 'react-icons/lib/fa/star'
 import FaPause from 'react-icons/lib/fa/pause'
 import FaShare from 'react-icons/lib/fa/share-square-o'
 
-let  apiSwitch = require('../../apiSwitch')
+import apiSwitch from '../../apiSwitch'
 
 import './style/reading.css'
 

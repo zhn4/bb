@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import './style/login.css'
 
-let  apiSwitch = require('../../apiSwitch')
+import apiSwitch from '../../apiSwitch'
 
 class PhoneLogin extends Component {
   phoneLogin() {
