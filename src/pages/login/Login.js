@@ -20,7 +20,8 @@ class Login extends Component {
       userData: [],// 用户数据
       phoneLogin: true,
       usernameLogin: false,
-      height: window.innerHeight - 55
+      height: window.innerHeight - 55,
+      currentSon: 1
     }
   }
   componentWillMount() {
@@ -42,6 +43,7 @@ class Login extends Component {
     console.log('退出，清除localStorage，发送退出请求')
     localStorage.setItem('userData', [])// localStorage保存token标识登录状态
     localStorage.setItem('switchSon', '')
+    localStorage.setItem('cid', '')
     this.setState({
       isLogin: false,
       userData: [],

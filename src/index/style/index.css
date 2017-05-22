@@ -12,35 +12,31 @@
   box-sizing: border-box;
   padding: 0 24px;
   z-index: 2; }
-
-.menu div {
-  display: inline-block;
-  width: 68px;
-  text-align: center; }
-
-.menu a {
-  text-decoration: none;
-  color: #fff; }
-
-.menu .active {
-  background-color: #ff3f3f;
-  position: relative;
-  height: 70px;
-  padding-top: 9px;
-  padding-left: 6px;
-  padding-right: 6px;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-  box-sizing: border-box; }
-
-.menu .active::after {
-  content: attr(data-value);
-  font-size: 13px;
-  font-weight: bold;
-  white-space: nowrap;
-  text-align: center;
-  display: block;
-  color: #fff; }
+  .menu div {
+    display: inline-block;
+    width: 68px;
+    text-align: center; }
+  .menu a {
+    text-decoration: none;
+    color: #fff; }
+  .menu .active {
+    background-color: #ff3f3f;
+    position: relative;
+    height: 70px;
+    padding-top: 9px;
+    padding-left: 6px;
+    padding-right: 6px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    box-sizing: border-box; }
+    .menu .active::after {
+      content: attr(data-value);
+      font-size: 13px;
+      font-weight: bold;
+      white-space: nowrap;
+      text-align: center;
+      display: block;
+      color: #fff; }
 
 .index-content {
   overflow: scroll;

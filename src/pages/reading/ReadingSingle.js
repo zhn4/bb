@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import notie from 'notie'
 
 import Back from '../components/Back'
 
@@ -10,6 +11,7 @@ import FaShare from 'react-icons/lib/fa/share-square-o'
 import apiSwitch from '../../apiSwitch'
 
 import './style/reading.css'
+import '../../../node_modules/notie/dist/notie.css'
 
 let showTime
 
@@ -127,6 +129,7 @@ class ReadingSingle extends Component {
         audioCurrentTime: this.changeTime(this.refs.videoPlayer.currentTime)
       })
     }, 1000)
+    return showTime
   }
   playVideo() {
     // this.refs.videoPlayer.load()
@@ -150,7 +153,14 @@ class ReadingSingle extends Component {
         })
       }
     }else {
-      alert('绘本故事音频即将上线，谢谢您的支持！ ')
+      // alert('绘本故事音频即将上线，谢谢您的支持！')
+      notie.alert({
+        type: 'warning',
+        text: '绘本故事音频即将上线，谢谢您的支持！',
+        stay: false,
+        time: 2,
+        position: 'top'
+      })
     }
   }
   audioEnd() {
@@ -240,7 +250,15 @@ class ReadingSingle extends Component {
             ))}
           </ul>
         </div>
-        <div className="desc">{this.state.bookInfo.content}</div>
+        <div className="desc">
+        {
+          this.state.bookInfo.content
+          ?
+          this.state.bookInfo.content
+          :
+          <div>绘本导读即将上线，敬请期待！</div>
+        }
+        </div>
         <div>
           <audio controls="controls" id="video-player" ref="videoPlayer"
             onEnded={this.audioEnd.bind(this)}

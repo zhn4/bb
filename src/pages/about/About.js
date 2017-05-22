@@ -56,13 +56,13 @@ class About extends Component {
         <div className="logo"></div>
         <div className="desc">
           <div>
-            <span>贝贝猴公众号</span>beibeimonkey
+            <span>贝贝猴公众号</span>bbmonkeybook
           </div>
           <div>
-            <span>客服猴小贝</span>bbmonkey02
+            <span>客服猴小贝</span>bbmonkey01
           </div>
           <div>
-            <span>客服热线</span>020-84219850
+            <span>客服热线</span>020-29845736
           </div>
           <div id="version">
             <span>版本号</span>Ver <span id="show-version">1.0.0</span>

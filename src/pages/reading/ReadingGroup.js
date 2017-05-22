@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import notie from 'notie'
 
 import Back from '../components/Back'
 
@@ -12,6 +13,7 @@ import ReactSwipe from 'react-swipes'
 import apiSwitch from '../../apiSwitch'
 
 import './style/reading.css'
+import '../../../node_modules/notie/dist/notie.css'
 
 let showTime
 
@@ -97,7 +99,14 @@ class ReadingGroup extends Component {
         })
       }
     }else {
-      alert('绘本故事音频即将上线，谢谢您的支持！ ')
+      // alert('绘本故事音频即将上线，谢谢您的支持！')
+      notie.alert({
+        type: 'warning',
+        text: '绘本故事音频即将上线，谢谢您的支持！',
+        stay: false,
+        time: 2,
+        position: 'top'
+      })
     }
   }
   audioEnd() {
@@ -212,7 +221,15 @@ class ReadingGroup extends Component {
               </ul>
             </div>
 
-            <div className="desc group-desc">{this.state.bookInfo[this.state.curCard].content}</div>
+            <div className="desc group-desc">
+              {
+                this.state.bookInfo[this.state.curCard].content
+                ?
+                this.state.bookInfo[this.state.curCard].content
+                :
+                <div>绘本导读即将上线，敬请期待！</div>
+              }
+            </div>
 
             <div>
               <audio controls="controls" id="video-player" ref="videoPlayer" onEnded={this.audioEnd.bind(this)}>
